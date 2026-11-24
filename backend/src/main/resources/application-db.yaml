@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/iuh_regrag}
+    username: ${DB_USERNAME:iuh_regrag}
+    password: ${DB_PASSWORD}
+  flyway:
+    baseline-on-migrate: true
+    baseline-version: 0
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+app:
+  ai-service:
+    base-url: ${AI_SERVICE_URL:http://localhost:8000}
+    timeout-seconds: ${AI_SERVICE_TIMEOUT_SECONDS:120}
+  document:
+    upload-dir: ${DOCUMENT_UPLOAD_DIR:uploads/documents}
+  llm:
+    api-key: ${LLM_API_KEY:${GEMINI_API_KEY:}}
+  security:
+    allowed-origin: ${FRONTEND_ORIGIN:http://localhost:5173}
+    chat-requests-per-minute: ${CHAT_RATE_LIMIT_PER_MINUTE:20}

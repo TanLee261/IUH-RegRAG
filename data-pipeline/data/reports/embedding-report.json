@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-11-19T15:57:17.959325+00:00",
+  "input": "/Users/duytan/orca/projects/IUH-RegRAG/data-pipeline/data/processed/chunks/chunks.jsonl",
+  "model": "BAAI/bge-m3",
+  "dimension": 1024,
+  "max_tokens": 8192,
+  "batch_size": 4,
+  "device": "mps",
+  "chunks": 1543,
+  "embedded": 1543,
+  "failed": 0,
+  "truncated": 0,
+  "max_observed_tokens": 4344,
+  "normalized": true,
+  "min_vector_norm": 0.9999999403953552,
+  "max_vector_norm": 1.0000001192092896,
+  "semantic_smoke": {
+    "positive_score": 0.6581099033355713,
+    "negative_score": 0.49312835931777954,
+    "passed": true
+  },
+  "duration_seconds": 80.442
+}

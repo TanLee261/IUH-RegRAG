@@ -1,0 +1,1233 @@
+{
+  "summary": {
+    "downloaded": 125,
+    "formats": {
+      ".html": 60,
+      ".pdf": 63,
+      ".docx": 2
+    },
+    "failed": 2,
+    "pdf_pages": 444,
+    "pdfs_requiring_ocr_review": 11
+  },
+  "files": [
+    {
+      "source": "https://pdt.iuh.edu.vn/quy-che-dao-tao",
+      "status": "downloaded",
+      "path": "raw/01-dao-tao/c4294b80fe95.html",
+      "sha256_verified": true,
+      "visible_text_characters": 54943,
+      "graduation_section_present": true
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/danh-sach/quy-che-dao-tao",
+      "status": "downloaded",
+      "path": "raw/02-sua-doi/c1717f1533af.html",
+      "sha256_verified": true,
+      "visible_text_characters": 2411
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/thong-bao-ke-hoach-xet-cong-nhan-tot-nghiep-bac-dai-hoc-dot-thang-10-nam-2026",
+      "status": "downloaded",
+      "path": "raw/03-tot-nghiep/0e633449e8b3.html",
+      "sha256_verified": true,
+      "visible_text_characters": 2887
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/thong-bao-vv-dang-ky-hoc-phan-va-dong-hoc-phi-hoc-ky-2-nam-hoc-2026---2027",
+      "status": "downloaded",
+      "path": "raw/08-dang-ky-hoc-phan/dce4b67f9143.html",
+      "sha256_verified": true,
+      "visible_text_characters": 2959
+    },
+    {
+      "source": "https://ctdt.iuh.edu.vn/",
+      "status": "failed"
+    },
+    {
+      "source": "https://fct.iuh.edu.vn/news.html%40detail%40354%401230%40CHUONG-TRINH-DAO-TAO-2025-2026",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/8d222fcf66ac.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3257
+    },
+    {
+      "source": "https://fba.iuh.edu.vn/wp-content/uploads/2025/01/QD-2196-Quyet-diinh-ban-hanh-CTDT-Bac-dai-hoc-dai-tra.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/bd38d32fbb69.pdf",
+      "sha256_verified": true,
+      "pages": 5,
+      "low_text_pages": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "requires_ocr_review": true
+    },
+    {
+      "source": "https://iuh.edu.vn/Resource/Upload2/files/2023/08/01_Quy%20che%CC%82%CC%81%20co%CC%82ng%20ta%CC%81c%20sinh%20vie%CC%82n%20-%20na%CC%86m%202023%20-%20New.pdf",
+      "status": "downloaded",
+      "path": "raw/05-cong-tac-sinh-vien/6eba0ec1116f.pdf",
+      "sha256_verified": true,
+      "pages": 17,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://faet.iuh.edu.vn/news.html%40detail%40363%40696%40Quy-dinh-danh-gia-ket-qua-ren-luyen-doi-voi-sinh-vien-Truong-Dai-hoc-Cong-nghiep-TP.HCM.",
+      "status": "downloaded",
+      "path": "raw/06-ren-luyen/1f25362260d3.html",
+      "sha256_verified": true,
+      "visible_text_characters": 2658
+    },
+    {
+      "source": "https://iuh.edu.vn/Resource/Upload2/files/2023/08/02_1_Quy%20dinh%202017_%20%C4%91a%CC%81nh%20gia%CC%81%20ke%CC%82%CC%81t%20qua%CC%89%20re%CC%80n%20luye%CC%A3%CC%82n%20%202023%20-%20New.pdf",
+      "status": "downloaded",
+      "path": "raw/06-ren-luyen/a87d862cae8b.pdf",
+      "sha256_verified": true,
+      "pages": 11,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://tqa.iuh.edu.vn/wp-content/uploads/2024/09/So-tay-sinh-vien-IUH-2024-2.pdf",
+      "status": "downloaded",
+      "path": "raw/07-so-tay/4c0cc78b725e.pdf",
+      "sha256_verified": true,
+      "pages": 82,
+      "low_text_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82
+      ],
+      "requires_ocr_review": true
+    },
+    {
+      "source": "https://fet.iuh.edu.vn/news.html%40detail%40264%40972%40CHAO-MUNG-TAN-SINH-VIEN-K22-SO-TAY-SINH-VIEN",
+      "status": "downloaded",
+      "path": "raw/07-so-tay/4fcbef35389a.html",
+      "sha256_verified": true,
+      "visible_text_characters": 4086
+    },
+    {
+      "source": "https://sv.iuh.edu.vn/sinh-vien/tin-tuc/thong-bao-ve-viec-dang-ky-hoc-phan-hk1-2026-2027.html?pIDDanhMuc=1",
+      "status": "downloaded",
+      "path": "raw/08-dang-ky-hoc-phan/c7d7681dab35.html",
+      "sha256_verified": true,
+      "visible_text_characters": 1273
+    },
+    {
+      "source": "https://tqa.iuh.edu.vn/quy-che-quan-ly-cong-tac-thi/",
+      "status": "downloaded",
+      "path": "raw/09-thi-phuc-khao/ad5157aea399.html",
+      "sha256_verified": true,
+      "visible_text_characters": 4130
+    },
+    {
+      "source": "https://tqa.iuh.edu.vn/cong-tac-khao-thi/quy-dinh-phuc-khao/",
+      "status": "downloaded",
+      "path": "raw/09-thi-phuc-khao/acf907197694.html",
+      "sha256_verified": true,
+      "visible_text_characters": 4829
+    },
+    {
+      "source": "https://iuh.edu.vn/upload/files/2026/05/TB_Dang%20ki%20hoc%20phan%20HK1-nam%20hoc%202026-2027.pdf",
+      "status": "downloaded",
+      "path": "raw/10-hoc-phi/27a09c4d0862.pdf",
+      "sha256_verified": true,
+      "pages": 2,
+      "low_text_pages": [
+        1,
+        2
+      ],
+      "requires_ocr_review": true
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/quy-dinh-xet-hoc-bong-danh-cho-sinh-vien-chinh-quy-2025",
+      "status": "downloaded",
+      "path": "raw/11-hoc-bong/30737e7abf4c.html",
+      "sha256_verified": true,
+      "visible_text_characters": 12435
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/danh-sach/quy-che-hoc-bong",
+      "status": "downloaded",
+      "path": "raw/11-hoc-bong/5316634c572a.html",
+      "sha256_verified": true,
+      "visible_text_characters": 2794
+    },
+    {
+      "source": "https://ctsv.iuh.edu.vn/news.html%40detail%40150%40609%40Huong-dan-ve-viec-thuc-hien-chinh-sach-mien%2C-giam-hoc-phi-ho-tro-chi-phi-hoc-tap",
+      "status": "downloaded",
+      "path": "raw/11-mien-giam/bd533495ace0.html",
+      "sha256_verified": true,
+      "visible_text_characters": 1591
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/quy-trinh-giai-quyet-hoc-vu",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/6ede39d59baa.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3497
+    },
+    {
+      "source": "https://fce.iuh.edu.vn/hoc-vu/quy-dinh-to-chuc-thuc-hien-hoc-phan-thuc-tap-doanh-nghiep-khoa-luan-tot-nghiep-tu-nam-hoc-2026-2027-tro-ve-sau/",
+      "status": "downloaded",
+      "path": "raw/13-thuc-tap-khoa-luan/a40a3e797425.html",
+      "sha256_verified": true,
+      "visible_text_characters": 2649
+    },
+    {
+      "source": "https://fme.iuh.edu.vn/wp-content/uploads/2025/11/DHCDT21_TCTA.pdf",
+      "status": "failed"
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/9d3cd0af-9801-4a54-92c9-d37aa39458eb_TB-996-2026.pdf",
+      "status": "downloaded",
+      "path": "raw/03-tot-nghiep/6479d19b4f38.pdf",
+      "sha256_verified": true,
+      "pages": 1,
+      "low_text_pages": [
+        1
+      ],
+      "requires_ocr_review": true
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/df1e0e86-9881-4f90-affe-f18a00666a34_TB-1061-2026.pdf",
+      "status": "downloaded",
+      "path": "raw/08-dang-ky-hoc-phan/88ee7c238ece.pdf",
+      "sha256_verified": true,
+      "pages": 2,
+      "low_text_pages": [
+        1,
+        2
+      ],
+      "requires_ocr_review": true
+    },
+    {
+      "source": "https://fct.iuh.edu.vn/upload/files/2026/ctk21.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/f9bbeba35195.pdf",
+      "sha256_verified": true,
+      "pages": 3,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://faet.iuh.edu.vn/upload/files/qd-danh-gia-diem-ren-luyen-2026.pdf",
+      "status": "downloaded",
+      "path": "raw/06-ren-luyen/ca3c4310a718.pdf",
+      "sha256_verified": true,
+      "pages": 13,
+      "low_text_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "requires_ocr_review": true
+    },
+    {
+      "source": "https://tqa.iuh.edu.vn/wp-content/uploads/2025/12/Quyet-dinh-so-610-QD-DHCN-ve-viec-ban-hanh-Quy-che-quan-ly-cong-tac-thi-va-danh-gia-ket-qua-hoc-tap..pdf",
+      "status": "downloaded",
+      "path": "raw/09-thi-phuc-khao/d80a0e1c0829.pdf",
+      "sha256_verified": true,
+      "pages": 28,
+      "low_text_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "requires_ocr_review": true
+    },
+    {
+      "source": "https://tqa.iuh.edu.vn/wp-content/uploads/2025/08/17.-Mau-12-de-nghi-cham-phuc-khao.docx",
+      "status": "downloaded",
+      "path": "raw/09-thi-phuc-khao/8a99bcba8922.docx",
+      "sha256_verified": true
+    },
+    {
+      "source": "https://ctsv.iuh.edu.vn/upload/files/nam%202026-2027/Hu%E1%BB%9Bng%20d%E1%BA%ABn%20h%E1%BB%8Dc%20phi%20nam%20h%E1%BB%8Dc%202026-2027%20final.pdf",
+      "status": "downloaded",
+      "path": "raw/11-mien-giam/10fa97fb60f0.pdf",
+      "sha256_verified": true,
+      "pages": 4,
+      "low_text_pages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "requires_ocr_review": true
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/225a7a6b-0bdf-4bc5-9abd-249a13286c63_1-Don-xin-chuyen-bac-dao-tao.pdf",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/89972cad022e.pdf",
+      "sha256_verified": true,
+      "pages": 1,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/2bb7636d-37fd-47a9-a2c6-182f6763a081_2-Don-xin-chuyen-co-so.pdf",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/3799ad3537f1.pdf",
+      "sha256_verified": true,
+      "pages": 1,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/4b7772b7-143b-4fa4-a881-7c3aa1e2550b_3-MAU-DON-CHUYEN-TRUONG.pdf",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/d47fa5c64bbc.pdf",
+      "sha256_verified": true,
+      "pages": 2,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/c0cfda33-c2b1-4940-865c-6812b4610b6e_4-DonXinChuyenNganh.pdf",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/ad35a299d62f.pdf",
+      "sha256_verified": true,
+      "pages": 1,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/b6eab491-befa-4d08-a43b-72795a2cb29b_Don De Nghi Chuyen Diem (1).pdf",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/b035f57ba641.pdf",
+      "sha256_verified": true,
+      "pages": 2,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/faa53a38-0fbf-4148-bcbe-66458f60125d_06. DON NGHI HOC TAM THOI.pdf",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/5c8ab0a78d17.pdf",
+      "sha256_verified": true,
+      "pages": 1,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/db8ec7e0-f71a-495b-8760-a157809caf45_07. DON HOC LAI SAU BAO LUU.pdf",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/b2fe70cf36b6.pdf",
+      "sha256_verified": true,
+      "pages": 1,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/08f3071f-6d09-4d00-b721-2fc46a60e336_8-Don-thoi-hoc.pdf",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/5a69f4cf0425.pdf",
+      "sha256_verified": true,
+      "pages": 1,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/4e7f00b7-def7-46be-a79a-3bc292d1833d_don-xin-gia-hanhoc-tap.docx",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/403ed730bc0a.docx",
+      "sha256_verified": true
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/65ec0944-94bc-4b70-aac5-9789e6e79ed6_12-donxinthaydoithongtin.pdf",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/6c9d4ade5fa6.pdf",
+      "sha256_verified": true,
+      "pages": 1,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/cccf5871-8288-4ad3-8c8e-0f400fe834c2_13_Don-de-nghi-xet-HB.TS_.pdf",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/91d83ea7af72.pdf",
+      "sha256_verified": true,
+      "pages": 1,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/50679da0-79ab-43c2-86d6-e8227a6d765f_14_Don-de-nghi-xet-HB.TS_.pdf",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/fbfb97379a70.pdf",
+      "sha256_verified": true,
+      "pages": 1,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/7a9d078a-6977-493e-8cfc-d81e822ab750_Biểu mẫu đăng ký học 2 chương trình.pdf",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/5a93d62e4651.pdf",
+      "sha256_verified": true,
+      "pages": 4,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/21d70674-f0f1-47c7-a070-a457bcde7e28_M1.GH_DON DE NGHI MO TAI KHOAN SV (chua HTCTDT).pdf",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/56b88fe42075.pdf",
+      "sha256_verified": true,
+      "pages": 1,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/cfdf42e8-ee06-40d0-92e1-c32b8e7a04ab_M2.GH_DON DE NGHI MO TAI KHOAN SV (đã HTCTDT).pdf",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/5dad33845a98.pdf",
+      "sha256_verified": true,
+      "pages": 1,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/8da952c4-c1e9-4365-85ac-e9e289452a68_DOn-phuc-khao.pdf",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/31aed676f156.pdf",
+      "sha256_verified": true,
+      "pages": 1,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://pdt.iuh.edu.vn/Uploads/40cf1399-3d6a-4938-a7f9-fd58545a48ef_20. Don xin thi bo sung hoc phan.pdf",
+      "status": "downloaded",
+      "path": "raw/12-hoc-vu/c5e889ca0c25.pdf",
+      "sha256_verified": true,
+      "pages": 1,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://media.iuh.edu.vn//Media/1_eOffice_IUH/EOffice/ThongBao/202512/Documents/quy-dinh-khoa-luan-tot-nghiep-thuc-tap-doanh-nghiep-iuh-20251215031732-e.pdf",
+      "status": "downloaded",
+      "path": "raw/13-thuc-tap-khoa-luan/d13152960fc8.pdf",
+      "sha256_verified": true,
+      "pages": 16,
+      "low_text_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "requires_ocr_review": true
+    },
+    {
+      "source": "https://fce.iuh.edu.vn/hoc-vu/quy-dinh-v-vhoc-tieng-anh-va-nop-chung-chi-ngoai-ngu-cho-tan-sinh-vien-tu-k20-tro-ve-sau/",
+      "status": "downloaded",
+      "path": "raw/04-ngoai-ngu-tin-hoc/1961e6c8a236.html",
+      "sha256_verified": true,
+      "visible_text_characters": 2297
+    },
+    {
+      "source": "https://fce.iuh.edu.vn/hoc-vu/quy-dinh-ve-viec-hoc-mon-tieng-anh-tai-iuh-tb-so-64-ngay-20-6-2020/",
+      "status": "downloaded",
+      "path": "raw/04-ngoai-ngu-tin-hoc/011c77bef9c6.html",
+      "sha256_verified": true,
+      "visible_text_characters": 2241
+    },
+    {
+      "source": "https://tuyensinh.iuh.edu.vn/Files_thongBao/IUH-de-an-tuyensinh-2026-dang-web.pdf",
+      "status": "downloaded",
+      "path": "raw/10-hoc-phi/0bad921bb7c2.pdf",
+      "sha256_verified": true,
+      "pages": 44,
+      "low_text_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "requires_ocr_review": true
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@368@Chuong-trinh-khung",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/99550319e01e.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3670
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@334@Chuong-trinh-khung",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/52c759ec6b97.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3869
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@334@13362@Chuong-trinh-dao-tao-Kiem-toan-TCTA-(ICAEW)-2026",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/79ffd8fe8fae.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3647
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@334@13361@Chuong-trinh-dao-tao-Kiem-toan-TCTA-2026",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/eb1ecb665969.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3631
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@334@13360@Chuong-trinh-dao-tao-Kiem-toan-2026",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/63c5bad6bec3.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3617
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@334@12892@Chuong-trinh-dao-tao-nganh-Kiem-toan-nam-2022",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/4e41f65b5993.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3637
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@334@12891@Chuong-trinh-dao-tao-nganh-Kiem-toan-nam-2020",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/8834608505df.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3637
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@334@12890@Chuong-trinh-dao-tao-nganh-Kiem-toan-nam-2018",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/77f7e6bc24c8.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3637
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@314@Chuong-trinh-khung",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/d18c65650a88.html",
+      "sha256_verified": true,
+      "visible_text_characters": 4067
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@314@13359@Chuong-trinh-dao-tao-Ke-toan-TCTA-(ACCA)-2026",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/f02f89799d58.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3658
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@314@13358@Chuong-trinh-dao-tao-Ke-toan-TCTA-2026",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/a366a7e9bcff.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3644
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@314@13357@Chuong-trinh-dao-tao-Ke-toan-2026",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/c193d4cbfbcc.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3630
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@314@13110@Chuong-trinh-dao-tao-Ke-toan-TCTA-2024",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/cfcfae13ee20.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3644
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@314@13109@Chuong-trinh-dao-tao-Ke-toan-2024",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/460383e07f8f.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3630
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@314@13108@Chuong-trinh-dao-tao-Ke-toan-CLC-2023",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/e18c308e99c7.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3642
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@314@13107@Chuong-trinh-dao-tao-Ke-toan-2023",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/f1e76350589e.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3630
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@314@13106@Chuong-trinh-dao-tao-Ke-toan-CLC-2022",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/0126c090c6ff.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3642
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@314@13105@Chuong-trinh-dao-tao-Ke-toan-2022",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/482bdf88a8a5.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3630
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@314@13104@Chuong-trinh-dao-tao-Ke-toan-CLC-2021",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/a702f219c181.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3642
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@328@Chuong-trinh-khung",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/c0082c33bd0d.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3916
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@384@Chuong-trinh-khung",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/1524ee28fa08.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3583
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@384@13112@Chuong-trinh-dao-tao-nganh-Cong-nghe-Tai-chinh-nam-2025",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/a5e77f8d8021.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3638
+    },
+    {
+      "source": "https://fct.iuh.edu.vn/news.html@354@Chuong-trinh-khung",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/73c29b7123b2.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3763
+    },
+    {
+      "source": "https://fct.iuh.edu.vn/news.html@detail@354@1232@CHUONG-TRINH-DAO-TAO-TCTA-2025-2026",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/3514a521c407.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3267
+    },
+    {
+      "source": "https://fct.iuh.edu.vn/news.html@detail@354@1231@CHUONG-TRINH-DAO-TAO-TCTA-2024-2025",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/c913bfb5643a.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3267
+    },
+    {
+      "source": "https://fct.iuh.edu.vn/news.html@detail@354@1230@CHUONG-TRINH-DAO-TAO-2025-2026",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/610044959dc5.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3257
+    },
+    {
+      "source": "https://fct.iuh.edu.vn/news.html@detail@354@1229@CHUONG-TRINH-DAO-TAO-2024-2025",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/ddf05b2cb248.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3257
+    },
+    {
+      "source": "https://fct.iuh.edu.vn/news.html@detail@354@1228@CHUONG-TRINH-DAO-TAO-2023-2024",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/71d3133d7d57.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3257
+    },
+    {
+      "source": "https://fct.iuh.edu.vn/news.html@detail@354@1227@CHUONG-TRINH-DAO-TAO-2022-2023",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/747bb53a2fe0.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3257
+    },
+    {
+      "source": "https://fct.iuh.edu.vn/news.html@detail@354@1226@CHUONG-TRINH-DAO-TAO-2021-2022",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/de22d1b9c479.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3257
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@372@Chuong-trinh-khung",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/0de01df4a25e.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3827
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@372@13364@Chuong-trinh-dao-tao-Tai-chinh-TCTA-2026",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/9ae2ebb5a326.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3612
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@372@13363@Chuong-trinh-dao-tao-Tai-chinh-2026",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/e483cf3ea7b5.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3598
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@372@12916@-Chuong-trinh-dao-tao-nganh-Tai-chinh-doanh-nghiep-nam-2022",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/6b493bc41b8a.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3644
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@372@12915@-Chuong-trinh-dao-tao-nganh-Tai-chinh-doanh-nghiep-nam-2020",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/617a3a6e1cf1.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3644
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@372@12914@-Chuong-trinh-dao-tao-nganh-Tai-chinh-doanh-nghiep-nam-2018",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/92c5fd462fb1.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3644
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@363@Chuong-trinh-khung",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/0dbd34b1885f.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3818
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@363@13366@Chuong-trinh-dao-tao-Ngan-hang-TCTA-2026",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/b37e35878dbe.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3612
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@363@13365@Chuong-trinh-dao-tao-Ngan-hang-2026",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/ccacc1d9ffc4.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3598
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@363@12898@Chuong-trinh-dao-tao-nganh-Tai-chinh-Ngan-hang-nam-2022",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/c7f4c7e131fa.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3638
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@363@12897@Chuong-trinh-dao-tao-nganh-Tai-chinh-Ngan-hang-nam-2020",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/2937e269d394.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3638
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/news.html@detail@363@12896@Chuong-trinh-dao-tao-nganh-Tai-chinh-Ngan-hang-nam-2018",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/fe1e645c3725.html",
+      "sha256_verified": true,
+      "visible_text_characters": 3638
+    },
+    {
+      "source": "https://fce.iuh.edu.vn/wp-content/uploads/2025/08/tb-1581-2024-ve-viec-hoc-tieng-anh.pdf",
+      "status": "downloaded",
+      "path": "raw/04-ngoai-ngu-tin-hoc/00fb1b36fb6b.pdf",
+      "sha256_verified": true,
+      "pages": 2,
+      "low_text_pages": [
+        1,
+        2
+      ],
+      "requires_ocr_review": true
+    },
+    {
+      "source": "https://fce.iuh.edu.vn/wp-content/plugins/app3s-pdfviewer/templates/public/pdfviewer/web/pdfviewer.php?link=https://fce.iuh.edu.vn/wp-content/uploads/2025/08/tb-1581-2024-ve-viec-hoc-tieng-anh.pdf",
+      "status": "downloaded",
+      "path": "raw/04-ngoai-ngu-tin-hoc/b465665f0126.html",
+      "sha256_verified": true,
+      "visible_text_characters": 758
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/2.CTDT%202026/KIEM%20TOAN-TCTA-ICAEW.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/3431a7f523a0.pdf",
+      "sha256_verified": true,
+      "pages": 6,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/2.CTDT%202026/KIEM%20TOAN-TCTA.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/2811ebd691a9.pdf",
+      "sha256_verified": true,
+      "pages": 7,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/2.CTDT%202026/KIEM%20TOAN-DAI%20TRA.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/e81c54eb91b8.pdf",
+      "sha256_verified": true,
+      "pages": 6,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/CTDT%20Ki%E1%BB%83m%20toan%20updated%202024/CTDT%202022_KIEM%20TOAN.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/b82a68447d8d.pdf",
+      "sha256_verified": true,
+      "pages": 6,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/CTDT%20Ki%E1%BB%83m%20toan%20updated%202024/CTDT%202020_KIEM%20TOAN.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/98f48892f669.pdf",
+      "sha256_verified": true,
+      "pages": 11,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/CTDT%20Ki%E1%BB%83m%20toan%20updated%202024/CTDT%202018_KIEM%20TOAN.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/4a6a506076c4.pdf",
+      "sha256_verified": true,
+      "pages": 13,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/2.CTDT%202026/KE%20TOAN-TCTA-ACCA.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/27c19c5665ac.pdf",
+      "sha256_verified": true,
+      "pages": 6,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/2.CTDT%202026/KE%20TOAN-TCTA.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/94db89f97bce.pdf",
+      "sha256_verified": true,
+      "pages": 6,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/2.CTDT%202026/KE%20TOAN-DAI%20TRA.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/d323cce5efe7.pdf",
+      "sha256_verified": true,
+      "pages": 6,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/CTDT%20KT-kiem%20dinh/CTDT%20KT-TCTA-2024.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/04ab6f073c4b.pdf",
+      "sha256_verified": true,
+      "pages": 4,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/CTDT%20KT-kiem%20dinh/CTDT%20KT%20-%202024.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/0f5ceb9a143c.pdf",
+      "sha256_verified": true,
+      "pages": 4,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/CTDT%20KT-kiem%20dinh/CTDT%20KT-CLC-2023.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/263383686daf.pdf",
+      "sha256_verified": true,
+      "pages": 4,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/CTDT%20KT-kiem%20dinh/CTDT%20KT%20-%202023.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/65a87cb3bd95.pdf",
+      "sha256_verified": true,
+      "pages": 4,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/CTDT%20KT-kiem%20dinh/CTDT%20KT-CLC-2022.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/9f5008a438e6.pdf",
+      "sha256_verified": true,
+      "pages": 4,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/CTDT%20KT-kiem%20dinh/CTDT%20KT%20-%202022.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/2c61e251c4c3.pdf",
+      "sha256_verified": true,
+      "pages": 4,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/CTDT%20KT-kiem%20dinh/CTDT%20KT-CLC-2021.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/d9d69dfd97fd.pdf",
+      "sha256_verified": true,
+      "pages": 4,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/Fintech/KHUNG%20FINTECH%20K20.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/a45ceeec0370.pdf",
+      "sha256_verified": true,
+      "pages": 7,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://fct.iuh.edu.vn/upload/files/2026/ctk21-TA.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/f0c15a78e318.pdf",
+      "sha256_verified": true,
+      "pages": 3,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://fct.iuh.edu.vn/upload/files/2026/ctk20-TA.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/3340acc67818.pdf",
+      "sha256_verified": true,
+      "pages": 3,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://fct.iuh.edu.vn/upload/files/2026/ctk20.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/3acaab0cadaa.pdf",
+      "sha256_verified": true,
+      "pages": 3,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://fct.iuh.edu.vn/upload/files/2026/ctk19.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/33b30f860e7a.pdf",
+      "sha256_verified": true,
+      "pages": 3,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://fct.iuh.edu.vn/upload/files/2026/ctk18(1).pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/c894fcb3de84.pdf",
+      "sha256_verified": true,
+      "pages": 3,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://fct.iuh.edu.vn/upload/files/2026/ctk17.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/6dc0ff83214c.pdf",
+      "sha256_verified": true,
+      "pages": 3,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/2.CTDT%202026/TAI%20CHINH-TCTA.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/5ba018e7453e.pdf",
+      "sha256_verified": true,
+      "pages": 7,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/2.CTDT%202026/TAI%20CHINH-DAI%20TRA.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/c48eb716408a.pdf",
+      "sha256_verified": true,
+      "pages": 7,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/CTDT%20TCDN%202024/Chuong%20trinh%20khung-TCDN%202022.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/27be94811a95.pdf",
+      "sha256_verified": true,
+      "pages": 9,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/CTDT%20TCDN%202024/Chuong%20trinh%20khung-TCDN%202020.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/c0402373ea1e.pdf",
+      "sha256_verified": true,
+      "pages": 6,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/CTDT%20TCDN%202024/Chuong%20trinh%20khung%20-TCDN%202018.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/68e8aa19e414.pdf",
+      "sha256_verified": true,
+      "pages": 10,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/2.CTDT%202026/NGAN%20HANG-TCTA.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/3103785994fc.pdf",
+      "sha256_verified": true,
+      "pages": 6,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/2.CTDT%202026/NGAN%20HANG-DAI%20TRA.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/e6df2f0e4f7d.pdf",
+      "sha256_verified": true,
+      "pages": 6,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/CTDT%20TCNH%202024/CTDT%202022_TCNH.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/a73196d31083.pdf",
+      "sha256_verified": true,
+      "pages": 6,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/CTDT%20TCNH%202024/CTDT%202020_TCNH.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/2ac960bdd50d.pdf",
+      "sha256_verified": true,
+      "pages": 7,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    },
+    {
+      "source": "https://sfa.iuh.edu.vn/upload/files/CTDT%20TCNH%202024/CTDT%202018_TCNH.pdf",
+      "status": "downloaded",
+      "path": "raw/14-chuong-trinh-dao-tao/29b5bdf8d460.pdf",
+      "sha256_verified": true,
+      "pages": 9,
+      "low_text_pages": [],
+      "requires_ocr_review": false
+    }
+  ]
+}

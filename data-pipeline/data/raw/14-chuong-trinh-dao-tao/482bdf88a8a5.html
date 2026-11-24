@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="templates/images/icon.ico" rel="shortcut icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="sfa.iuh.edu.vn, Viện Tài chính - Kế toán - Đại học Công nghiệp TP.HCM">
+  <meta property="og:image" content="https://sfa.iuh.edu.vn/templates/images/logoiuh.png"/>
+    <title>Chương trình đào tạo Kế toán 2022</title>
+  <script type="text/javascript">
+    var address="http://sfa.iuh.edu.vn";
+  </script>
+  <!--    import jquery           -->
+  <script type="text/javascript" src="templates/js/jquery-1.11.3.min.js"></script>
+  <!--    import bootstrap        -->
+  <link href="templates/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="templates/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Include Owl carousel -->
+  <link href="templates/css/owl.carousel.css" rel="stylesheet" type="text/css"/>
+  <link href="templates/css/owl.theme.default.css" rel="stylesheet" type="text/css"/>
+  <link href="templates/css/animate.css" rel="stylesheet" type="text/css"/>
+  <script src="templates/js/owl.carousel.js" type="text/javascript"></script>
+  <!--    import awesomefont      -->
+  <link href="templates/awesomefont/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+  <!--    import tab accordion    -->
+  <script src="templates/js/responsive-tabs.js" type="text/javascript"></script>
+  <!--    import jquery sticky    -->
+  <script src="templates/js/jquery.sticky.js" type="text/javascript"></script>
+  <!---   import custom scroll    -->
+  <link href="templates/css/jquery.scrollbar.css" type="text/css" rel="stylesheet">
+  <script src="templates/js/jquery.scrollbar.js" type="text/javascript"></script>
+  <!--    import layout style     -->
+  <link href="templates/css/layout.cssver1.0.css" type="text/css" rel="stylesheet">
+  <script type="text/javascript" src="templates/js/javascript.js"></script>
+  <script type="text/javascript" src="templates/js/script.js"></script>
+  <!--    import responsive style -->
+  <link href="templates/css/style-responsive.cssver1.0.css" rel="stylesheet" type="text/css"/>
+  <link href="templates/css/app3s-custom.cssver1.0.css" rel="stylesheet" type="text/css"/>
+  <link href="templates/css/printSchedule.css" rel="stylesheet" type="text/css" media="print" />
+  <style type="text/css">
+    img.wp-smiley, img.emoji {
+     display: inline !important;
+     border: none !important;
+     box-shadow: none !important;
+     height: 1em !important;
+     width: 1em !important;
+     margin: 0 .07em !important;
+     vertical-align: -0.1em !important;
+     background: none !important;
+     padding: 0 !important;
+   }
+ </style>
+ <script>
+  $(document).ready(function() {
+                /*$(document).bind('contextmenu', function (e) {
+                  e.preventDefault();
+                });*/
+                $(".tab_content").hide(); //Hide all content
+                $("ul.tabs li:first").addClass("active").show(); //Activate first tab
+                $(".tab_content:first").show(); //Show first tab content
+                $("ul.tabs li").click(function() {
+                    $("ul.tabs li").removeClass("active"); //Remove any "active" class
+                    $(this).addClass("active"); //Add "active" class to selected tab
+                    $(".tab_content").hide(); //Hide all tab content
+                    var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+                    $(activeTab).fadeIn(); //Fade in the active content
+                    return false;
+                  });
+                $('#browserImage').click(function () {
+                  var finder = new CKFinder();
+                  finder.selectActionFunction = function (fileUrl) {
+                    $('#image').val(fileUrl);
+                  };
+                  finder.popup();
+                })
+                $('#browserFile').click(function () {
+                  var finder = new CKFinder();
+                  finder.selectActionFunction = function (fileUrl) {
+                    $('#files').val(fileUrl);
+                  };
+                  finder.popup();
+                })
+                // tin noi bo
+                $("#showmore").click(function() {
+                  html1=1;
+                  $('div#loadMoreComments').show();
+                  $.ajax({
+                    url: "components/com_tinnoibo/views/loadMoreContents.php?lastComment="+ $(".postedComment:last").attr('id') ,
+                    success: function(html) {
+                      if(html){
+                        if(html1==1){
+                          $("#postedComments").append(html);
+                          html1=0;
+                        }
+
+                        $('div#loadMoreComments').hide();
+                      }else{
+                        $('div#loadMoreComments').replaceWith("<center><h2 style='color:red'>---</h2></center>");
+                        $("#showmore").hide();
+                      }
+                    }
+                  });
+                });
+                return false;
+
+
+              });
+  $(function () {
+    $("ul.dropdown-menu li.menu-item-has-children > a").append('<i class="fa fa-caret-right"></i>');
+  });
+</script>
+</head>
+<body>
+  <div class="header-top">
+    <div class="container">
+      <div class="row header-link">
+        <ul>
+          <li><a target="_blank" href="http://iuh.edu.vn">Website IUH</a></li>
+          <li><a target="_blank" href="http://lib.iuh.edu.vn">Thư viện</a></li>
+          <li><a target="_blank" href="http://gv.iuh.edu.vn">E-office</a></li>
+          <li><a target="_blank" href="https://outlook.com/iuh.edu.vn">Email</a></li>
+          <li><a target="_blank" href="https://lms-sfa.iuh.edu.vn">E-Learning</a></li>
+          <li><a href="tinnoibo.html">Đăng nhập</a></li>
+        </ul>
+        <div class="header-lang">
+          <form method="POST" name="langForm">
+            <a href='#' onclick="submitLang('vi')"><img src="templates/images/icon-flag-vn.png" style="max-height:22px" /></a>
+            <!--<a href='/en'> EN </a>-->
+            <a href='#' onclick="submitLang('en')"><img src="templates/images/icon-flag-en.png" style="max-height:22px" /></a>
+            <input type="hidden" name="lang">
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <header class="header">
+    <div class="container">
+      <div class="col-md-3 header-left"> <a href="http://sfa.iuh.edu.vn" class="logo"> <img alt="IUH" title="IUH" src="templates/images/logo.png"> </a> </div>
+      <div class="col-md-9 header-right">
+        <link rel="stylesheet" href="modules/mod_search/css/jquery-ui.min.css" type="text/css" /> 
+<form class="form-search" action="search.html@177@Tim-kiem" method="post">
+    <div class="input-group group-search">
+              <input name="txtSearch" value="" type="text" class="form-control txt-search" placeholder="Tìm kiếm ...">
+              <span class="input-group-btn">
+      <button class="btn btn-custom" type="submit"> <i class="fa fa-search"></i> </button>
+      </span> </div>
+    <div class="clearfix"></div>
+  </form>
+
+
+
+
+        <!-- <div class="right-up-title">Đại học Công nghiệp Thành phố Hồ Chí Minh</div>
+        <div class="right-title">Viện Tài chính - Kế toán</div> -->
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+  </header>
+  <header class="header-mobile">
+    <div class="headerIUH">
+        <div class="container">
+          <div class="headerIUH-logoLeft">
+            <a href="home.html"><img src="templates/images/logo.png" alt="Đại học Công nghiệp TP.HCM" style="width: 100%; padding: 5px" /></a>
+          </div>
+          <!-- <div class="headerIUH-center ">
+            <div class="headerIUH-title">Đại học Công nghiệp Thành phố Hồ Chí Minh</div>
+            <div class="headerIUH-titleDown">Viện Tài chính - Kế toán</div>
+          </div> -->
+        </div>
+    </div>
+  <div class="clearfix"></div>
+</header>
+<div class="header-menu">
+  <div class="container">
+    <div class="row">
+      <nav class="navbar navbar-default main-menu"> 
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle navbar-menu collapsed" data-toggle="collapse" data-target="#iuh-sdh-menu" aria-expanded="false"> <span class="icon-bar" style="margin: 0;"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <i class="fa fa-times"></i> MENU </button>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="iuh-sdh-menu">
+          <ul class="nav navbar-nav">
+  <div class=""><ul id="menu-vn-main-menu" class="nav navbar-nav">
+  	<li><a href="home.html"><i class="fa  fa-home"></i></a></li>
+        <li id="menu-item-145"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Giới thiệu<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-163"><a href="category.html@163@Gioi-thieu-chung">Giới thiệu chung</a></li><li id="menu-item-227"><a href="category.html@227@Tam-nhin-Su-mang-Muc-tieu">Tầm nhìn - Sứ mạng - Mục tiêu</a></li><li id="menu-item-355"><a href="category.html@355@Chien-luoc-phat-trien">Chiến lược phát triển</a></li><li id="menu-item-305"><a href="category.html@305@Thanh-tuu-noi-bat">Thành tựu nổi bật</a></li><li id="menu-item-304"><a href="category.html@304@Co-so-vat-chat">Cơ sở vật chất</a></li></ul></li><li id="menu-item-350"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Tổ chức<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-185"><a href="category.html@185@So-do-to-chuc">Sơ đồ tổ chức</a></li><li id="menu-item-351"><a href="banchunhiemkhoa.html@351@Lanh-dao-Vien">Lãnh đạo Viện</a></li><li id="menu-item-352"><a href="giangvien.html@352@Doi-ngu-giang-vien">Đội ngũ giảng viên</a></li><li id="menu-item-359"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Câu lạc bộ<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-375"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">CLB NCKH Viện TC-KT - FARC<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-376"><a href="news.html@376@BCH-Cau-lac-bo">BCH Câu lạc bộ</a></li><li id="menu-item-377"><a href="news.html@377@Ban-tin-CLB">Bản tin CLB</a></li></ul></li><li id="menu-item-324"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">CLB Tài chính Kế toán - FAC<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-326"><a href="news.html@326@BCH-Cau-lac-bo">BCH Câu lạc bộ</a></li><li id="menu-item-251"><a href="news.html@251@Ban-tin-CLB">Bản tin CLB</a></li></ul></li></ul></li><li id="menu-item-235"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Đoàn thanh niên<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-318"><a href="news.html@318@BCH-Doan-Vien">BCH Đoàn Viện</a></li><li id="menu-item-319"><a href="news.html@319@Ban-tin-Doan-Vien">Bản tin Đoàn Viện</a></li></ul></li><li id="menu-item-234"><a href="news.html@234@Cong-doan">Công đoàn</a></li></ul></li><li id="menu-item-164"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Đào tạo<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-273"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Thông tin tuyển sinh<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-360"><a href="https://tuyensinh.iuh.edu.vn/">Tuyển sinh Đại học</a></li><li id="menu-item-361"><a href="https://ipe.iuh.edu.vn/vi/category/thong-tin-tuyen-sinh/">Tuyển sinh Thạc sĩ - Tiến sĩ</a></li></ul></li><li id="menu-item-311"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Chương trình đào tạo<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-346"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Tiến sĩ ngành Kế toán<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-347"><a href="news.html@347@Chuong-trinh-dao-tao-Tien-si">Chương trình đào tạo Tiến sĩ</a></li><li id="menu-item-348"><a href="news.html@348@Chuan-dau-ra-">Chuẩn đầu ra </a></li><li id="menu-item-378"><a href="category.html@378@Quy-che-dao-tao">Quy chế đào tạo</a></li></ul></li><li id="menu-item-187"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Thạc sĩ ngành Kế toán<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-343"><a href="news.html@343@Dac-diem-chuong-trinh-dao-tao">Đặc điểm chương trình đào tạo</a></li><li id="menu-item-327"><a href="news.html@327@Chuan-dau-ra">Chuẩn đầu ra</a></li><li id="menu-item-328"><a href="news.html@328@Chuong-trinh-khung">Chương trình khung</a></li><li id="menu-item-329"><a href="news.html@329@Dieu-kien-tot-nghiep">Điều kiện tốt nghiệp</a></li><li id="menu-item-342"><a href="news.html@342@Ban-mo-ta-CTDT">Bản mô tả CTĐT</a></li><li id="menu-item-341"><a href="category.html@341@Quy-che-dao-tao">Quy chế đào tạo</a></li></ul></li><li id="menu-item-356"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Thạc sĩ ngành Tài chính - Ngân hàng<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-367"><a href="news.html@367@Chuan-dau-ra">Chuẩn đầu ra</a></li><li id="menu-item-368"><a href="news.html@368@Chuong-trinh-khung">Chương trình khung</a></li><li id="menu-item-369"><a href="news.html@369@Dieu-kien-tot-nghiep">Điều kiện tốt nghiệp</a></li><li id="menu-item-370"><a href="news.html@370@Ban-mo-ta-CTDT">Bản mô tả CTĐT</a></li><li id="menu-item-379"><a href="category.html@379@Quy-che-dao-tao-">Quy chế đào tạo	</a></li></ul></li><li id="menu-item-261"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Đại học ngành Kế toán<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-313"><a href="news.html@313@Chuan-dau-ra">Chuẩn đầu ra</a></li><li id="menu-item-314"><a href="news.html@314@Chuong-trinh-khung">Chương trình khung</a></li><li id="menu-item-315"><a href="news.html@315@Dieu-kien-tot-nghiep">Điều kiện tốt nghiệp</a></li><li id="menu-item-320"><a href="news.html@320@Ban-mo-ta-CTDT">Bản mô tả CTĐT</a></li><li id="menu-item-321"><a href="news.html@321@Danh-gia-Sinh-vien">Đánh giá Sinh viên</a></li><li id="menu-item-388"><a href="news.html@388@So-tay">Sổ tay</a></li><li id="menu-item-381"><a href="news.html@381@Nien-giam">Niên giám</a></li></ul></li><li id="menu-item-332"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Đại học ngành Kiểm toán<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-333"><a href="news.html@333@Chuan-dau-ra">Chuẩn đầu ra</a></li><li id="menu-item-334"><a href="news.html@334@Chuong-trinh-khung">Chương trình khung</a></li><li id="menu-item-335"><a href="news.html@335@Dieu-kien-tot-nghiep">Điều kiện tốt nghiệp</a></li><li id="menu-item-336"><a href="news.html@336@Ban-mo-ta-CTDT">Bản mô tả CTĐT</a></li><li id="menu-item-337"><a href="news.html@337@Danh-gia-sinh-vien">Đánh giá sinh viên</a></li></ul></li><li id="menu-item-344"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Đại học ngành Tài chính - Ngân hàng<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-357"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Chuyên ngành Tài chính <span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-371"><a href="news.html@371@Chuan-dau-ra">Chuẩn đầu ra</a></li><li id="menu-item-372"><a href="news.html@372@Chuong-trinh-khung">Chương trình khung</a></li><li id="menu-item-373"><a href="news.html@373@Dieu-kien-tot-nghiep">Điều kiện tốt nghiệp</a></li><li id="menu-item-374"><a href="news.html@374@Ban-mo-ta-CTDT-">Bản mô tả CTĐT	</a></li></ul></li><li id="menu-item-358"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Chuyên ngành Ngân hàng<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-362"><a href="news.html@362@Chuan-dau-ra">Chuẩn đầu ra</a></li><li id="menu-item-363"><a href="news.html@363@Chuong-trinh-khung">Chương trình khung</a></li><li id="menu-item-364"><a href="news.html@364@Dieu-kien-tot-nghiep">Điều kiện tốt nghiệp</a></li><li id="menu-item-365"><a href="news.html@365@Ban-mo-ta-CTDT">Bản mô tả CTĐT</a></li></ul></li></ul></li><li id="menu-item-382"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Đại học ngành Công nghệ Tài chính<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-383"><a href="news.html@383@Chuan-dau-ra">Chuẩn đầu ra</a></li><li id="menu-item-384"><a href="news.html@384@Chuong-trinh-khung">Chương trình khung</a></li><li id="menu-item-385"><a href="news.html@385@Dieu-kien-tot-nghiep">Điều kiện tốt nghiệp</a></li><li id="menu-item-386"><a href="news.html@386@Ban-mo-ta-CTDT">Bản mô tả CTĐT</a></li></ul></li></ul></li><li id="menu-item-312"><a href="news.html@312@Hoat-dong-dao-tao">Hoạt động đào tạo</a></li><li id="menu-item-264"><a href="news.html@264@Hop-tac-Quoc-te">Hợp tác Quốc tế</a></li><li id="menu-item-306"><a href="news.html@306@Hoc-tap-truc-tuyen">Học tập trực tuyến</a></li><li id="menu-item-380"><a href="category.html@380@Tien-do-dao-tao">Tiến độ đào tạo</a></li></ul></li><li id="menu-item-150"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Nghiên cứu<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-340"><a href="news.html@340@Thong-bao">Thông báo</a></li><li id="menu-item-191"><a href="news.html@191@Cong-trinh-khoa-hoc">Công trình khoa học</a></li><li id="menu-item-258"><a href="news.html@258@Hoi-nghi-Hoi-thao">Hội nghị - Hội thảo</a></li><li id="menu-item-257"><a href="news.html@257@Bao-cao-chuyen-de">Báo cáo chuyên đề</a></li><li id="menu-item-223"><a href="https://smia.iuh.edu.vn/bieumau.html@218@Quy-trinh_Bieu-mau">Văn bản - Biểu mẫu</a></li></ul></li><li id="menu-item-161"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Sinh viên<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-338"><a href="thongbaogiangvien.html@338@Thong-bao-giang-vien">Thông báo giảng viên</a></li><li id="menu-item-203"><a href="news.html@203@Thong-bao-hoc-vu">Thông báo học vụ</a></li><li id="menu-item-290"><a href="https://pdt.iuh.edu.vn/tra-cuu-hoc-bong/">Thông tin Học bổng</a></li><li id="menu-item-387"><a href="https://docs.google.com/forms/d/e/1FAIpQLScUv9qh0GyJ5m48RgDpUnSHzhrE4nAu5ZNhHUIk40CtYGLHJg/viewform?usp=sf_link">Đăng ký bảng điểm</a></li><li id="menu-item-249"><a href="news.html@249@Thuc-tap-Tuyen-dung">Thực tập - Tuyển dụng</a></li><li id="menu-item-307"><a href="news.html@307@Quy-trinh-Thu-tuc">Quy trình - Thủ tục</a></li><li id="menu-item-230"><a href="news.html@230@Khao-sat">Khảo sát</a></li></ul></li><li id="menu-item-389"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Nghiên cứu sinh<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-390"><a href="news.html@390@Thong-bao">Thông báo</a></li><li id="menu-item-391"><a href="category.html@391@Quy-trinh-dao-tao-Tien-si">Quy trình đào tạo Tiến sĩ</a></li><li id="menu-item-392"><a href="category.html@392@Bao-ve-De-cuong-&-Dang-ky-ten-LATS">Bảo vệ Đề cương & Đăng ký tên LATS</a></li><li id="menu-item-394"><a href="category.html@394@Thuc-hien-Danh-gia-TLTQ-va-CDTS">Thực hiện - Đánh giá TLTQ và CĐTS</a></li><li id="menu-item-393"><a href="category.html@393@Quy-dinh-cong-bo-bai-bao-NCKH">Quy định công bố bài báo NCKH</a></li></ul></li><li id="menu-item-232"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Cựu người học<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-395"><a href="category.html@395@Ban-dai-dien-cuu-nguoi-hoc">Ban đại diện cựu người học</a></li><li id="menu-item-316"><a href="news.html@316@Guong-mat-cuu-nguoi-hoc">Gương mặt cựu người học</a></li><li id="menu-item-317"><a href="news.html@317@Ban-tin-cuu-nguoi-hoc">Bản tin cựu người học</a></li></ul></li>   </ul></div>
+</ul>          <div class="search-area-mobile">
+          <link rel="stylesheet" href="modules/mod_search/css/jquery-ui.min.css" type="text/css" /> 
+<form class="form-search" action="search.html@177@Tim-kiem" method="post">
+    <div class="input-group group-search">
+              <input name="txtSearch" value="" type="text" class="form-control txt-search" placeholder="Tìm kiếm ...">
+              <span class="input-group-btn">
+      <button class="btn btn-custom" type="submit"> <i class="fa fa-search"></i> </button>
+      </span> </div>
+    <div class="clearfix"></div>
+  </form>
+
+
+
+
+          </div>
+        </div>
+        <!-- /.navbar-collapse --> 
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="page-content">
+  <div class="container"> 
+    <!--
+                <div class="border-top">
+                    <div class="border-top-1"></div>
+                </div>
+              -->
+              <div class="content-bottom"> 
+                <div class="content">
+                  <div class="row">
+                   
+                    <div class="col-md-9 page-left">
+                      <div class="crumb">
+                        <a href="home.html" class="crumb-icon"><i class="fa fa-home"></i></a>
+                        <i class="fa fa-angle-right"> </i> 
+                        <span>Chương trình khung</span>
+                        <div class="share-content">
+                          <div class="s-c-title"> Chia sẻ </div>
+                          <ul>
+                            <li>
+                              <a class="icon-fb" href="#" target="_blank">
+                                <i class="fa fa-facebook"></i>
+                              </a>
+                            </li>
+                            <li>
+                              <a class="icon-tw" href="#" target="_blank">
+                                <i class="fa fa-twitter"></i>
+                              </a>
+                            </li>
+                            <li>
+                              <a class="icon-in" href="#" target="_blank">
+                                <i class="fa fa-linkedin"></i>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div><!-- end crumb-->
+                      <div class="page-banner">
+                        <img class="alignnone wp-image-1768 size-full" src="/upload/images/doitac/chudenamhoc_new.png" alt="Chủ đề năm học" width="701" height="120" />                        
+                      </div>
+                      
+                      <div class="intro-bound"><div class="col-sm-3 col-xs-6"><a target="" href="news.html@313@Chuan-dau-ra"><i class="fa fa-graduation-cap"></i><span> Chuẩn đầu ra</span></a>
+				<div class="clearfix"></div>
+			</div><div class="col-sm-3 col-xs-6"><a target="" href="news.html@314@Chuong-trinh-khung"><i class="fa fa-graduation-cap"></i><span> Chương trình khung</span></a>
+				<div class="clearfix"></div>
+			</div><div class="col-sm-3 col-xs-6"><a target="" href="news.html@315@Dieu-kien-tot-nghiep"><i class="fa fa-graduation-cap"></i><span> Điều kiện tốt nghiệp</span></a>
+				<div class="clearfix"></div>
+			</div><div class="col-sm-3 col-xs-6"><a target="" href="news.html@320@Ban-mo-ta-CTDT"><i class="fa "></i><span> Bản mô tả CTĐT</span></a>
+				<div class="clearfix"></div>
+			</div><div class="col-sm-3 col-xs-6"><a target="" href="news.html@321@Danh-gia-Sinh-vien"><i class="fa "></i><span> Đánh giá Sinh viên</span></a>
+				<div class="clearfix"></div>
+			</div><div class="col-sm-3 col-xs-6"><a target="" href="news.html@381@Nien-giam"><i class="fa "></i><span> Niên giám</span></a>
+				<div class="clearfix"></div>
+			</div><div class="col-sm-3 col-xs-6"><a target="" href="news.html@388@So-tay"><i class="fa "></i><span> Sổ tay</span></a>
+				<div class="clearfix"></div>
+			</div> <div class="clearfix"></div></div><script type="text/javascript" src="templates/js/jquery.media.js"></script>
+<script type="text/javascript" src="templates/js/jquery.metadata.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('a.media').media({width:'100%', height:650});
+    });
+</script>
+<div class="page-title">Chương trình đào tạo Kế toán 2022</div><div class="title-date">Ngày đăng: 15-10-2022 - Đăng bởi: Administrator</div><div class="left-content"><div class="content-list" style="text-align:justify"></div></div><a class="media" href="https://sfa.iuh.edu.vn/upload/files/CTDT%20KT-kiem%20dinh/CTDT%20KT%20-%202022.pdf">&nbsp;</a>                    </div><!-- end col 9-->
+                    <div class="col-md-3 page-right">
+                                            <div class="clearfix"></div>
+                                  <!--<div class="box-right">
+                <div class="hot-title" style="padding-top:0px;">
+                <span></span>
+                </div>
+                <div class="c-r-content"> <a href="#" target="_blank"> <img src="upload/images/ktkt-nganhan.png" style="max-width: 225px;" /> </a> </div>
+                  <div class="clearfix"></div>
+                </div>box-right-->
+                
+                 <div class="clearfix"></div>
+                 
+<div class="box-right box-right-red">
+    <div class="box-right-title">Tin mới nhất</div>
+    <div class="box-right-content">
+        <div class="box-content-list">
+         <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@94@13395@Nghien-cuu-sinh-Vuong-Thi-Thanh-Nhan-bao-ve-Luan-an-tien-si" title="Nghiên cứu sinh Vương Thị Thanh Nhàn bảo vệ Luận án tiến sĩ">
+                        <i class="fa fa-caret-right"></i> Nghiên cứu sinh Vương Thị Thanh Nhàn bảo vệ Luận án tiến sĩ</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@249@13394@Tuyen-dung-Thuc-tap-sinh-Tro-ly-kiem-toan-vien" title="Tuyển dụng Thực tập sinh Trợ lý kiểm toán viên">
+                        <i class="fa fa-caret-right"></i> Tuyển dụng Thực tập sinh Trợ lý kiểm toán viên&nbsp;<img src="templates/images/hot-news.gif" style="border:none;" /></a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@249@13393@VIB-Sai-Gon-Tuyen-Dung" title="VIB Sài Gòn Tuyển Dụng">
+                        <i class="fa fa-caret-right"></i> VIB Sài Gòn Tuyển Dụng&nbsp;<img src="templates/images/hot-news.gif" style="border:none;" /></a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@317@13392@Ra-mat-Cong-dong-Cuu-nguoi-hoc-Tai-chinh-Ke-toan-tai-Hoi-nghi-ket-noi-doanh-nghiep-va-cuu-nguoi-hoc-nam-2026" title="Ra mắt Cộng đồng Cựu người học Tài chính - Kế toán tại Hội nghị kết nối doanh nghiệp và cựu người học năm 2026">
+                        <i class="fa fa-caret-right"></i> Ra mắt Cộng đồng Cựu người học Tài chính - Kế toán tại Hội nghị kết nối doanh nghiệp và cựu người học năm 2026</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@249@13391@Sacombank-Headstart-2026-–-Khoi-dong-su-nghiep-tu-giang-duong" title="Sacombank Headstart 2026 – Khởi động sự nghiệp từ giảng đường">
+                        <i class="fa fa-caret-right"></i> Sacombank Headstart 2026 – Khởi động sự nghiệp từ giảng đường</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@94@13390@Tuong-lai-Nghe-nghiep-Ke-toan,-Kiem-toan-va-Tai-chinh-trong-Ky-nguyen-so-Co-hoi-Phat-trien-cung-CPA-Australia" title="Tương lai Nghề nghiệp Kế toán, Kiểm toán và Tài chính trong Kỷ nguyên số: Cơ hội Phát triển cùng CPA Australia">
+                        <i class="fa fa-caret-right"></i> Tương lai Nghề nghiệp Kế toán, Kiểm toán và Tài chính trong Kỷ nguyên số: Cơ hội Phát triển cùng CPA Australia</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@203@13389@Thong-bao-so-02-v-v-to-chuc-le-be-giang-va-trao-bang-tot-nghiep-thang-11-nam-2026" title="Thông báo số 02 v/v tổ chức lễ bế giảng và trao bằng tốt nghiệp tháng 11 năm 2026">
+                        <i class="fa fa-caret-right"></i> Thông báo số 02 v/v tổ chức lễ bế giảng và trao bằng tốt nghiệp tháng 11 năm 2026</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@94@13388@Ra-mat-Cong-dong-Cuu-nguoi-hoc-Tai-chinh-Ke-toan-tai-Hoi-nghi-ket-noi-doanh-nghiep-va-cuu-nguoi-hoc-nam-2026" title="Ra mắt Cộng đồng Cựu người học Tài chính - Kế toán tại Hội nghị kết nối doanh nghiệp và cựu người học năm 2026">
+                        <i class="fa fa-caret-right"></i> Ra mắt Cộng đồng Cựu người học Tài chính - Kế toán tại Hội nghị kết nối doanh nghiệp và cựu người học năm 2026</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@94@13387@IUH-va-Nam-A-Bank-nang-cap-dao-tao-nghiep-vu-ngan-hang" title="IUH và Nam A Bank nâng cấp đào tạo nghiệp vụ ngân hàng">
+                        <i class="fa fa-caret-right"></i> IUH và Nam A Bank nâng cấp đào tạo nghiệp vụ ngân hàng</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@203@13386@Ket-qua-xet-tot-nghiep-dot-Thang-10-nam-2026" title="Kết quả xét tốt nghiệp đợt Tháng 10 năm 2026">
+                        <i class="fa fa-caret-right"></i> Kết quả xét tốt nghiệp đợt Tháng 10 năm 2026</a> </div>
+            </div>              
+                </div><!-- box content list-->
+        <div class="clearfix"></div>
+    </div><!-- box right content-->
+</div><!-- box righit-->
+
+                 <div class="clearfix"></div>
+                 
+<div class="box-right box-right-red">
+    <div class="box-right-title">Thông tin tuyển sinh</div>
+    <div class="box-right-content">
+        <div class="box-content-list">
+         <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@250@13372@Tuyen-sinh-dao-tao-trinh-do-Thac-si-Ke-toan,-Tai-chinh-Ngan-hang-nam-2026-–-Dot-2" title="Tuyển sinh đào tạo trình độ Thạc sĩ Kế toán, Tài chính - Ngân hàng năm 2026 – Đợt 2">
+                        <i class="fa fa-caret-right"></i> Tuyển sinh đào tạo trình độ Thạc sĩ Kế toán, Tài chính - Ngân hàng năm 2026 – Đợt 2</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@250@13352@Thong-bao-tuyen-sinh-dao-tao-trinh-do-Thac-si-nam-2026-–-Dot-2" title="Thông báo tuyển sinh đào tạo trình độ Thạc sĩ năm 2026 – Đợt 2">
+                        <i class="fa fa-caret-right"></i> Thông báo tuyển sinh đào tạo trình độ Thạc sĩ năm 2026 – Đợt 2</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@250@13305@Thong-bao-tuyen-sinh-dao-tao-trinh-do-Thac-si-nam-2026-–-Dot-1" title="Thông báo tuyển sinh đào tạo trình độ Thạc sĩ năm 2026 – Đợt 1">
+                        <i class="fa fa-caret-right"></i> Thông báo tuyển sinh đào tạo trình độ Thạc sĩ năm 2026 – Đợt 1</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@250@13282@Thong-bao-tuyen-sinh-dao-tao-trinh-do-Thac-si-nam-2025-–-Dot-2" title="Thông báo tuyển sinh đào tạo trình độ Thạc sĩ năm 2025 – Đợt 2">
+                        <i class="fa fa-caret-right"></i> Thông báo tuyển sinh đào tạo trình độ Thạc sĩ năm 2025 – Đợt 2</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@250@13170@Thong-bao-tuyen-sinh-dao-tao-trinh-do-Tien-si-nam-2025-–-Dot-1" title="Thông báo tuyển sinh đào tạo trình độ Tiến sĩ năm 2025 – Đợt 1">
+                        <i class="fa fa-caret-right"></i> Thông báo tuyển sinh đào tạo trình độ Tiến sĩ năm 2025 – Đợt 1</a> </div>
+            </div>              
+                </div><!-- box content list-->
+        <div class="clearfix"></div>
+    </div><!-- box right content-->
+</div><!-- box righit-->
+
+                 <div class="clearfix" style="height: 10px;"></div>
+                 <style>
+li.youtube{list-style-type:square; padding-bottom:5px; color:#a8824a; cursor:pointer}
+.activePlaying {
+    background: url(modules/mod_youtube/iconplaying.gif) right -3px no-repeat;
+}
+</style>
+                 <div class="clearfix"></div>
+                            </div><!-- end col 3-->
+             
+             
+             <div class="clearfix"></div>
+           </div><!-- end row-->
+         </div><!-- end content-->
+       </div><!-- end content-bottom-->
+       <!-- Cooperate List -->
+       <div class="cooperate-list">
+  <div class="cooperate-title">Đơn vị liên kết</div>
+              <div class="cooperate-content">
+        <div class="cooperate-slide">
+            <div id="owl-iuh" class="owl-carousel">
+            <div class="item"><a href="https://iuh.edu.vn" target="_blank"><img src="/upload/files/UPM%202024/Logo%20chinh%20th%E1%BB%A9c%20(1).png" alt="IUH" width="290" /></a></div><div class="item"><a href="https://upm.vn/" target="_blank"><img src="/upload/files/UPM%202024/unnamed.png" alt="University Performance Metrics" width="290" /></a></div><div class="item"><a href="https://www.jaist.ac.jp/english/" target="_blank"><img src="/upload/files/IUKM2025/jaist_logo-3.png" alt="JAIST" width="290" /></a></div><div class="item"><a href="https://www.vietinbank.vn/web/home/vn/index.html" target="_blank"><img src="/upload/files/2024/D%E1%BB%91i%20tac1/Ten-viet-tat-cua-ngan-hang-Vietinbank.jpeg" alt="VietinBank" width="290" /></a></div><div class="item"><a href="https://www.namabank.com.vn/" target="_blank"><img src="/upload/files/Logo%20d%E1%BB%91i%20tac/Yellow%20namA.png" alt="Nam A Bank" width="290" /></a></div><div class="item"><a href="https://www.cfainstitute.org/" target="_blank"><img src="/upload/files/2024/D%E1%BB%91i%20tac1/b7c7648a_cfa.png" alt="CFA Institute " width="290" /></a></div><div class="item"><a href="https://smarttrain.edu.vn/" target="_blank"><img src="/upload/files/2024/D%E1%BB%91i%20tac1/t%E1%BA%A3i%20xu%E1%BB%91ng.png" alt="Smart Train" width="290" /></a></div><div class="item"><a href="https://www.mbbank.com.vn/" target="_blank"><img src="/upload/images/2023/1200px-Logo_MB_new.png" alt="MB-BANK: MB NGÂN HÀNG QUÂN ĐỘI" width="290" /></a></div><div class="item"><a href="https://www.sacombank.com.vn/ca-nhan.html" target="_blank"><img src="/upload/images/2023/Sacom.png" alt="Sacombank" width="290" /></a></div><div class="item"><a href="https://amnote.com.vn/amnote-for-accounting-firm/?lang=vi" target="_blank"><img src="/upload/images/2023/AMNOTE.jpg" alt="AMNOTE" width="290" /></a></div><div class="item"><a href="https://www.icaew.com/" target="_blank"><img src="/upload/files/Logo%20d%E1%BB%91i%20tac/logo%20ICAEW.jpg" alt="ICAEW" width="290" /></a></div><div class="item"><a href="http://www.mof.gov.vn" target="_blank"><img src="https://cloud.ecodc.vn/wp-content/uploads/2022/09/logo-bo-tai-chinh-1024x345.png" alt="MOF" width="290" /></a></div><div class="item"><a href="http://www.vacpa.org.vn/" target="_blank"><img src="/upload/images/doitac/VACPA%20Logo.png" alt="VACPA" width="290" /></a></div><div class="item"><a href="https://www.cpaaustralia.com.au/" target="_blank"><img src="/upload/files/1.Bia/CPAA_Logo_KL_RGB.jpg" alt="CPA Úc" width="290" /></a></div><div class="item"><a href="http://www.hoiketoanhcm.org.vn/" target="_blank"><img src="/upload/images/doitac/HAA%20logo.png" alt="HAA" width="290" /></a></div><div class="item"><a href="http://www.accaglobal.com/vn/en.html" target="_blank"><img src="/upload/images/doitac/acca.png" alt="ACCA" width="290" /></a></div><div class="item"><a href="https://www.angelo.edu/" target="_blank"><img src="/upload/images/doitac/Angelo%20State%20logo.JPG" alt="Angelo State University" width="290" /></a></div><div class="item"><a href="https://www.ndhu.edu.tw/bin/home.php?Lang=en" target="_blank"><img src="/upload/images/doitac/NAME_NDHU_TW_Logo.png" alt="National Dong Hwa University" width="290" /></a></div><div class="item"><a href="https://niu-en.niu.edu.tw/bin/home.php" target="_blank"><img src="/upload/images/doitac/ILAN%20Logo.png" alt="ILAN National University" width="290" /></a></div><div class="item"><a href="http://www.vietvalues.com/" target="_blank"><img src="/upload/images/doitac/VietValues%20Logo.png" alt="Chuẩn Việt" width="290" /></a></div><div class="item"><a href="http://giacat.com.vn/" target="_blank"><img src="/upload/images/doitac/GiaCat%20Logo.png" alt="Gia Cát" width="290" /></a></div><div class="item"><a href="https://www.roedl.com/" target="_blank"><img src="/upload/images/doitac/roedl.jpg" alt="Roedl" width="290" /></a></div><div class="item"><a href="https://www.a-c.com.vn/en/index.html" target="_blank"><img src="/upload/images/doitac/AC%20logo_new.png" alt="Kiểm toán A&C" width="290" /></a></div><div class="item"><a href="http://www.misa.com.vn/" target="_blank"><img src="/upload/images/doitac/logo-misa.jpg" alt="Phần mềm kế toán Misa" width="290" /></a></div><div class="item"><a href="http://fast.com.vn/" target="_blank"><img src="/upload/images/doitac/Fast%20logo.JPG" alt="Fast ERP" width="290" /></a></div><div class="item"><a href="http://uni-steelbuildings.com" target="_blank"><img src="/upload/images/UniSteelBuilding%20Logo.png" alt="Uni Steel Building" width="290" /></a></div>          </div>
+                  <div class="clearfix"></div>
+                </div>
+        <div class="cooperate-button"><span class="fa fa-angle-left cooperate-nav cooperate-prev"></span><span class="fa fa-angle-right cooperate-nav cooperate-next"></span></div>
+        <div class="clearfix"></div>
+      </div>
+</div>
+      <div class="clearfix"></div>
+                       <!-- End Cooperate List -->
+       <div class="footer">
+          <div class="footer-top">
+        <div class="row">
+                  <div class="col-md-7">
+            <div class="textwidget">
+                      <div class="footer-top-element">
+                <div class="title">Liên hệ - Phản hồi</div>
+                <div class="element-detail element-contact">
+                          <ul>
+                    <li> <i class="fa fa-map-marker"></i> Địa chỉ: Số 12 Nguyễn Văn Bảo - P. Hạnh Thông  - Thành phố Hồ Chí Minh<br/>
+                              Viện Tài chính - Kế toán - Lầu 2 - Nhà D</li>
+                    <li> <i class="fa fa-phone"></i> Điện thoại: Điện thoại: 038 518 7932 <br />
+                    Email: sfa@iuh.edu.vn<br />
+                    <a href="contact.html" style="color:#3a8324">Liên hệ - Phản hồi</a>
+                     </li>
+                  </ul>
+                        </div>
+              </div>
+                    </div>
+            <div class="clearfix"></div>
+          </div>
+            <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 footer-top-element">
+                <div class="title"> Mạng xã hội </div>
+                <div class="element-detail">
+                    <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>        
+        	<div class="fb-like-box" data-href="https://www.facebook.com/vtckt.iuh" data-width="350" data-height="350" data-colorscheme="light" data-show-faces="false" data-header="true" data-stream="false" data-show-border="false"></div>               </div>
+              </div>
+                
+            <div class="clearfix"></div>
+          </div>
+                </div>
+        <div class="clearfix"></div>
+      </div></div>
+              <div class="footer-bottom">
+        <div class="row">
+                  <div class="col-md-8">
+            <div class="copyright"> <a href="http://faa.iuh.edu.vn/admins" style="color:#fff" target="_blank">© 2023</a> Viện Tài chính - Kế toán - Đại học Công nghiệp Thành phố Hồ Chí Minh </div>
+          </div>
+                  <div class="col-md-4">
+            <div class="social-media">
+                      <i class="fa fa-users"></i> Số lượt  truy cập : 43,500,496<br />
+                      <i class="fa fa-user"></i> Đang trực tuyến  : <b>650</b> 
+                    </div>
+
+          </div>
+                  <div class="clearfix"></div>
+                </div>
+        <div class="clearfix"></div>
+      </div>
+              <div class="clearfix"></div>
+            </div>
+    <div class="clearfix"></div>
+  </div>
+          <div class="clearfix"></div>     
+       </div><!-- end footer-->
+       <div class="clearfix"></div>
+     </div></div>
+
+     <script type='text/javascript' src='templates/js/wp-embed.min.js'></script>
+     <div class="scroll-top"> <i class="fa fa-angle-up" title="Lên đầu trang"></i> </div>
+        </body>
+   </html>

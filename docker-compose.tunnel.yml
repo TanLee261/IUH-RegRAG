@@ -1,0 +1,11 @@
+services:
+  # ── Cloudflare Quick Tunnel (Public HTTPS demo tunnel to frontend) ──
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: iuh-regrag-tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate --url http://frontend:80
+    depends_on:
+      frontend:
+        condition: service_healthy
+

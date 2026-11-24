@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-11-19T16:26:41.125752+00:00",
+  "started_at": "2026-11-19T16:24:37.147735+00:00",
+  "status": "succeeded",
+  "manifest": "/Users/duytan/orca/projects/IUH-RegRAG/data-pipeline/data/manifest.json",
+  "parse": {
+    "total": 125,
+    "counts": {
+      "skipped": 125
+    }
+  },
+  "chunk": {
+    "documents": 125,
+    "document_counts": {
+      "chunked": 124,
+      "skipped_review": 1
+    },
+    "chunks": 1543
+  },
+  "embedding_storage": {
+    "run_id": "35c6a304-1627-427e-95d5-8b928cc5d308",
+    "model": "BAAI/bge-m3",
+    "dimension": 1024,
+    "batch_size": 4,
+    "embedded": 1543,
+    "batches": 386,
+    "max_observed_tokens": 4344,
+    "truncated": 0,
+    "storage": {
+      "previous_chunks": 1543,
+      "stored_chunks": 1543,
+      "deleted_chunks": 0,
+      "deleted_documents": 0
+    },
+    "duration_seconds": 111.878
+  },
+  "duration_seconds": 123.978
+}

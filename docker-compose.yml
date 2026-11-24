@@ -1,0 +1,119 @@
+services:
+  # ── PostgreSQL with pgvector (Relational DB & Vector Search) ──
+  postgres:
+    image: pgvector/pgvector:pg17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-iuh_regrag}
+      POSTGRES_USER: ${POSTGRES_USER:-iuh_regrag}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-regrag_local_secret_2025}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infrastructure/postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  # ── AI Service (Python FastAPI, Hybrid Search, Reranking, LLM) ──
+  ai-service:
+    build:
+      context: .
+      dockerfile: ai-service/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - PIPELINE_DATABASE_URL=postgresql://${POSTGRES_USER:-iuh_regrag}:${POSTGRES_PASSWORD:-regrag_local_secret_2025}@postgres:5432/${POSTGRES_DB:-iuh_regrag}
+      - LLM_PROVIDER=${LLM_PROVIDER:-ollama}
+      - LLM_MODEL=${LLM_MODEL:-qwen2.5:3b}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - LLM_TEMPERATURE=${LLM_TEMPERATURE:-0.2}
+      - LLM_MAX_OUTPUT_TOKENS=${LLM_MAX_OUTPUT_TOKENS:-300}
+      - LLM_TIMEOUT_SECONDS=${LLM_TIMEOUT_SECONDS:-60}
+      - LLM_FALLBACK_ENABLED=${LLM_FALLBACK_ENABLED:-true}
+      - LLM_FALLBACK_PROVIDER=${LLM_FALLBACK_PROVIDER:-ollama}
+      - LLM_FALLBACK_MODEL=${LLM_FALLBACK_MODEL:-qwen2.5:7b}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      - RERANK_MIN_SCORE=${RERANK_MIN_SCORE:-0.05}
+      - EMBEDDING_MODEL=${EMBEDDING_MODEL:-BAAI/bge-m3}
+      - RERANK_MODEL=${RERANK_MODEL:-BAAI/bge-reranker-v2-m3}
+      - EMBEDDING_DEVICE=cpu
+      - RERANK_DEVICE=cpu
+    volumes:
+      - ${HF_CACHE_DIR:-huggingface_cache}:/app/.cache/huggingface
+      - ./data-pipeline/data:/app/data-pipeline/data:ro
+      - ./infrastructure:/app/infrastructure:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # ── Backend (Spring Boot 3 REST API) ──
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "${BACKEND_PORT:-8085}:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=db
+      - DB_URL=jdbc:postgresql://postgres:5432/${POSTGRES_DB:-iuh_regrag}
+      - DB_USERNAME=${POSTGRES_USER:-iuh_regrag}
+      - DB_PASSWORD=${POSTGRES_PASSWORD:-regrag_local_secret_2025}
+      - JWT_SECRET=${JWT_SECRET:-regrag_default_super_secret_jwt_key_32bytes}
+      - AI_SERVICE_URL=http://ai-service:8000
+      - FRONTEND_ORIGIN=${FRONTEND_ORIGIN:-http://localhost:5173}
+      - CHAT_RATE_LIMIT_PER_MINUTE=${CHAT_RATE_LIMIT_PER_MINUTE:-100}
+      - DOCUMENT_UPLOAD_DIR=/app/uploads/documents
+    volumes:
+      - document_uploads:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      ai-service:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/actuator/health | grep -q '\"status\":\"UP\"' || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # ── Frontend (React 19 + Vite SPA with Nginx Reverse Proxy) ──
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-5173}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:80/ || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  postgres_data:
+    name: iuh-regrag_postgres_data
+  document_uploads:
+    name: iuh_regrag_document_uploads
+  huggingface_cache:
+    name: iuh_regrag_huggingface_cache

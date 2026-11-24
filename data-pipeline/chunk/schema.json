@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://iuh.edu.vn/regrag/schemas/chunk-v1.json",
+  "title": "IUH RegRAG Chunk",
+  "description": "A citation-ready chunk extracted from an IUH legal or administrative document.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "document_id",
+    "chunk_index",
+    "part_index",
+    "chunk_type",
+    "text",
+    "title",
+    "source",
+    "group",
+    "dieu",
+    "dieu_title",
+    "khoan",
+    "diem",
+    "so_qd",
+    "year",
+    "page_start",
+    "page_end",
+    "tags",
+    "legal_status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "document_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "chunk_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "part_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "chunk_type": {
+      "type": "string",
+      "enum": ["article", "clause", "preamble", "appendix", "free_text"]
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https?://"
+    },
+    "group": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dieu": {
+      "type": ["string", "null"],
+      "minLength": 1
+    },
+    "dieu_title": {
+      "type": ["string", "null"],
+      "minLength": 1
+    },
+    "khoan": {
+      "type": ["string", "null"],
+      "minLength": 1
+    },
+    "diem": {
+      "type": ["string", "null"],
+      "minLength": 1
+    },
+    "so_qd": {
+      "type": ["string", "null"],
+      "minLength": 1
+    },
+    "year": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 9999
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "page_start": {
+      "type": ["integer", "null"],
+      "minimum": 1
+    },
+    "page_end": {
+      "type": ["integer", "null"],
+      "minimum": 1
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "uniqueItems": true
+    },
+    "legal_status": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

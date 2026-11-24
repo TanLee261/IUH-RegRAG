@@ -1,0 +1,12 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: iuh-regrag-backend
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

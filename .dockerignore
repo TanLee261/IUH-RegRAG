@@ -1,0 +1,48 @@
+# Git
+.git
+.github
+.gitignore
+
+# Python
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.pytest_cache
+**/.coverage
+**/htmlcov
+.venv
+venv
+ENV/
+env/
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Java / Backend
+backend/target/
+backend/.mvn/
+backend/*.jar
+
+# IDE & OS
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Documentation & Brain
+docs/
+.gemini/
+brain/
+*.md
+
+# Heavy raw / intermediate pipeline data
+data-pipeline/data/raw/
+data-pipeline/data/ocr/
+data-pipeline/tests/
+ai-service/tests/
+ai-service/.cache/

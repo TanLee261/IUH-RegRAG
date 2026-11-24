@@ -1,0 +1,28 @@
+{
+  "document_id": "7f4a00ebf8d503db7f66e6dee4e032ac0f546e47d630ca6d374b7d502d916f44",
+  "title": "Thông báo 64 về học tiếng Anh năm 2020 - bản lịch sử",
+  "group": "04-ngoai-ngu-tin-hoc",
+  "source": "https://fce.iuh.edu.vn/hoc-vu/quy-dinh-ve-viec-hoc-mon-tieng-anh-tai-iuh-tb-so-64-ngay-20-6-2020/",
+  "source_file": "raw/04-ngoai-ngu-tin-hoc/011c77bef9c6.html",
+  "sha256": "7f4a00ebf8d503db7f66e6dee4e032ac0f546e47d630ca6d374b7d502d916f44",
+  "content_type": "text/html; charset=UTF-8",
+  "extraction_method": "html",
+  "pages": [
+    {
+      "page_number": 1,
+      "text": ""
+    }
+  ],
+  "metadata": {
+    "so_qd": null,
+    "nam": null,
+    "effective_date": null,
+    "applicability": null,
+    "legal_status": "unverified"
+  },
+  "needs_review": true,
+  "warnings": [
+    "No article text could be extracted"
+  ],
+  "text": ""
+}

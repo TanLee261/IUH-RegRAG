@@ -1,0 +1,46 @@
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# Operating System & IDEs
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+
+# Node / Frontend
+node_modules/
+dist/
+*.local
+
+# Java / Maven Backend
+target/
+.mvn/wrapper/maven-wrapper.jar
+
+# Uploads & Temporary files
+backend/uploads/documents/*
+!backend/uploads/documents/.gitkeep
+
+# Logs
+*.log

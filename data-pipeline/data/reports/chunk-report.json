@@ -1,0 +1,1015 @@
+{
+  "generated_at": "2026-11-19T16:24:37.279361+00:00",
+  "input": "/Users/duytan/orca/projects/IUH-RegRAG/data-pipeline/data/processed/documents",
+  "output": "/Users/duytan/orca/projects/IUH-RegRAG/data-pipeline/data/processed/chunks/chunks.jsonl",
+  "max_chars": 1800,
+  "documents": 125,
+  "document_counts": {
+    "chunked": 124,
+    "skipped_review": 1
+  },
+  "chunks": 1543,
+  "with_dieu": 614,
+  "with_khoan": 561,
+  "oversized": 18,
+  "max_chunk_characters": 10531,
+  "results": [
+    {
+      "document_id": "05b3b67ca35ca4e986b7c800db8808b122b0788a1c61337cf33385a277e650f2",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "07709cb6f4df29817a6f4d500675ac1b05211eac6c5c2c423fd00defd42c3acf",
+      "status": "chunked",
+      "chunks": 19,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "09d4e8cf48db4c15d40a351d78beb184334130f7f799606328c6e300ec312d12",
+      "status": "chunked",
+      "chunks": 25,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "09d8a2853f3ebc6163f42ee4999d9ae6e8ddeca076c7ce16eb17438bc6bfff85",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "0d26d7f229bcc8af4f3961428db5ba397d521905cd0de00ca3bbd68e725dd0d2",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "0e6c7f21602c705fc5227ef346c82cbd93cd62b320ae28f2426a81830a6c21aa",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "0f3445543d23a8f6cd36e021ffcb3396a6d3b0f7269cd5d78fd46af5eca1b802",
+      "status": "chunked",
+      "chunks": 104,
+      "with_dieu": 96,
+      "with_khoan": 89,
+      "oversized": 0
+    },
+    {
+      "document_id": "0f6e6dc782f233e68593b2ee746e08088497da4b0faa9760009546252fea4d10",
+      "status": "chunked",
+      "chunks": 2,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "15a34b01cb6e1beabdc6d0f6d7a59520a2cf884f277f55176bfebafe0e506060",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "167635a67cbfdb764213d3617ec788779f5fc4657c7a0cd395dd0762afd5d2e3",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "1b335a0b6f8dc6f1ab86b0bb5df6fcb23d6003aa66d17e92c0566ed460e048da",
+      "status": "chunked",
+      "chunks": 26,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "1d10fb48dceb95be5f2aa923a772a7d5e924a51ac491bb61de132929a3797f32",
+      "status": "chunked",
+      "chunks": 24,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "20e1750624a122f0dbf79b6544008862bd1d99f3a50a1a897b2a80063bf1a7ce",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "21b263c0e56a9d9f65d4007e09bae06bea31d922309ed195c20717fb5cf46776",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "232dacb7a8f1084e76cf77718259c1a3315426013441dfbdda58998a35e32a17",
+      "status": "chunked",
+      "chunks": 2,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "26257f701710e515d305e645f0c332406592442ef3e068d3f0bbd1e6b2504aa9",
+      "status": "chunked",
+      "chunks": 2,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "29f05b953399ed1a95455355978ede52a6482cac1b1dd02f5c8fdfd795c77f75",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "2a0d11582514469964c7664ad5d5b9c9cc08685a25f7359fef851c0d9e7fc84c",
+      "status": "chunked",
+      "chunks": 24,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "2a13f3235136077b16b22d1f3cac4006fff1d22fbe196d889b4f7ace4c2b3312",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "2a1a5334badb8df52fa130deab3444d2969eeecf85014a2b723c44586fac3d87",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 1
+    },
+    {
+      "document_id": "2b813ccc81cb6358d695d56aabb15282864b6a40573bc19117e9ccbd89cd9cb0",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "2bf9c210e677f34489a45dc117d43e80dad491e734fabd6ac50c03f34fad6aca",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "2ca2362b7e7d95f28c9dc69759c5ee88052661335fa5ff75424e75f1aac32add",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "2d3fcfbfde0c6066234b7a9ed36c15e0c40b5157ace0a6ffdac8f1996f42e3d5",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "30ab80c09966d9005d64f996ef4a605dd19d7e24364964d31bfa5a18ad2d4e98",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "34be7975995b9848ec6a8447d12fb4f206aa9e706fd25a8e27b7d42a368ab605",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "3833d01f616fcd729d8033ed1b82f46f8796f4749fc21292422e1a66e87f9da9",
+      "status": "chunked",
+      "chunks": 24,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "3a71427651bf9d4154375c15d7dd03a14163cfe03734e6b1b582fb541f02a1d4",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "3af7be9b9df2c76dafef77b94e72addf924af154bdeb5fa1b24de620b16f2307",
+      "status": "chunked",
+      "chunks": 19,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "3b5b710f997d2ac4f39bad4864603b4598725ff9d2b8437a807e42f27b4444f0",
+      "status": "chunked",
+      "chunks": 5,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "3c87c646ea1997b76d52a224d62c063866d51911318b55a600b5a557224d0241",
+      "status": "chunked",
+      "chunks": 44,
+      "with_dieu": 41,
+      "with_khoan": 35,
+      "oversized": 2
+    },
+    {
+      "document_id": "3cf6561e5d899b06efbc66f29781a2424f59a31c9d9db8655fbb800edf2197f7",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "3d35b3e57208524c303407d7fd340ec34e929d6811a5adf38ffb55836fe2940c",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "3fb2c0881caa4aca4f91defbd6d3646fc34521bcdbdbd0492f3e58a7a7e0a69e",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 1
+    },
+    {
+      "document_id": "41d277ac6c40f342128cb63433fae003d74897ed9968d93defa7667203f1e74e",
+      "status": "chunked",
+      "chunks": 25,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "4492037189cc038a9897ff7064b8155fcbe2655e612006cc54624e6fa6c9f8d1",
+      "status": "chunked",
+      "chunks": 79,
+      "with_dieu": 78,
+      "with_khoan": 75,
+      "oversized": 6
+    },
+    {
+      "document_id": "46836e81604cfde17838eb86a1cf92bcd4278c7eac572ff99a17708f0e5ac806",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "473e10a91b5600dd6e3e66bb1bff06c9a427061029d2a8b474d4c2cc98b9f5e1",
+      "status": "chunked",
+      "chunks": 55,
+      "with_dieu": 48,
+      "with_khoan": 43,
+      "oversized": 0
+    },
+    {
+      "document_id": "4838e9f94a4a724574747b308014f5e3b5008ec493368c35fb54cb3edef09da1",
+      "status": "chunked",
+      "chunks": 23,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "4c6ca4c281d2872cf2b7d55e2a92261047e11c36c8fb2b0255b1a7707b74a264",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "4cb66fa9422609f48fe3d83626a97a6b644fdfed7e49eb2b89577bcd0233fcf2",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "5410e8e8b151bd0ac6368e99db6abe98702305c62dfdaf05ace1c1eecd0b52e0",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "54cdd83ada680528db915ee78df75f3171a514d9df758afef4c470d2e93f369b",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "5b5536f3c168a2d1365200227041938131208db2454bc3a5ebbb19bd4e49676e",
+      "status": "chunked",
+      "chunks": 16,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "5bd0d17007851db77eba68d68a2e0a96e2c1d53aaf205325c25828518f48817a",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "5ddb622e11016ca397f518b5fcc01180ec4765c43e036622ddb3a2131df2f6f9",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "63b0556c880d07afac1a88aed26ab66c10190a038d1c9c3b130e80234a9367a2",
+      "status": "chunked",
+      "chunks": 23,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "64da3b7e1a435faa40b4daca87221987f08adf0938a3918ec4dcacf8b13518ea",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "655f0410a95d6df45e50c3f3a372e806ae77e08d24f01f1b957c9314554ed1aa",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "65a68c559171a46b39c77f02acb7e24344bb302d95b5c1c26f70539691deecf8",
+      "status": "chunked",
+      "chunks": 9,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "6c7d77aa71ab90a7086f84526c50332f5df9bbb2faf80fc0cb922e1fc327ab60",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 1
+    },
+    {
+      "document_id": "6cf3641f54e067bdcd514f5950c21197cb70919ae7ee9f212b9a13e225799fcf",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "70084586f13556ae9e30d1634d2f2473dabf0672cf9674d020be51f764a799e1",
+      "status": "chunked",
+      "chunks": 2,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "70fdd72527ae51465071dd21b3d9682404f831fe102db6f958729fa541b7ed77",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "725118d0ac01524c5f6d7db5ce3bc48851d28e5709554f385435b408e2458761",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "78036735924cafe2ecef7eb38a067efe190ca41756174b93b487cdd2b282cfa4",
+      "status": "chunked",
+      "chunks": 21,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "78711690b576c1b46981b13eab515598deef0d5aa249cd283301ce8a9f7928ef",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "7996bb92eb950deb873113386b8655dc2b760f624325e76848b88b4a95325538",
+      "status": "chunked",
+      "chunks": 3,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 1
+    },
+    {
+      "document_id": "7a94f1998c71b27733c598f67b78884d12811f01b786b2a5cbc75fc0c0958010",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "7ace4a096dc48ff777aa9a4da065628fc19f30f22cbcf5830db8a95eb8f078de",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "7be44d6f17dcf89e45196a2f769f6c822d6911e96c382f2b2022336871b1e42d",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 1
+    },
+    {
+      "document_id": "7e735808112b73b7a8e3c5b9fd9eca8e466f4beb0c7c13b1f10822b4718bfb16",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "7e84b08821dbe4beacb5ab439c3b474236641f45a3a9a12bfdb808f8e5ae551e",
+      "status": "chunked",
+      "chunks": 27,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "7f4a00ebf8d503db7f66e6dee4e032ac0f546e47d630ca6d374b7d502d916f44",
+      "status": "skipped_review",
+      "chunks": 0
+    },
+    {
+      "document_id": "8219778ee638d58590c673aee9296604cc39816455404bc1b505e6b402ade807",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "833c55bdf22222c8a030983c5c26fba41599dd5d4c94a1e2b7a4fcc18ca052eb",
+      "status": "chunked",
+      "chunks": 24,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "842973e3c3a33447e403d3444eb2455b8d9e6548402ae07a9da0956c8d085a54",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "8a8fef7d6257c8240da71058eeb6020358aed768a10b25f1d77ea6f4f00de4e5",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 1
+    },
+    {
+      "document_id": "8c2ea4369389594718f7ff807dd195422801198dfe3817493f7c1e67283fc219",
+      "status": "chunked",
+      "chunks": 2,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "8cb9efbb8766d22d089db972e8382c3b5478a62711c2f7b72c330dc98ba3611d",
+      "status": "chunked",
+      "chunks": 25,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "8d0032ca0a33f8dd943dd4f23fc47ac1a69c4fbbcc26c0def47094b09abaa911",
+      "status": "chunked",
+      "chunks": 2,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "8e2043ac546ee8df1faaeb4f639c763faaede3b9574128ab84909111d8d43cfd",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "91bf3d6ff91341a3d55ae95d0b92fed57c22e1bb846397995e90d706ea626c74",
+      "status": "chunked",
+      "chunks": 19,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "924a84b07a0e03f2f2f5a1df11e75f96d12e3679ccd9f37105301192506c1386",
+      "status": "chunked",
+      "chunks": 72,
+      "with_dieu": 71,
+      "with_khoan": 69,
+      "oversized": 1
+    },
+    {
+      "document_id": "9450914618348ee441e366e7ff3a0f0b59c6119fd7e09c2888463f20e2c2ba80",
+      "status": "chunked",
+      "chunks": 2,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "973a261263ab80eba54fefe639a0b3a3a9a1ad0193a052292e95a74c9828e888",
+      "status": "chunked",
+      "chunks": 20,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "9bce8c7ae16506b295ec5ab0c13b348d26b490453239aefccde025bf90a4c3f6",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "9cfa46d41039d730f3694dc304b8697fde1c5fc82f5f7bfba81e8ee35dda79ba",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "9d1044e60f91a92113477d76a5a8f656552cb027a02f2fbf2d6757d1fc0a7cdc",
+      "status": "chunked",
+      "chunks": 23,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "9e6ccf604480724942fc9e9d4f5d774b9a38e5cd78476692e9346d28f3807eb9",
+      "status": "chunked",
+      "chunks": 19,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "a5680a066c4d2e67caa958fc30b938c42857e024916044c7cad511681d922a20",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "a7f574f850c89ee4c996eb59f2ce8edd30a5aeaccdfcecdba9a7af3af3aeaf4c",
+      "status": "chunked",
+      "chunks": 19,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "ad22132fee7132a4011591f9046cd7fb71c8c1cfee769ad12bc755ac5f398ec1",
+      "status": "chunked",
+      "chunks": 2,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "ae494e039fc5d270c719db2b3154a6c28f14228ba02f68ef11a27adb0488ea9f",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "aed8312da9c597ae36b0269295b5139661918f21b9c78440f81de5bc81b38684",
+      "status": "chunked",
+      "chunks": 5,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "af33c689dc215b16dce005c9d7254971fc2740d2b3b511b41e43e8ff558d82ee",
+      "status": "chunked",
+      "chunks": 24,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "afdf4923a291349c85f4b3778625639dd2a419c903dfc5e531e2883d17865528",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "b11dbfd3bac72594c58d970a6ec6518ed53391751634b68b3f07f459e8081fe1",
+      "status": "chunked",
+      "chunks": 19,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "b16d10def20568b5174922632bb42b78875a653558cecad242a76eec6a6aa100",
+      "status": "chunked",
+      "chunks": 31,
+      "with_dieu": 30,
+      "with_khoan": 24,
+      "oversized": 0
+    },
+    {
+      "document_id": "b3861a57afdeddaefb3283dc60f244250a7bff30df9848cb4da5b6fbe874b63e",
+      "status": "chunked",
+      "chunks": 24,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "b4ac0f031673496527c3caf92c0522254961e6ca9e84ee31a1324f08dd68986a",
+      "status": "chunked",
+      "chunks": 6,
+      "with_dieu": 5,
+      "with_khoan": 0,
+      "oversized": 1
+    },
+    {
+      "document_id": "b5c7a58b3d5b74d74e3eae6a7364eaa77f9238824e634c0268ced8f629844a71",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "b63971f596bcbed6e06acee196d99be77d4f2c275792de27b6ebb23bd792b8ae",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "b859123be5f1b072d27ad0154d4530eceac2676afb328c4bc8aa4f19e125d54f",
+      "status": "chunked",
+      "chunks": 24,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "b9edb1a9a564bb8306ec3df56053077abba1489b959967cb7e38eb265eb3733b",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "bd31db46ca8ccdec09bd8865b68c4bb674a3f684a09c49863d2cab1399bddf5f",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "bee892698bfc7760f3072935157fc3a1992bc26ee3fb88b464ee8a0480c15cfc",
+      "status": "chunked",
+      "chunks": 23,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "c13b18ebb15c97cb648f7c04e2a011363652cd37d0480d3e306d0c18f0c8e2e6",
+      "status": "chunked",
+      "chunks": 142,
+      "with_dieu": 140,
+      "with_khoan": 133,
+      "oversized": 0
+    },
+    {
+      "document_id": "c2e2f83a6528070d475a5ad39e4fd897c4df6eb14a31a1ce51def0e55a361168",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "c360d8dd1a2a7b2e67fd844e78f410d9236855858c1a9659dc44c2e8de3cb457",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "c480ae1226c57e7e4f42539b11fc5c9819aa4e81ac0032be2db5f19a733d216b",
+      "status": "chunked",
+      "chunks": 106,
+      "with_dieu": 105,
+      "with_khoan": 93,
+      "oversized": 1
+    },
+    {
+      "document_id": "c86584200e72b6f23bbae2e7a06c48209de21897cf4e42f11fe78f01df0c31f2",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "c9581aa6f8da7b398a575197cfd4f917f13444de5471f237dcff879039cfe348",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "c9cc421ea93ad8fc91be0516784901fc6dc1b4746107d0c870b097be681c0a7e",
+      "status": "chunked",
+      "chunks": 24,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "caa1d9e4b7a0fbf373d1e237acd25b6ae47f163f55e9a61d83210d1b21813d7a",
+      "status": "chunked",
+      "chunks": 24,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "caa2ff86574170d7a693bd65d25ecd0f477661d51af4d1b8668bf98ca27c5131",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "d29647493f514b58f62fe49693bc8b2d8e78d0ddf16a8dd56643480a0899a8d2",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "d5c941f32288b1891903dade6db947a549b8ae5db77532928250a771f8ebfae9",
+      "status": "chunked",
+      "chunks": 19,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "d764e3ac95a96e23950c0df6cfac4e243b3eb0249663d4425f99833afb6f6905",
+      "status": "chunked",
+      "chunks": 2,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "deb62596f6c13c0549c0d5f3d1fbbf0684ce32ac52f3aacad833b0411854f5cf",
+      "status": "chunked",
+      "chunks": 43,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "debd940cea736d3c408f20fe70bd5eca0269a98f1c85f76a61a6bbeaf5c3919f",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "e0e5503a6de58a139add0b27352fd66292817118ba94efd184439d7ce26a877f",
+      "status": "chunked",
+      "chunks": 23,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "e158d233901cdc2bf350e819e73bdb0e7470e8d4ad19d26af2cbf07e7a6d7ac4",
+      "status": "chunked",
+      "chunks": 3,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "e582fb5a095fb770fb1fb5b36e87bd0b6a65a3129dcbcb2ceb1f47185de6bed9",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "ee8683edb702505933fcebbaac4c8c0270d1da637ec44525262298e36b923fbc",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "eeafc0706f8279ba955ec7e73196ac7998b1e2ac0fcd6f0049f91eb163c05fc4",
+      "status": "chunked",
+      "chunks": 23,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "f2327fed23b41deffa4b72a0912daabafc9928d8d4ce8b9c32cd72aefd89788c",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "f4029a6c1bb76e71b1486ba1654eb0c7337387ba1f11e8c155c7d7999ff22eaa",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "f5d7dd8872fe6cc3b54cc5662a29a79930cd47d80a838d3204e4cd0f993e2bbb",
+      "status": "chunked",
+      "chunks": 23,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "f6cdde469bdc6922e6721a527576d3c21ef72c6449d5649374e7fed94fe69cb5",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 1
+    },
+    {
+      "document_id": "f6e437cd6baf0313bc4cb4ec563e75802167af394a630b7ef5d0c0a75ee56cf6",
+      "status": "chunked",
+      "chunks": 19,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "fab67bad0a0412dec2339c442ea055de21debb6ce0590e8a58d4439ee0a921f7",
+      "status": "chunked",
+      "chunks": 19,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "fd4c4689e7574521a76655d0b5a344ecacaab4bf4cf73f7a643faf1a5cbf1848",
+      "status": "chunked",
+      "chunks": 19,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "fe32ad707003e6e0a5a53e9640b4fe44382f3783c6ae2cbd0201e60b4871630c",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    },
+    {
+      "document_id": "fe8979db9772a5ace1d6ea2ff21f0c12651da7c05f8aff766cc2d4d116c0b421",
+      "status": "chunked",
+      "chunks": 1,
+      "with_dieu": 0,
+      "with_khoan": 0,
+      "oversized": 0
+    }
+  ]
+}

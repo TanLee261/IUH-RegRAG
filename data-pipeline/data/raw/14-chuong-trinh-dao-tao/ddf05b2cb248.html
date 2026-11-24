@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta property="og:image" content="templates/images/logo_fct.png"/>
+  <link href="templates/images/icon.ico" rel="shortcut icon">
+  <link rel="icon" type="image/png" href="templates/images/logo_fct.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="fct.iuh.edu.vn, Khoa Thương mại - Du lịch- Đại học Công nghiệp TP.HCM">
+  <meta name="description" content="">
+  <meta property="og:image" content="https://fct.iuh.edu.vn/templates/images/logoiuh.png"/>
+    <title>CHƯƠNG TRÌNH ĐÀO TẠO 2024 - 2025</title>
+
+  <!--    import jquery           -->
+  <script type="text/javascript" src="templates/js/jquery-2.2.3.min.js"></script>
+  <script src="templates/js/jquery-ui.min.js" type="text/javascript"></script>
+  <script src="templates/js/jquery.form.js" type="text/javascript"></script>
+  <!--    import bootstrap        -->
+  <link href="templates/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="templates/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Include Owl carousel -->
+  <link href="templates/css/owl.carousel.css" rel="stylesheet" type="text/css"/>
+  <link href="templates/css/owl.theme.default.css" rel="stylesheet" type="text/css"/>
+  <link href="templates/css/animate.css" rel="stylesheet" type="text/css"/>
+  <script src="templates/js/owl.carousel.js" type="text/javascript"></script>
+  <!--    import awesomefont      -->
+  <link href="templates/awesomefont/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+  <!--    import tab accordion    -->
+  <script src="templates/js/responsive-tabs.js" type="text/javascript"></script>
+  <!--    import jquery sticky    -->
+  <script src="templates/js/jquery.sticky.js" type="text/javascript"></script>
+  <!---   import custom scroll    -->
+  <link href="templates/css/jquery.scrollbar.css" type="text/css" rel="stylesheet">
+  <script src="templates/js/jquery.scrollbar.js" type="text/javascript"></script>
+  <!--    import layout style     -->
+  <link href="templates/css/layout.cssver1.0.css?v=27" type="text/css" rel="stylesheet">
+  <script type="text/javascript" src="templates/js/javascript.js"></script>
+  <script type="text/javascript" src="templates/js/script.js"></script>
+  <!--    import responsive style -->
+  <link href="templates/css/style-responsive.cssver1.0.css?v=27" rel="stylesheet" type="text/css"/>
+  <link href="templates/css/app3s-custom.cssver1.0.css" rel="stylesheet" type="text/css"/>
+  <link href="templates/css/printSchedule.css" rel="stylesheet" type="text/css" media="print" />
+  <style type="text/css">
+  img.wp-smiley, img.emoji {
+   display: inline !important;
+   border: none !important;
+   box-shadow: none !important;
+   height: 1em !important;
+   width: 1em !important;
+   margin: 0 .07em !important;
+   vertical-align: -0.1em !important;
+   background: none !important;
+   padding: 0 !important;
+ }
+</style>
+<script>
+  $(document).ready(function() {
+                /*$(document).bind('contextmenu', function (e) {
+                  e.preventDefault();
+                });*/
+                $(".tab_content").hide(); //Hide all content
+                $("ul.tabs li:first").addClass("active").show(); //Activate first tab
+                $(".tab_content:first").show(); //Show first tab content
+                $("ul.tabs li").click(function() {
+                    $("ul.tabs li").removeClass("active"); //Remove any "active" class
+                    $(this).addClass("active"); //Add "active" class to selected tab
+                    $(".tab_content").hide(); //Hide all tab content
+                    var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+                    $(activeTab).fadeIn(); //Fade in the active content
+                    return false;
+                });
+                $('#browserImage').click(function () {
+                    var finder = new CKFinder();
+                    finder.selectActionFunction = function (fileUrl) {
+                        $('#image').val(fileUrl);
+                    };
+                    finder.popup();
+                })
+                $('#browserFile').click(function () {
+                    var finder = new CKFinder();
+                    finder.selectActionFunction = function (fileUrl) {
+                        $('#files').val(fileUrl);
+                    };
+                    finder.popup();
+                })
+                return false;
+
+            });
+  $(function () {
+    $("ul.dropdown-menu li.menu-item-has-children > a").append('<i class="fa fa-caret-right"></i>');
+    $( "#datepicker" ).datepicker();
+  });
+</script>
+</head>
+<body>
+  <div class="header-top">
+    <div class="container">
+      <div class="row header-link">
+        <ul>
+          <li><a target="_blank" href="http://iuh.edu.vn">IUH</a></li>
+          <li><a target="_blank" href="https://gv.iuh.edu.vn">E-Office</a></li>
+          <li><a href="contact.html">Liên hệ</a></li>
+          <li><a target="_blank" href="https://tuyensinh.iuh.edu.vn">Tuyển sinh</a></li>
+          <li><a href="tinnoibo.html">Tin nội bộ</a></li>
+        </ul>
+        <div class="header-lang">
+          <form method="POST" name="langForm">
+            <a href='#' onclick="submitLang('vi')"><img src="templates/images/icon-flag-vn.png" style="max-height:22px" /></a>
+            <!--<a href='/en'> EN </a>-->
+            <a href='#' onclick="submitLang('en')"><img src="templates/images/icon-flag-en.png" style="max-height:22px" /></a>
+            <input type="hidden" name="lang">
+          </form>
+        </div>
+        <div class="search-area"></div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <header class="header">
+    <div class="container">
+      <div class="col-md-3 header-left"> <a href="home.html" class="logo"> <img alt="IUH" title="IUH" src="templates/images/logo.png"> </a> </div>
+      <div class="col-md-9 header-right" style="padding-right: 0px;">
+        <link rel="stylesheet" href="modules/mod_search/css/jquery-ui.min.css" type="text/css" /> 
+<form class="form-search" action="search.html@177@Tim-kiem" method="post">
+    <div class="input-group group-search">
+              <input name="txtSearch" value="" type="text" class="form-control txt-search" placeholder="Tìm kiếm ..." style="background: #eff2f6;">
+              <span class="input-group-btn">
+      <button class="btn btn-custom" type="submit"> <i class="fa fa-search"></i> </button>
+      </span> </div>
+    <div class="clearfix"></div>
+  </form>
+
+
+
+
+        <!-- <div class="right-up-title">Đại học Công nghiệp Thành phố Hồ Chí Minh</div>
+        <div class="right-title"><img src="templates/images/fct-text-vi.png" width="350" class="logo-fct-vi" /></div> -->
+      </div>
+      <!-- <div class="col-md-1" style="padding-left: 0px;"><a href="home.html" class="logo"> <img style="width: 100px;" alt="FCT" title="Khoa Thương mại & Du lịch - Trường ĐHCN TP.HCM" src="templates/images/logo_fct.png"> </a></div> -->
+      <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+  </header>
+  <header class="header-mobile">
+    <div class="headerIUH">
+        <div class="container">
+          <div class="headerIUH-logoLeft">
+            <a href="home.html"><img src="templates/images/logo.png" alt="Đại học Công nghiệp TP.HCM" style="width: 100%; padding: 5px;"/></a>
+          </div>
+          <!-- <div class="headerIUH-center ">
+            <div class="headerIUH-title">Đại học Công nghiệp Thành phố Hồ Chí Minh</div>
+            <div class="headerIUH-titleDown">
+              <img src="templates/images/fct-text-vi.png" alt="Đại học Công nghiệp Thành phố Hồ Chí Minh" />
+            </div>
+          </div>
+          <div class="headerIUH-logoRight">
+            <a href="home.html"><img src="templates/images/logo_fct.png" alt="Đại học Công nghiệp Thành phố Hồ Chí Minh" /></a>
+          </div> -->
+        </div>
+    </div>
+  <div class="clearfix"></div>
+</header>
+<div class="header-menu">
+  <div class="container">
+    <div class="row">
+      <nav class="navbar navbar-default main-menu"> 
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle navbar-menu collapsed" data-toggle="collapse" data-target="#iuh-sdh-menu" aria-expanded="false"> <span class="icon-bar" style="margin: 0;"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <i class="fa fa-times"></i> MENU </button>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="iuh-sdh-menu">
+          <ul class="nav navbar-nav">
+  <div class=""><ul id="menu-vn-main-menu" class="nav navbar-nav">
+  	<li><a href="home.html"><i class="fa  fa-home"></i></a></li>
+        <li id="menu-item-145"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Giới thiệu<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-163"><a href="category.html@163@Lich-su-hinh-thanh">Lịch sử hình thành</a></li><li id="menu-item-184"><a href="category.html@184@Tam-nhin-su-menh">Tầm nhìn sứ mệnh</a></li><li id="menu-item-219"><a href="category.html@219@Chien-luoc-phat-trien">Chiến lược phát triển</a></li><li id="menu-item-186"><a href="category.html@186@Thanh-tuu-noi-bat">Thành tựu nổi bật</a></li><li id="menu-item-289"><a href="news.html@289@Hoat-dong-kiem-dinh">Hoạt động kiểm định</a></li><li id="menu-item-261"><a href="category.html@261@Co-so-vat-chat">Cơ sở vật chất</a></li></ul></li><li id="menu-item-150"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Tổ chức<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-212"><a href="banchunhiemkhoa.html@212@Ban-chu-nhiem-khoa">Ban chủ nhiệm khoa</a></li><li id="menu-item-214"><a href="giangvien.html@214@Doi-ngu-giang-vien">Đội ngũ giảng viên</a></li><li id="menu-item-220"><a href="category.html@220@Nhan-vien-co-huu">Nhân viên cơ hữu</a></li><li id="menu-item-221"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Công Đoàn<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-277"><a href="category.html@277@Ban-chap-hanh-Cong-doan">Ban chấp hành Công đoàn</a></li><li id="menu-item-278"><a href="news.html@278@Thong-tin-Cong-doan">Thông tin Công đoàn</a></li></ul></li><li id="menu-item-245"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Đoàn Thanh niên<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-280"><a href="news.html@280@Ban-chap-hanh-DTN">Ban chấp  hành ĐTN</a></li><li id="menu-item-290"><a href="news.html@290@Cau-lac-bo-Anh-van">Câu lạc bộ Anh văn</a></li><li id="menu-item-291"><a href="news.html@291@Cau-lac-bo-Du-lich">Câu lạc bộ Du lịch</a></li><li id="menu-item-348"><a href="news.html@348@Cau-lac-bo-Han-ngu">Câu lạc bộ Hán ngữ</a></li><li id="menu-item-349"><a href="news.html@349@Cau-lac-bo-YSC">Câu lạc bộ YSC</a></li><li id="menu-item-350"><a href="news.html@350@Cau-lac-bo-ICE">Câu lạc bộ ICE</a></li><li id="menu-item-351"><a href="news.html@351@Cau-lac-bo-MEC">Câu lạc bộ MEC</a></li><li id="menu-item-352"><a href="news.html@352@Cau-lac-bo-MC-Le-Tan">Câu lạc bộ MC - Lê Tân</a></li><li id="menu-item-279"><a href="news.html@279@Thong-tin-Doan-hoi">Thông tin Đoàn hội</a></li></ul></li></ul></li><li id="menu-item-218"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Bộ môn<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-262"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">BM Kinh doanh Quốc tế<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-305"><a href="news.html@305@Thong-bao">Thông báo</a></li><li id="menu-item-306"><a href="category.html@306@Gioi-thieu-chung">Giới thiệu chung</a></li><li id="menu-item-307"><a href="giangvienbomon.html@307@Doi-ngu-giang-vien">Đội ngũ giảng viên</a></li><li id="menu-item-308"><a href="category.html@308@Lien-ket-doanh-nghiep">Liên kết doanh nghiệp</a></li></ul></li><li id="menu-item-263"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">BM Thương mại điện tử<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-309"><a href="news.html@309@Thong-bao">Thông báo</a></li><li id="menu-item-310"><a href="category.html@310@Gioi-thieu-chung">Giới thiệu chung</a></li><li id="menu-item-311"><a href="giangvienbomon.html@311@Doi-ngu-giang-vien">Đội ngũ giảng viên</a></li><li id="menu-item-312"><a href="category.html@312@Lien-ket-doanh-nghiep">Liên kết doanh nghiệp</a></li></ul></li><li id="menu-item-293"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">BM Du lịch - Nhà hàng - Khách sạn<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-321"><a href="category.html@321@Thong-bao">Thông báo</a></li><li id="menu-item-322"><a href="category.html@322@Gioi-thieu-chung">Giới thiệu chung</a></li><li id="menu-item-323"><a href="giangvienbomon.html@323@Doi-ngu-giang-vien">Đội ngũ giảng viên</a></li><li id="menu-item-324"><a href="category.html@324@Lien-ket-doanh-nghiep">Liên kết doanh nghiệp</a></li><li id="menu-item-339"><a href="category.html@339@He-thong-phong-thuc-hanh">Hệ thống phòng thực hành</a></li></ul></li></ul></li><li id="menu-item-164"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Đào tạo<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-217"><a href="news.html@217@Tuyen-sinh">Tuyển sinh</a></li><li id="menu-item-211"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Đại học<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-213"><a href="category.html@213@Kinh-doanh-Quoc-te">Kinh doanh Quốc tế</a></li><li id="menu-item-222"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Thương mại điện tử<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-353"><a href="news.html@353@Chuan-dau-ra">Chuẩn đầu ra</a></li><li id="menu-item-354"><a href="news.html@354@Chuong-trinh-khung">Chương trình khung</a></li><li id="menu-item-355"><a href="news.html@355@Dieu-kien-tot-nghiep">Điều kiện tốt nghiệp</a></li><li id="menu-item-356"><a href="news.html@356@Ban-mo-ta-CTDT">Bản mô tả CTĐT</a></li><li id="menu-item-357"><a href="news.html@357@Danh-gia-sinh-vien">Đánh giá sinh viên</a></li><li id="menu-item-358"><a href="news.html@358@So-tay">Sổ tay</a></li></ul></li><li id="menu-item-244"><a href="category.html@244@Quan-tri-khach-san">Quản trị khách sạn</a></li><li id="menu-item-294"><a href="category.html@294@QT-nha-hang-va-Dich-vu-an-uong">QT nhà hàng và Dịch vụ ăn uống</a></li><li id="menu-item-295"><a href="category.html@295@Quan-tri-Dich-vu-Du-lich-&-Lu-hanh">Quản trị Dịch vụ Du lịch & Lữ hành</a></li></ul></li><li id="menu-item-343"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Thạc Sĩ Chuyên Ngành Thương Mại Điện Tử<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-344"><a href="news.html@344@Thong-bao">Thông báo</a></li><li id="menu-item-345"><a href="news.html@345@Gioi-thieu-chung">Giới thiệu chung</a></li><li id="menu-item-346"><a href="news.html@346@Doi-ngu-giang-vien">Đội ngũ giảng viên</a></li><li id="menu-item-347"><a href="news.html@347@Lien-ket-doanh-nghiep">Liên kết doanh nghiệp</a></li></ul></li></ul></li><li id="menu-item-287"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Hỗ trợ<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-296"><a href="news.html@296@Thong-bao">Thông báo</a></li><li id="menu-item-297"><a href="news.html@297@Lich-khai-giang">Lịch khai giảng</a></li><li id="menu-item-298"><a href="news.html@298@Cac-khoa-hoc">Các khóa học</a></li><li id="menu-item-299"><a href="news.html@299@Dang-ky-tham-gia">Đăng ký tham gia</a></li></ul></li><li id="menu-item-161"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Nghiên cứu<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-256"><a href="news.html@256@Hoi-thao-Hoi-nghi">Hội thảo - Hội nghị</a></li><li id="menu-item-257"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Đề tài dự án<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-340"><a href="news.html@340@Tin-tuc-de-tai-du-an">Tin tức đề tài dự án</a></li><li id="menu-item-341"><a href="detai.html@341@Danh-sach-De-tai-du-an">Danh sách Đề tài dự án</a></li></ul></li><li id="menu-item-286"><a href="https://smia.iuh.edu.vn/bieumau.html@218@Quy-trinh_Bieu-mau" target="_blank" >Biểu mẫu KHCN</a></li><li id="menu-item-300"><a href="congbokhoahoc.html@300@Cong-bo-khoa-hoc-">Công bố khoa học </a></li><li id="menu-item-301"><a href="sachgiaotrinh.html@301@Giao-trinh-&-Tai-lieu-tham-khao">Giáo trình & Tài liệu tham khảo</a></li><li id="menu-item-302"><a href="sohuutritue.html@302@Tai-san-tri-tue">Tài sản trí tuệ</a></li><li id="menu-item-303"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Khởi nghiệp và Sáng tạo<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-342"><a href="news.html@342@Tin-tuc-">Tin tức </a></li></ul></li></ul></li><li id="menu-item-198"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Sinh viên<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-264"><a href="news.html@264@Thong-bao-hoc-vu">Thông báo học vụ</a></li><li id="menu-item-271"><a href="thongbaogiangvien.html@271@Thong-bao-giang-vien">Thông báo giảng viên</a></li><li id="menu-item-266"><a href="bieumau.html@266@Bieu-mau">Biểu mẫu</a></li><li id="menu-item-276"><a href="http://htsv.iuh.edu.vn/vieclam" target="_blank" >Thông tin việc làm</a></li><li id="menu-item-267"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Đăng ký online<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-268"><a href="giaygioithieu.html@268@Giay-gioi-thieu">Giấy giới thiệu</a></li><li id="menu-item-269"><a href="xinbangdiem.html@269@Xin-bang-diem">Xin bảng điểm</a></li><li id="menu-item-283"><a href="dangkymolop.html@283@Dang-ky-mo-lop">Đăng ký mở lớp</a></li></ul></li><li id="menu-item-265"  class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Cựu sinh viên<span class="caret"></span></a><ul role="menu" class="dropdown-menu"><li id="menu-item-274"><a href="cuusinhvien.html@274@Cuu-sinh-vien-tieu-bieu">Cựu sinh viên tiêu biểu</a></li><li id="menu-item-275"><a href="news.html@275@Ban-tin-cuu-sinh-vien">Bản tin cựu sinh viên</a></li></ul></li><li id="menu-item-359"><a href="news.html@359@Khao-sat">Khảo sát</a></li></ul></li><li id="menu-item-272"><a href="news.html@272@Tin-tuc-Su-kien">Tin tức - Sự kiện</a></li>   </ul></div>
+</ul>          <div class="search-area-mobile"> <link rel="stylesheet" href="modules/mod_search/css/jquery-ui.min.css" type="text/css" /> 
+<form class="form-search" action="search.html@177@Tim-kiem" method="post">
+    <div class="input-group group-search">
+              <input name="txtSearch" value="" type="text" class="form-control txt-search" placeholder="Tìm kiếm ..." style="background: #eff2f6;">
+              <span class="input-group-btn">
+      <button class="btn btn-custom" type="submit"> <i class="fa fa-search"></i> </button>
+      </span> </div>
+    <div class="clearfix"></div>
+  </form>
+
+
+
+
+</div>
+        </div>
+        <!-- /.navbar-collapse --> 
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="page-content">
+  <div class="container"> 
+    <!--
+                <div class="border-top">
+                    <div class="border-top-1"></div>
+                </div>
+              -->
+              <div class="content-bottom"> 
+                <div class="content">
+                  <div class="row">
+
+                    <div class="col-md-9 page-left">
+                      <div class="crumb">
+                        <a href="home.html" class="crumb-icon"><i class="fa fa-home"></i></a>
+                        <i class="fa fa-angle-right"> </i> 
+                        <span>Chương trình khung</span>
+                        <div class="share-content">
+                          <div class="s-c-title"> Chia sẻ </div>
+                          <ul>
+                            <li>
+                              <a class="icon-fb" href="https://www.facebook.com/khoathuongmaidulichiuh" target="_blank">
+                                <i class="fa fa-facebook"></i>
+                              </a>
+                            </li>
+                            <li>
+                              <a class="icon-tw" href="https://www.facebook.com/groups/doankhoatmdliuh" target="_blank">
+                                <i class="fa fa-twitter"></i>
+                              </a>
+                            </li>
+                            <li>
+                              <a class="icon-in" href="https://www.facebook.com/groups/doankhoatmdliuh" target="_blank">
+                                <i class="fa fa-linkedin"></i>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div><!-- end crumb-->
+                      <div class="page-banner"><img class="alignnone wp-image-1768 size-full" src="/upload/images/2019/chudenamhoc_new.png" alt="Chủ đề năm học" width="701" height="120" /></div>
+
+                      <div class="intro-bound"><div class="col-sm-3 col-xs-6"><a href="news.html@353@Chuan-dau-ra">
+						<i class="fa "></i><span> Chuẩn đầu ra</span></a><div class="clearfix"></div>
+				</div><div class="col-sm-3 col-xs-6"><a href="news.html@354@Chuong-trinh-khung">
+						<i class="fa "></i><span> Chương trình khung</span></a><div class="clearfix"></div>
+				</div><div class="col-sm-3 col-xs-6"><a href="news.html@355@Dieu-kien-tot-nghiep">
+						<i class="fa "></i><span> Điều kiện tốt nghiệp</span></a><div class="clearfix"></div>
+				</div><div class="col-sm-3 col-xs-6"><a href="news.html@356@Ban-mo-ta-CTDT">
+						<i class="fa "></i><span> Bản mô tả CTĐT</span></a><div class="clearfix"></div>
+				</div><div class="col-sm-3 col-xs-6"><a href="news.html@357@Danh-gia-sinh-vien">
+						<i class="fa "></i><span> Đánh giá sinh viên</span></a><div class="clearfix"></div>
+				</div><div class="col-sm-3 col-xs-6"><a href="news.html@358@So-tay">
+						<i class="fa "></i><span> Sổ tay</span></a><div class="clearfix"></div>
+				</div> <div class="clearfix"></div></div><script type="text/javascript" src="templates/js/jquery.media.js"></script>
+<script type="text/javascript" src="templates/js/jquery.metadata.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('a.media').media({width:'100%', height:650});
+    });
+</script>
+<div class="page-title">CHƯƠNG TRÌNH ĐÀO TẠO 2024 - 2025</div><div class="title-date">24-04-2026</div><div class="left-content"><div class="content-list" style="text-align:justify"></div></div><div class="pull-right"><a target="_blank" href="/upload/files/2026/ctk20.pdf" class="btn btn-default btn-sm">Download file</a></div><div class="clr"></div><a class="media" href="https://fct.iuh.edu.vn/upload/files/2026/ctk20.pdf">&nbsp;</a>                    </div><!-- end col 9-->
+                    <div class="col-md-3 page-right">
+                      
+<div class="box-right box-right-red">
+    <div class="box-right-title" style="text-transform: uppercase">Thông báo học vụ</div>
+    <div class="box-right-content">
+        <div class="box-content-list">
+         <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@264@1275@THONG-BAO-VE-VIEC-CHO-MUON-BIA-BANG-CHO-LE-TOT-NGHIEP-NGAY-21-11-2026" title="THÔNG BÁO VỀ VIỆC CHO MƯỢN BÌA BẰNG CHO LỄ TỐT NGHIỆP NGÀY 21/11/2026">
+                        <i class="fa fa-caret-right"></i> THÔNG BÁO VỀ VIỆC CHO MƯỢN BÌA BẰNG CHO LỄ TỐT NGHIỆP NGÀY 21/11/2026&nbsp;<img src="templates/images/hot-news.gif" style="border:none;" /></a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@264@1274@THONG-BAO-LE-BE-GIANG-VA-PHAT-BANG-TOT-NGHIEP-THANG-11-NAM-2026" title="THÔNG BÁO LỄ BẾ GIẢNG VÀ PHÁT BẰNG TỐT NGHIỆP THÁNG 11 NĂM 2026">
+                        <i class="fa fa-caret-right"></i> THÔNG BÁO LỄ BẾ GIẢNG VÀ PHÁT BẰNG TỐT NGHIỆP THÁNG 11 NĂM 2026</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@264@1266@THONG-BAO-NHAN-BANG-TOT-NGHIEP-THANG-07.2026" title="THÔNG BÁO NHẬN BẰNG TỐT NGHIỆP THÁNG 07.2026">
+                        <i class="fa fa-caret-right"></i> THÔNG BÁO NHẬN BẰNG TỐT NGHIỆP THÁNG 07.2026</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@264@1262@THONG-BAO-KE-HOACH-XET-TOT-NGHIEP-T10.2026" title="THÔNG BÁO KẾ HOẠCH XÉT TỐT NGHIỆP T10.2026">
+                        <i class="fa fa-caret-right"></i> THÔNG BÁO KẾ HOẠCH XÉT TỐT NGHIỆP T10.2026</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@264@1257@Thong-bao-Ke-hoach-Khoa-luan-tot-nghiep-Hoc-ky-I,-nam-hoc-2026-2027" title="Thông báo Kế hoạch Khóa luận tốt nghiệp Học kỳ I, năm học 2026-2027">
+                        <i class="fa fa-caret-right"></i> Thông báo Kế hoạch Khóa luận tốt nghiệp Học kỳ I, năm học 2026-2027</a> </div>
+            </div>              
+                </div><!-- box content list-->
+        <div class="clearfix"></div>
+    </div><!-- box right content-->
+</div><!-- box righit-->
+
+                     <div class="clearfix"></div>
+                     
+<div class="box-right box-right-red">
+    <div class="box-right-title" style="text-transform: uppercase">Thông báo từ giảng viên</div>
+    <div class="box-right-content">
+        <div class="box-content-list">
+         <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@271@1265@TOA-DAM-TOURISM-IN-A-CHANGING-WORLD-RESEARCH,-EMERGING-TRENDS,-AND-CULTURAL-EXCHANGE”" title="TỌA ĐÀM “TOURISM IN A CHANGING WORLD: RESEARCH, EMERGING TRENDS, AND CULTURAL EXCHANGE”">
+                        <i class="fa fa-caret-right"></i> TỌA ĐÀM “TOURISM IN A CHANGING WORLD: RESEARCH, EMERGING TRENDS, AND CULTURAL EXCHANGE”</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@271@1261@Hotel-Tour-tai-Khach-san-New-World" title="Hotel Tour tại Khách sạn New World">
+                        <i class="fa fa-caret-right"></i> Hotel Tour tại Khách sạn New World</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@271@1213@Lich-gap-GVHD-KLTN-HK2-(2025-2026)" title="Lịch gặp GVHD KLTN HK2 (2025 - 2026)">
+                        <i class="fa fa-caret-right"></i> Lịch gặp GVHD KLTN HK2 (2025 - 2026)</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@271@1198@Ke-hoach-Bao-ve-khoa-luan-nganh-Kinh-doanh-quoc-te-HK1.2025-2026" title="Kế hoạch Bảo vệ khóa luận ngành Kinh doanh quốc tế HK1.2025-2026">
+                        <i class="fa fa-caret-right"></i> Kế hoạch Bảo vệ khóa luận ngành Kinh doanh quốc tế HK1.2025-2026</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@271@1183@Lich-gap-GVHD-HK1-(2025-2026)" title="Lịch gặp GVHD HK1 (2025-2026)">
+                        <i class="fa fa-caret-right"></i> Lịch gặp GVHD HK1 (2025-2026)</a> </div>
+            </div>              
+                </div><!-- box content list-->
+        <div class="clearfix"></div>
+    </div><!-- box right content-->
+</div><!-- box righit-->
+
+                     <div class="clearfix"></div>
+                      
+
+                     <div class="clearfix"></div>
+                     
+<div class="box-right box-right-red">
+    <div class="box-right-title" style="text-transform: uppercase">Đào tạo ngắn hạn</div>
+    <div class="box-right-content">
+        <div class="box-content-list">
+                      
+                </div><!-- box content list-->
+        <div class="clearfix"></div>
+    </div><!-- box right content-->
+</div><!-- box righit-->
+
+                     <div class="clearfix"></div>
+                     <div class="clearfix clr5"></div>
+                     <style>
+li.youtube{list-style-type:square; padding-bottom:5px; color:#a8824a; cursor:pointer}
+.activePlaying {
+    background: url(modules/mod_youtube/iconplaying.gif) right -3px no-repeat;
+}
+</style>
+                     <div class="clearfix clr5"></div>
+                     
+<div class="box-right box-right-red">
+    <div class="box-right-title" style="text-transform: uppercase">Khoa học</div>
+    <div class="box-right-content">
+        <div class="box-content-list">
+         <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@256@1270@Toa-dam-Du-lich-cham-–-Mot-loai-hinh-moi-cua-du-lich-ben-vung”-Goc-nhin-moi-ve-giam-toc-trong-trai-nghiem-du-lich" title="Tọa đàm “Du lịch chậm – Một loại hình mới của du lịch bền vững”: Góc nhìn mới về giảm tốc trong trải nghiệm du lịch">
+                        <i class="fa fa-caret-right"></i> Tọa đàm “Du lịch chậm – Một loại hình mới của du lịch bền vững”: Góc nhìn mới về giảm tốc trong trải nghiệm du lịch</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@256@1032@Toa-dam-khoa-hoc-cap-khoa-voi-chu-de-Nghien-cuu-khoa-hoc-trong-linh-vuc-dich-vu”" title="Tọa đàm khoa học cấp khoa với chủ đề “Nghiên cứu khoa học trong lĩnh vực dịch vụ”">
+                        <i class="fa fa-caret-right"></i> Tọa đàm khoa học cấp khoa với chủ đề “Nghiên cứu khoa học trong lĩnh vực dịch vụ”</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@256@976@Ket-qua-hoi-thao-nghien-cuu-khoa-hoc-cua-Khoa-Thuong-mai-–-Du-lich-(FCTSRC2024-va-FCTLRC2024)" title="Kết quả hội thảo nghiên cứu khoa học của Khoa Thương mại – Du lịch (FCTSRC2024 và FCTLRC2024)">
+                        <i class="fa fa-caret-right"></i> Kết quả hội thảo nghiên cứu khoa học của Khoa Thương mại – Du lịch (FCTSRC2024 và FCTLRC2024)</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@256@953@HOI-THAO-SINH-VIEN-NGHIEN-CUU-KHOA-HOC-CAP-KHOA-NAM-2024-(FCTSRC2024)" title="HỘI THẢO SINH VIÊN NGHIÊN CỨU KHOA HỌC CẤP KHOA NĂM 2024 (FCTSRC2024)">
+                        <i class="fa fa-caret-right"></i> HỘI THẢO SINH VIÊN NGHIÊN CỨU KHOA HỌC CẤP KHOA NĂM 2024 (FCTSRC2024)</a> </div>
+            </div> <div class="row">
+                <div class="content-list-col col-md-12">
+                    <a href="news.html@detail@256@952@HOI-THAO-GIANG-VIEN-NGHIEN-CUU-KHOA-HOC-CAP-KHOA-NAM-2024-(FCTLRC2024)" title="HỘI THẢO GIẢNG VIÊN  NGHIÊN CỨU KHOA HỌC CẤP KHOA NĂM 2024 (FCTLRC2024)">
+                        <i class="fa fa-caret-right"></i> HỘI THẢO GIẢNG VIÊN  NGHIÊN CỨU KHOA HỌC CẤP KHOA NĂM 2024 (FCTLRC2024)</a> </div>
+            </div>              
+                </div><!-- box content list-->
+        <div class="clearfix"></div>
+    </div><!-- box right content-->
+</div><!-- box righit-->
+
+                     <div class="clearfix"></div>
+                     
+                   </div><!-- end col 3-->
+
+
+                   <div class="clearfix"></div>
+                 </div><!-- end row-->
+               </div><!-- end content-->
+             </div><!-- end content-bottom-->
+             <!-- Cooperate List -->
+             <div class="cooperate-list">
+  <div class="cooperate-title">Đơn vị liên kết</div>
+              <div class="cooperate-content">
+        <div class="cooperate-slide">
+            <div id="owl-iuh" class="owl-carousel">
+            <div class="item"><a href="https://www.aib.world/" target="_blank"><img src="/upload/files/AIB.png" alt="Academy of International Business" width="290" /></a></div><div class="item"><a href="https://vecom.vn/" target="_blank"><img src="/upload/files/VECOM.png" alt="Hiệp hội Thương mại điện tử Việt Nam (VECOM)" width="290" /></a></div><div class="item"><a href="https://vitea.vn/" target="_blank"><img src="/upload/files/VITEA.png" alt=" Liên chi hội Đào tạo du lịch Việt Nam (VITEA)" width="290" /></a></div><div class="item"><a href="" target="_blank"><img src="/upload/images/doitac/BCT.png" alt="Bộ Công thương" width="290" /></a></div><div class="item"><a href="" target="_blank"><img src="/upload/images/doitac/BGDDT.png" alt="Bộ Giáo dục và Đào tạo" width="290" /></a></div><div class="item"><a href="" target="_blank"><img src="/upload/images/doitac/DN-microsoft.png" alt="Microsoft" width="290" /></a></div>          </div>
+                  <div class="clearfix"></div>
+                </div>
+        <div class="cooperate-button"><span class="fa fa-angle-left cooperate-nav cooperate-prev"></span><span class="fa fa-angle-right cooperate-nav cooperate-next"></span></div>
+        <div class="clearfix"></div>
+      </div>
+</div>
+      <div class="clearfix"></div>
+        <div class="page-adv"> <a href="http://iuh.edu.vn" target=""> <img src="/upload/images/2019/adv-iuh.gif" alt="Iuh inovation"/> </a> </div><div class="clearfix"></div>                     <!-- End Cooperate List -->
+             <div class="footer">
+                <div class="footer-top">
+        <div class="row">
+                  <div class="col-md-5">
+            <div class="textwidget">
+                      <div class="footer-top-element">
+                <div class="title">Liên hệ</div>
+                <div class="element-detail element-contact">
+                          <ul>
+                    <li> <i class="fa fa-map-marker"></i> 12 Nguyễn Văn Bảo, Q. Gò Vấp, TP. Hồ Chí Minh<br/>
+                              Khoa Thương mại - Du lịch - Tầng 2 - Nhà V</li>
+                    <li> <i class="fa fa-phone"></i> Điện thoại<br/>
+                              (028).38940390 (Ext: 219-889-221) </li>
+                  </ul>
+                        </div>
+              </div>
+                    </div>
+            <div class="clearfix"></div>
+          </div>
+                  <div class="col-md-7">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 footer-top-element">
+                <div class="title"> Tiện ích </div>
+                <div class="element-detail">
+                    <ul>
+                   	 <li> <a href='bieumau.html@266@Bieu-mau-sinh-vien'> <i class='fa fa-caret-right'></i> Biểu mẫu </a> </li>
+                     <li> <a href='thongbaogiangvien.html@271@Thong-bao-giang-vien'> <i class='fa fa-caret-right'></i> Thông báo từ giảng viên </a> </li>
+                     <li> <a href='http://htsv.iuh.edu.vn/vieclam' target="_blank"> <i class='fa fa-caret-right'></i> Chuyên trang việc làm </a> </li>
+                  </ul>
+               </div>
+              </div>
+                <div class="col-md-6 col-sm-6 footer-top-element">
+                <div class="title"> Thống kê </div>
+                <div class="element-detail">
+                  <ul>
+                    <li> <a href='http://www.iuh.edu.vn/TuyenSinh/' target="_blank"> <i class='fa fa-caret-right'></i> Thư viện </a> </li>
+                    <li> <a href='contact.html'> <i class='fa fa-caret-right'></i> Liên hệ </a> </li>
+                  </ul>
+                </div>
+                <div class="statistic col-sm-12">
+                    <div class="row">
+                    <div class="statistic-content">
+                         <p><i class="fa fa-users"></i> Số lượt  truy cập : 40,228,943 </p>
+                          <ul>
+                             <li><i class="fa fa-user"></i> Đang online  : <b>600</b> </li>
+                         </ul>
+                    <div class="clearfix"></div>
+                   </div><!-- statistic-->
+                   <div class="clearfix"></div>
+                  </div><!-- end row-->
+                 <div class="clearfix"></div>
+                </div><!-- end staststic 12-->
+                <div class="clearfix"></div>
+              </div>
+                      <div class="clearfix"></div>
+                    </div>
+            <div class="clearfix"></div>
+          </div>
+                </div>
+        <div class="clearfix"></div>
+      </div>
+              <div class="footer-bottom">
+        <div class="row">
+                  <div class="col-md-8">
+            <div class="copyright"> <a href="https://ffl.iuh.edu.vn/admins" style="color:#fff" target="_blank">© 2022</a> Khoa Thương mại - Du lịch - Đại học Công nghiệp Thành phố Hồ Chí Minh </div>
+          </div>
+                  <div class="col-md-4">
+            <div class="social-media">
+                      <h6>Chia sẻ</h6>
+                      <ul>
+                <li> <a href="https://www.facebook.com/khoathuongmaidulichiuh" target="_blank"> <i class="fa fa-facebook"></i> </a> </li>
+                <li> <a href="https://www.facebook.com/groups/doankhoatmdliuh" target="_blank"> <i class="fa fa-twitter"></i> </a> </li>
+                <li> <a href="https://www.facebook.com/groups/doankhoatmdliuh" target="_blank"> <i class="fa fa-linkedin"></i> </a> </li>
+              </ul>
+                    </div>
+          </div>
+                  <div class="clearfix"></div>
+                </div>
+        <div class="clearfix"></div>
+      </div>
+              <div class="clearfix"></div>
+            </div>
+    <div class="clearfix"></div>
+  </div>
+          <div class="clearfix"></div>     
+             </div><!-- end footer-->
+             <div class="clearfix"></div>
+           </div></div>
+
+           <script type='text/javascript' src='templates/js/wp-embed.min.js'></script>
+           <div class="scroll-top"> <i class="fa fa-angle-up" title="Lên đầu trang"></i> </div>
+                    </body>
+         </html>
