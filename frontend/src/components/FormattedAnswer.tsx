@@ -12,8 +12,8 @@ interface FormattedAnswerProps {
  */
 function renderInlineContent(
   text: string,
-  citations?: Source[],
-  onSourceClick?: (locator: string) => void
+  _citations?: Source[],
+  _onSourceClick?: (locator: string) => void
 ): React.ReactNode[] {
   // Regex matches:
   // 1. [Nguồn X: ... Điều Y, Khoản Z] or [Nguồn X: ...] or [Nguồn X]
@@ -26,82 +26,16 @@ function renderInlineContent(
   return parts.map((part, index) => {
     if (!part) return null
 
-    // Direct § Điều ... badge
+    // Hide inline § Điều ... badges (citations are shown in the "Căn cứ:" footer)
     const directBadgeMatch = part.match(/^§\s*(Điều\s*[\w\.\,]+(?:\s*K\.[\w\.\,]+)?)/i)
     if (directBadgeMatch) {
-      const badgeLabel = directBadgeMatch[1].trim()
-      return (
-        <button
-          key={`cit-direct-${index}`}
-          type="button"
-          className="citation-inline-badge"
-          title={`Xem trích dẫn ${badgeLabel}`}
-          onClick={(e) => {
-            e.stopPropagation()
-            onSourceClick?.(badgeLabel)
-          }}
-          aria-label={`Xem trích dẫn ${badgeLabel}`}
-        >
-          <span className="citation-badge-icon">§</span>
-          <span className="citation-badge-text">{badgeLabel}</span>
-        </button>
-      )
+      return null
     }
 
-    // Citation badge [Nguồn ...]
+    // Hide inline [Nguồn ...] badges (citations are shown in the "Căn cứ:" footer)
     const citationMatch = part.match(/^\[Nguồn\s*(\d+)(?::\s*([^\]]+))?\]$/i)
     if (citationMatch) {
-      const sourceIndex = parseInt(citationMatch[1], 10)
-      const detail = (citationMatch[2] || '').trim()
-
-      // Look up corresponding source in citations prop if available
-      const source = citations && citations[sourceIndex - 1]
-
-      let badgeLabel = ''
-      let locator = ''
-
-      if (source?.dieu) {
-        badgeLabel = `Điều ${source.dieu}`
-        if (source.khoan) {
-          badgeLabel += `, K.${source.khoan}`
-        }
-        locator = `Điều ${source.dieu}`
-      } else {
-        // Fallback: search for "Điều XX" inside detail string
-        const dieuExtract = detail.match(/Điều\s*([0-9a-zA-Z]+)/i)
-        const khoanExtract = detail.match(/Khoản\s*([0-9a-zA-Z]+)/i)
-        if (dieuExtract) {
-          badgeLabel = `Điều ${dieuExtract[1]}`
-          if (khoanExtract) {
-            badgeLabel += `, K.${khoanExtract[1]}`
-          }
-          locator = `Điều ${dieuExtract[1]}`
-        } else {
-          badgeLabel = `Nguồn ${sourceIndex}`
-          locator = source?.title || `Nguồn ${sourceIndex}`
-        }
-      }
-
-      const fullTooltip = source
-        ? `${source.title} (${source.dieu ? `Điều ${source.dieu}` : ''}${source.khoan ? `, Khoản ${source.khoan}` : ''})`
-        : detail || `Nguồn tham chiếu số ${sourceIndex}`
-
-      return (
-        <button
-          key={`cit-${index}`}
-          type="button"
-          className="citation-inline-badge"
-          title={fullTooltip}
-          onClick={(e) => {
-            e.stopPropagation()
-            onSourceClick?.(locator)
-          }}
-          aria-label={`Xem trích dẫn ${badgeLabel}`}
-        >
-          <span className="citation-badge-icon">§</span>
-          <span className="citation-badge-text">{badgeLabel}</span>
-        </button>
-      )
+      return null
     }
 
     // Bold text: **text**
@@ -206,24 +140,17 @@ export default function FormattedAnswer({
       continue
     }
 
-    // 1. Line starts with citation badge (like Image 2):
-    // e.g. "§ Điều 23, K.2" alone on a line, or "[Nguồn 1: Điều 23, Khoản 2] Để được xét..."
+    // 1. Line starts with citation badge: strip the badge, render remaining text if any
     const citationStartMatch = rawLine.match(/^[-*•]?\s*(\[Nguồn\s*\d+[^\]]*\]|§\s*Điều\s*[\w\.\,]+(?:\s*K\.[\w\.\,]+)?)\s*(.*)$/i)
     if (citationStartMatch) {
-      const citToken = citationStartMatch[1]
       const restText = citationStartMatch[2].trim()
-      blocks.push(
-        <div key={`cit-block-${keyCounter++}`} className="formatted-citation-block">
-          <div className="formatted-citation-standalone">
-            {renderInlineContent(citToken, citations, onSourceClick)}
-          </div>
-          {restText && (
-            <p className="formatted-paragraph">
-              {renderInlineContent(restText, citations, onSourceClick)}
-            </p>
-          )}
-        </div>
-      )
+      if (restText) {
+        blocks.push(
+          <p key={`cit-rest-${keyCounter++}`} className="formatted-paragraph">
+            {renderInlineContent(restText, citations, onSourceClick)}
+          </p>
+        )
+      }
       continue
     }
 
@@ -258,6 +185,57 @@ export default function FormattedAnswer({
         </div>
       )
       continue
+    }
+
+    // Markdown Table: | col1 | col2 |
+    if (rawLine.startsWith('|') && rawLine.endsWith('|')) {
+      const tableLines: string[] = [rawLine]
+      while (i + 1 < processedLines.length) {
+        const nextLine = processedLines[i + 1].trim()
+        if (nextLine.startsWith('|') && nextLine.endsWith('|')) {
+          tableLines.push(nextLine)
+          i++
+        } else {
+          break
+        }
+      }
+
+      if (tableLines.length >= 2) {
+        const parseRow = (row: string) =>
+          row
+            .slice(1, -1)
+            .split('|')
+            .map((cell) => cell.trim())
+
+        const headers = parseRow(tableLines[0])
+        const isSeparator = (row: string) => /^[\|\s\-:]+$/.test(row)
+        const startRow = isSeparator(tableLines[1]) ? 2 : 1
+        const rows = tableLines.slice(startRow).map(parseRow)
+
+        blocks.push(
+          <div key={`table-${keyCounter++}`} className="formatted-table-wrapper">
+            <table className="formatted-table">
+              <thead>
+                <tr>
+                  {headers.map((h, idx) => (
+                    <th key={idx}>{renderInlineContent(h, citations, onSourceClick)}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((row, rIdx) => (
+                  <tr key={rIdx}>
+                    {row.map((cell, cIdx) => (
+                      <td key={cIdx}>{renderInlineContent(cell, citations, onSourceClick)}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )
+        continue
+      }
     }
 
     // Section Heading: "### ..." or "## ..."
