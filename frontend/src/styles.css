@@ -763,12 +763,12 @@ button, input, select, textarea {
 }
 
 .message-row--assistant .message-bubble {
-  background: #ffffff;
-  color: #1e293b;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  padding: 22px 26px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  background: transparent;
+  color: var(--text-primary);
+  border: none;
+  border-radius: 0;
+  padding: 2px 0;
+  box-shadow: none;
 }
 
 .message-bubble--generating {
@@ -1050,32 +1050,93 @@ button, input, select, textarea {
   gap: 4px;
 }
 
-.feedback-buttons .action-btn {
-  width: 28px;
-  height: 28px;
+.feedback-buttons {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feedback-buttons .action-btn,
+.action-pill-btn {
+  height: 32px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: none;
-  background: transparent;
-  color: #94a3b8;
-  border-radius: 6px;
+  gap: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.15s ease;
-  padding: 0;
+  padding: 0 12px;
+  font-size: 12.5px;
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
 }
 
-.feedback-buttons .action-btn:hover {
-  background: #f1f5f9;
-  color: #475569;
+.feedback-buttons .action-btn:hover,
+.action-pill-btn:hover {
+  background: var(--surface-alt);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+.action-pill-btn--sources:hover {
+  background: var(--primary-light);
+  border-color: var(--primary-border);
+  color: var(--primary);
 }
 
 .feedback-buttons .action-btn--active-like {
-  color: #004b91;
+  background: var(--primary-light);
+  border-color: var(--primary-border);
+  color: var(--primary);
 }
 
 .feedback-buttons .action-btn--active-dislike {
-  color: #dc2626;
+  background: var(--danger-bg);
+  border-color: #fecaca;
+  color: var(--danger-text);
+}
+
+/* ── Formatted Table (IUH Light Theme) ── */
+.formatted-table-wrapper {
+  margin: 14px 0;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.formatted-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  text-align: left;
+}
+
+.formatted-table th {
+  background: var(--surface-alt);
+  color: var(--text-primary);
+  font-weight: 600;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.formatted-table td {
+  padding: 10px 14px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.formatted-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.formatted-table tbody tr:hover td {
+  background: #f8fafc;
 }
 
 .view-sources-btn {

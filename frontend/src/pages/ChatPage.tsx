@@ -325,32 +325,52 @@ export default function ChatPage() {
                         />
                       )}
 
-                      {/* Citation Pills on Assistant Message */}
-                      {msg.role === 'ASSISTANT' && msg.citations && msg.citations.length > 0 && (
-                        <div className="citation-pills-row">
-                          <span className="citation-label">Căn cứ:</span>
-                          {msg.citations.map((src, i) => {
-                            const label = src.dieu ? `Điều ${src.dieu}` : src.title
-                            return (
-                              <button
-                                key={i}
-                                type="button"
-                                className="citation-pill"
-                                title={`Nhấp để xem trích đoạn: ${src.title}`}
-                                onClick={() => openSourceDrawer(msg.citations, label)}
-                              >
-                                <IconSource />
-                                <span>{label}</span>
-                              </button>
-                            )
-                          })}
-                        </div>
-                      )}
+                      {/* Citation Pills on Assistant Message (deduplicated) */}
+                      {msg.role === 'ASSISTANT' && msg.citations && msg.citations.length > 0 && (() => {
+                        const seen = new Set<string>()
+                        const uniqueCitations = msg.citations.filter((src) => {
+                          const label = src.dieu ? `Điều ${src.dieu}` : src.title
+                          if (seen.has(label)) return false
+                          seen.add(label)
+                          return true
+                        })
+                        return (
+                          <div className="citation-pills-row">
+                            <span className="citation-label">Căn cứ:</span>
+                            {uniqueCitations.map((src, i) => {
+                              const label = src.dieu ? `Điều ${src.dieu}` : src.title
+                              return (
+                                <button
+                                  key={i}
+                                  type="button"
+                                  className="citation-pill"
+                                  title={`Nhấp để xem trích đoạn: ${src.title}`}
+                                  onClick={() => openSourceDrawer(msg.citations, label)}
+                                >
+                                  <IconSource />
+                                  <span>{label}</span>
+                                </button>
+                              )
+                            })}
+                          </div>
+                        )
+                      })()}
                     </div>
 
                     {/* Actions on Assistant Message */}
                     {msg.role === 'ASSISTANT' && (
                       <div className="message-actions">
+                        {msg.citations && msg.citations.length > 0 && (
+                          <button
+                            type="button"
+                            className="action-pill-btn action-pill-btn--sources"
+                            onClick={() => openSourceDrawer(msg.citations)}
+                          >
+                            <IconSource />
+                            <span>Xem nguồn trích dẫn ({msg.citations.length})</span>
+                          </button>
+                        )}
+
                         <div className="feedback-buttons">
                           <button
                             type="button"
@@ -361,6 +381,7 @@ export default function ChatPage() {
                             onClick={() => handleFeedback(msg.id, 'HELPFUL')}
                           >
                             <IconThumbUp filled={msg.feedback === 'HELPFUL'} />
+                            <span>Hữu ích</span>
                           </button>
                           <button
                             type="button"
@@ -371,19 +392,9 @@ export default function ChatPage() {
                             onClick={() => handleFeedback(msg.id, 'NOT_HELPFUL')}
                           >
                             <IconThumbDown filled={msg.feedback === 'NOT_HELPFUL'} />
+                            <span>Chưa tốt</span>
                           </button>
                         </div>
-
-                        {msg.citations && msg.citations.length > 0 && (
-                          <button
-                            type="button"
-                            className="button button--ghost button--small view-sources-btn"
-                            onClick={() => openSourceDrawer(msg.citations)}
-                          >
-                            <IconSource />
-                            <span>Xem {msg.citations.length} nguồn văn bản</span>
-                          </button>
-                        )}
                       </div>
                     )}
                   </div>
