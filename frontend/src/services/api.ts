@@ -5,6 +5,10 @@ import type {
   ChatSessionDetail,
   ChatSessionSummary,
   ChatStreamEvent,
+  CompareStreamEvent,
+  CompareVoteResponse,
+  CompareWinner,
+  ComparisonStatsResponse,
   DocumentResponse,
   FeedbackRating,
   FeedbackResponse,
@@ -151,16 +155,16 @@ export async function sendChatMessage(
   })
 }
 
-export async function sendChatMessageStream(
-  question: string,
-  sessionId: string | undefined,
-  onEvent: (event: ChatStreamEvent) => void,
+async function streamSsePost<T extends { type: string; message?: string }>(
+  endpoint: string,
+  payload: unknown,
+  onEvent: (event: T) => void,
   signal?: AbortSignal
 ): Promise<void> {
-  const response = await fetchWithAuthRetry('/api/chat/stream', {
+  const response = await fetchWithAuthRetry(endpoint, {
     method: 'POST',
     headers: { Accept: 'text/event-stream' },
-    body: JSON.stringify({ question, sessionId }),
+    body: JSON.stringify(payload),
     signal,
   })
 
@@ -175,9 +179,9 @@ export async function sendChatMessageStream(
   const processLine = (rawLine: string) => {
     const line = rawLine.trim()
     if (!line.startsWith('data:')) return
-    const payload = line.slice(5).trim()
-    if (!payload) return
-    const parsed = JSON.parse(payload) as ChatStreamEvent
+    const body = line.slice(5).trim()
+    if (!body) return
+    const parsed = JSON.parse(body) as T
     if (parsed.type === 'error') {
       throw new Error(parsed.message || 'Dịch vụ AI hiện không khả dụng. Vui lòng thử lại sau.')
     }
@@ -200,6 +204,43 @@ export async function sendChatMessageStream(
   if (buffer.trim()) {
     processLine(buffer)
   }
+}
+
+export async function sendChatMessageStream(
+  question: string,
+  sessionId: string | undefined,
+  onEvent: (event: ChatStreamEvent) => void,
+  signal?: AbortSignal
+): Promise<void> {
+  return streamSsePost<ChatStreamEvent>('/api/chat/stream', { question, sessionId }, onEvent, signal)
+}
+
+export async function sendCompareChatStream(
+  question: string,
+  sessionId: string | undefined,
+  onEvent: (event: CompareStreamEvent) => void,
+  signal?: AbortSignal
+): Promise<void> {
+  return streamSsePost<CompareStreamEvent>(
+    '/api/chat/compare/stream',
+    { question, sessionId },
+    onEvent,
+    signal
+  )
+}
+
+export async function voteModelComparison(
+  comparisonId: string,
+  winner: CompareWinner
+): Promise<CompareVoteResponse> {
+  return request<CompareVoteResponse>(`/api/chat/compare/${comparisonId}/vote`, {
+    method: 'POST',
+    body: JSON.stringify({ winner }),
+  })
+}
+
+export async function getComparisonStatsAdmin(): Promise<ComparisonStatsResponse> {
+  return request<ComparisonStatsResponse>('/api/admin/comparisons/stats')
 }
 
 export async function getChatSessions(

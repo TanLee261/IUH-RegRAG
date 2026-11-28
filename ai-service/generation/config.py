@@ -25,6 +25,8 @@ class GenerationConfig:
     fallback_enabled: bool = True
     fallback_provider: str = 'ollama'
     fallback_model: str = 'qwen2.5:7b'
+    compare_provider: str = 'ollama'
+    compare_model: str = 'gemma3:4b'
     ollama_base_url: str = 'http://localhost:11434'
 
     def __post_init__(self) -> None:
@@ -42,6 +44,10 @@ class GenerationConfig:
             raise ValueError('fallback_provider must not be empty')
         if self.fallback_enabled and not self.fallback_model.strip():
             raise ValueError('fallback_model must not be empty')
+        if not self.compare_provider.strip():
+            raise ValueError('compare_provider must not be empty')
+        if not self.compare_model.strip():
+            raise ValueError('compare_model must not be empty')
 
     @classmethod
     def from_env(cls) -> 'GenerationConfig':
@@ -54,5 +60,7 @@ class GenerationConfig:
             fallback_enabled=_read_bool(os.getenv('LLM_FALLBACK_ENABLED'), True),
             fallback_provider=os.getenv('LLM_FALLBACK_PROVIDER', 'ollama'),
             fallback_model=os.getenv('LLM_FALLBACK_MODEL', 'qwen2.5:7b'),
+            compare_provider=os.getenv('LLM_COMPARE_PROVIDER', 'ollama'),
+            compare_model=os.getenv('LLM_COMPARE_MODEL', 'gemma3:4b'),
             ollama_base_url=os.getenv('OLLAMA_BASE_URL', 'http://localhost:11434'),
         )

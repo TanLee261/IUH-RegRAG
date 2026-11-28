@@ -9,9 +9,11 @@ import {
   getAllSuggestionsAdmin,
   createSuggestionAdmin,
   deleteSuggestionAdmin,
+  getComparisonStatsAdmin,
 } from '../services/api'
 import type {
   ActiveVectorDocument,
+  ComparisonStatsResponse,
   DocumentResponse,
   Suggestion,
   SystemHealth,
@@ -28,8 +30,9 @@ export default function AdminPage() {
   const { isAuthenticated, isAdmin } = useAuth()
 
   // State
-  const [activeTab, setActiveTab] = useState<'docs' | 'vector' | 'suggestions'>('docs')
+  const [activeTab, setActiveTab] = useState<'docs' | 'vector' | 'suggestions' | 'compare'>('docs')
   const [health, setHealth] = useState<SystemHealth | null>(null)
+  const [compareStats, setCompareStats] = useState<ComparisonStatsResponse | null>(null)
 
   // Document tab state
   const [documents, setDocuments] = useState<DocumentResponse[]>([])
@@ -104,6 +107,7 @@ export default function AdminPage() {
       loadDocuments()
       loadVectorDocs()
       loadSuggestions()
+      loadCompareStats()
     }
   }, [isAuthenticated, isAdmin])
 
@@ -134,6 +138,13 @@ export default function AdminPage() {
     try {
       const res = await getAllSuggestionsAdmin()
       setSuggestions(res || [])
+    } catch {}
+  }
+
+  const loadCompareStats = async () => {
+    try {
+      const res = await getComparisonStatsAdmin()
+      setCompareStats(res)
     } catch {}
   }
 
@@ -298,6 +309,16 @@ export default function AdminPage() {
           onClick={() => setActiveTab('suggestions')}
         >
           Câu hỏi gợi ý ({suggestions.length})
+        </button>
+        <button
+          type="button"
+          className={`tab-btn ${activeTab === 'compare' ? 'tab-btn--active' : ''}`}
+          onClick={() => {
+            setActiveTab('compare')
+            loadCompareStats()
+          }}
+        >
+          Đánh giá Model A/B ({compareStats?.totalVoted ?? 0})
         </button>
       </div>
 
@@ -661,6 +682,96 @@ export default function AdminPage() {
               </table>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* ── Tab 4: Model A/B Evaluation Leaderboard ── */}
+      {activeTab === 'compare' && (
+        <div className="tab-pane">
+          <div className="admin-card">
+            <h2>
+              Bảng xếp hạng Model theo đánh giá người thật (
+              {compareStats?.totalVoted ?? 0}/{compareStats?.totalComparisons ?? 0} lượt đã vote)
+            </h2>
+            {!compareStats || compareStats.models.length === 0 ? (
+              <p>Chưa có dữ liệu so sánh nào. Hãy bật chế độ "So sánh 2 Model" trong trang Hỏi đáp.</p>
+            ) : (
+              <div className="table-responsive">
+                <table className="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Mô hình</th>
+                      <th>Thắng</th>
+                      <th>Thua</th>
+                      <th>Hòa</th>
+                      <th>Cả hai kém</th>
+                      <th>Tổng lượt</th>
+                      <th>Tỉ lệ thắng (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {compareStats.models.map((m) => (
+                      <tr key={m.model}>
+                        <td>
+                          <strong>{m.model}</strong>
+                        </td>
+                        <td>{m.wins}</td>
+                        <td>{m.losses}</td>
+                        <td>{m.ties}</td>
+                        <td>{m.bothBad}</td>
+                        <td>{m.totalVoted}</td>
+                        <td>
+                          <span className="badge badge--success">{m.winRate}%</span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+
+          {compareStats && compareStats.recent.length > 0 && (
+            <div className="admin-card">
+              <h2>Lịch sử bình chọn gần đây ({compareStats.recent.length})</h2>
+              <div className="table-responsive">
+                <table className="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Câu hỏi</th>
+                      <th>Model A</th>
+                      <th>Model B</th>
+                      <th>Kết quả</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {compareStats.recent.map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.question}</td>
+                        <td>{item.modelA}</td>
+                        <td>{item.modelB}</td>
+                        <td>
+                          {item.winner ? (
+                            <span className="badge badge--group">
+                              {item.winner === 'A'
+                                ? `${item.modelA} thắng`
+                                : item.winner === 'B'
+                                ? `${item.modelB} thắng`
+                                : item.winner === 'TIE'
+                                ? 'Hòa'
+                                : 'Cả hai chưa tốt'}
+                            </span>
+                          ) : (
+                            <span className="badge badge--secondary">Chưa vote</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
