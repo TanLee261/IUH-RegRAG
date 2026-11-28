@@ -37,6 +37,29 @@ class FakePipeline:
             'sources': [{'chunk_id': 'chunk-1', 'title': 'Quy chế'}],
         }
 
+    def compare_stream(self, question):
+        self.questions.append(question)
+        yield {'type': 'token', 'slot': 'A', 'content': 'A trả lời.'}
+        yield {'type': 'token', 'slot': 'B', 'content': 'B trả lời.'}
+        yield {
+            'type': 'done',
+            'slot': 'A',
+            'answer': 'A trả lời.',
+            'status': 'answered',
+            'provider': 'ollama',
+            'model': 'qwen2.5:3b',
+            'sources': [{'chunk_id': 'chunk-1', 'title': 'Quy chế'}],
+        }
+        yield {
+            'type': 'done',
+            'slot': 'B',
+            'answer': 'B trả lời.',
+            'status': 'answered',
+            'provider': 'ollama',
+            'model': 'gemma3:4b',
+            'sources': [{'chunk_id': 'chunk-1', 'title': 'Quy chế'}],
+        }
+
     def close(self):
         self.closed = True
 
@@ -82,3 +105,18 @@ def test_answer_stream_endpoint_emits_sse_events():
     assert events[2]['type'] == 'done'
     assert events[2]['sources'][0]['chunk_id'] == 'chunk-1'
     assert pipeline.questions == ['Điều 19 là gì?']
+
+
+def test_compare_stream_endpoint_emits_dual_slot_sse_events():
+    import json
+
+    pipeline = FakePipeline()
+    with TestClient(create_app(lambda: pipeline)) as client:
+        with client.stream('POST', '/answer/compare/stream', json={'question': 'Điều 19?'}) as response:
+            assert response.status_code == 200
+            lines = [line for line in response.iter_lines() if line.startswith('data: ')]
+
+    events = [json.loads(line[6:]) for line in lines]
+    assert {e['slot'] for e in events} == {'A', 'B'}
+    assert any(e['type'] == 'done' and e['model'] == 'gemma3:4b' for e in events)
+    assert pipeline.questions == ['Điều 19?']

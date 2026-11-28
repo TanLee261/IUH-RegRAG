@@ -141,4 +141,16 @@ public class MockAiServiceClient implements AiServiceClient {
         }
         onEvent.accept(AiStreamEvent.done(full));
     }
+
+    @Override
+    public void compareStreamAnswer(String question, Consumer<CompareStreamEvent> onEvent) {
+        AiAnswer full = answer(question);
+        String[] words = full.answer().split("(?<=\\s)");
+        for (String word : words) {
+            onEvent.accept(CompareStreamEvent.token("A", word));
+            onEvent.accept(CompareStreamEvent.token("B", word));
+        }
+        onEvent.accept(CompareStreamEvent.done("A", "qwen2.5:3b", "ollama", full));
+        onEvent.accept(CompareStreamEvent.done("B", "gemma3:4b", "ollama", full));
+    }
 }

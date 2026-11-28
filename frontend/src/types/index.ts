@@ -38,6 +38,58 @@ export type ChatStreamEvent =
   | ({ type: 'done' } & ChatResponse)
   | { type: 'error'; message: string }
 
+export type CompareWinner = 'A' | 'B' | 'TIE' | 'BOTH_BAD'
+
+export type CompareStreamEvent =
+  | { type: 'token'; slot: 'A' | 'B'; content: string }
+  | { type: 'slot_error'; slot: 'A' | 'B'; message: string }
+  | {
+      type: 'compare_done'
+      comparisonId: string
+      sessionId: string
+      userMessageId: string
+      assistantMessageId: string
+      answerA: string
+      answerB: string
+      sourcesA: Source[]
+      sourcesB: Source[]
+    }
+  | { type: 'error'; message: string }
+
+export interface CompareVoteResponse {
+  comparisonId: string
+  winner: CompareWinner
+  modelA: string
+  modelB: string
+}
+
+export interface ModelScoreSummary {
+  model: string
+  wins: number
+  losses: number
+  ties: number
+  bothBad: number
+  totalVoted: number
+  winRate: number
+}
+
+export interface RecentComparisonItem {
+  id: string
+  question: string
+  modelA: string
+  modelB: string
+  winner: CompareWinner | null
+  votedAt: string | null
+  createdAt: string
+}
+
+export interface ComparisonStatsResponse {
+  totalComparisons: number
+  totalVoted: number
+  models: ModelScoreSummary[]
+  recent: RecentComparisonItem[]
+}
+
 export interface ChatSessionSummary {
   id: string
   title: string

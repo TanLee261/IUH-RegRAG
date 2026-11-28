@@ -104,6 +104,152 @@ public class ChatService {
         }
     }
 
+    public void compareStreamAnswer(
+            UUID userId,
+            UUID sessionId,
+            String rawQuestion,
+            Consumer<CompareUiStreamEvent> onEvent) {
+        String question = rawQuestion.trim();
+        conversations.assertOwned(sessionId, userId);
+
+        StringBuilder bufferA = new StringBuilder();
+        StringBuilder bufferB = new StringBuilder();
+        AtomicReference<String> modelA = new AtomicReference<>("model-a");
+        AtomicReference<String> modelB = new AtomicReference<>("model-b");
+        AtomicReference<AiAnswer> doneA = new AtomicReference<>();
+        AtomicReference<AiAnswer> doneB = new AtomicReference<>();
+
+        ai.compareStreamAnswer(question, event -> {
+            String slot = event.slot();
+            switch (event.type()) {
+                case "token" -> {
+                    String content = event.content();
+                    if (content == null || content.isEmpty()) {
+                        return;
+                    }
+                    if ("A".equals(slot)) {
+                        bufferA.append(content);
+                    } else if ("B".equals(slot)) {
+                        bufferB.append(content);
+                    }
+                    onEvent.accept(CompareUiStreamEvent.token(slot, content));
+                }
+                case "done" -> {
+                    if ("A".equals(slot)) {
+                        if (event.model() != null && !event.model().isBlank()) {
+                            modelA.set(event.model());
+                        }
+                        doneA.set(event.answer());
+                    } else if ("B".equals(slot)) {
+                        if (event.model() != null && !event.model().isBlank()) {
+                            modelB.set(event.model());
+                        }
+                        doneB.set(event.answer());
+                    }
+                }
+                case "error" -> {
+                    String fallbackErr = event.error() != null
+                            ? event.error()
+                            : "Model gặp lỗi khi sinh câu trả lời.";
+                    if ("A".equals(slot)) {
+                        if (event.model() != null && !event.model().isBlank()) {
+                            modelA.set(event.model());
+                        }
+                        doneA.set(new AiAnswer(fallbackErr, "error", List.of()));
+                    } else if ("B".equals(slot)) {
+                        if (event.model() != null && !event.model().isBlank()) {
+                            modelB.set(event.model());
+                        }
+                        doneB.set(new AiAnswer(fallbackErr, "error", List.of()));
+                    }
+                    onEvent.accept(CompareUiStreamEvent.slotError(slot, fallbackErr));
+                }
+                default -> {
+                    // Ignore unknown events
+                }
+            }
+        });
+
+        AiAnswer finalA = resolveCompareAnswer(doneA.get(), bufferA);
+        AiAnswer finalB = resolveCompareAnswer(doneB.get(), bufferB);
+
+        ChatConversationStore.StoredComparison stored = conversations.persistComparison(
+                userId,
+                sessionId,
+                question,
+                modelA.get(),
+                modelB.get(),
+                finalA,
+                finalB);
+
+        onEvent.accept(CompareUiStreamEvent.done(new CompareDonePayload(
+                stored.comparisonId(),
+                stored.sessionId(),
+                stored.userMessageId(),
+                stored.assistantMessageId(),
+                finalA.answer(),
+                finalB.answer(),
+                finalA.sources(),
+                finalB.sources())));
+    }
+
+    public VoteResponse voteComparison(UUID userId, UUID comparisonId, CompareWinner winner) {
+        ModelComparison updated = conversations.voteComparison(userId, comparisonId, winner);
+        return new VoteResponse(
+                updated.getId(),
+                updated.getWinner(),
+                updated.getModelA(),
+                updated.getModelB());
+    }
+
+    private static AiAnswer resolveCompareAnswer(AiAnswer completed, StringBuilder buffer) {
+        if (completed != null) {
+            return completed;
+        }
+        String text = buffer.toString().trim();
+        if (text.isEmpty()) {
+            return new AiAnswer("Không nhận được phản hồi từ mô hình.", "error", List.of());
+        }
+        return new AiAnswer(text, "answered", List.of());
+    }
+
+    public record CompareDonePayload(
+            UUID comparisonId,
+            UUID sessionId,
+            UUID userMessageId,
+            UUID assistantMessageId,
+            String answerA,
+            String answerB,
+            List<AiAnswer.Source> sourcesA,
+            List<AiAnswer.Source> sourcesB) {
+    }
+
+    public record CompareUiStreamEvent(
+            String type,
+            String slot,
+            String content,
+            String error,
+            CompareDonePayload done) {
+        public static CompareUiStreamEvent token(String slot, String content) {
+            return new CompareUiStreamEvent("token", slot, content, null, null);
+        }
+
+        public static CompareUiStreamEvent slotError(String slot, String error) {
+            return new CompareUiStreamEvent("slot_error", slot, null, error, null);
+        }
+
+        public static CompareUiStreamEvent done(CompareDonePayload done) {
+            return new CompareUiStreamEvent("compare_done", null, null, null, done);
+        }
+    }
+
+    public record VoteResponse(
+            UUID comparisonId,
+            CompareWinner winner,
+            String modelA,
+            String modelB) {
+    }
+
     public Page<ChatSession> listSessions(UUID userId, Pageable pageable) {
         return conversations.listSessions(userId, pageable);
     }

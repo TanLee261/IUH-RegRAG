@@ -295,3 +295,24 @@ def test_ollama_provider_generate_stream_reads_ndjson_lines():
     )
     prompt = GenerationService(FakeProvider('x', 'x')).prompt_builder.build('Hỏi?', CHUNKS)
     assert list(provider.generate_stream(prompt)) == ['Điều ', '19.']
+
+
+def test_compare_stream_emits_events_for_both_slots():
+    model_a = FakeStreamingProvider('ollama', 'qwen2.5:3b', chunks=[f'Qwen trả lời. {CITATION}'])
+    model_b = FakeStreamingProvider('ollama', 'gemma3:4b', chunks=[f'Gemma trả lời. {CITATION}'])
+    events = list(
+        GenerationService(model_a, compare_provider=model_b).compare_stream(
+            'Nộp hồ sơ ở đâu?', CHUNKS, randomize_order=False
+        )
+    )
+    tokens_a = [e['content'] for e in events if e['type'] == 'token' and e['slot'] == 'A']
+    tokens_b = [e['content'] for e in events if e['type'] == 'token' and e['slot'] == 'B']
+    done_a = next(e for e in events if e['type'] == 'done' and e['slot'] == 'A')
+    done_b = next(e for e in events if e['type'] == 'done' and e['slot'] == 'B')
+
+    assert ''.join(tokens_a) == f'Qwen trả lời. {CITATION}'
+    assert ''.join(tokens_b) == f'Gemma trả lời. {CITATION}'
+    assert done_a['model'] == 'qwen2.5:3b'
+    assert done_b['model'] == 'gemma3:4b'
+    assert len(done_a['sources']) == 1
+    assert len(done_b['sources']) == 1

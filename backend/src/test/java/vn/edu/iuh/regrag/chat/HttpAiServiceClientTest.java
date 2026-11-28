@@ -197,4 +197,33 @@ class HttpAiServiceClientTest {
         assertThat(events.get(2).answer().sources()).hasSize(1);
         assertThat(events.get(2).answer().sources().get(0).dieu()).isEqualTo("22");
     }
+
+    @Test
+    void streamsDualModelCompareEventsFromSseEndpoint() {
+        String sseBody = String.join("\n",
+                "data: {\"type\":\"token\",\"slot\":\"A\",\"content\":\"Qwen \"}",
+                "data: {\"type\":\"token\",\"slot\":\"B\",\"content\":\"Gemma \"}",
+                "data: {\"type\":\"done\",\"slot\":\"A\",\"model\":\"qwen2.5:3b\",\"provider\":\"ollama\",\"answer\":\"Qwen trả lời.\",\"status\":\"answered\",\"sources\":[]}",
+                "data: {\"type\":\"done\",\"slot\":\"B\",\"model\":\"gemma3:4b\",\"provider\":\"ollama\",\"answer\":\"Gemma trả lời.\",\"status\":\"answered\",\"sources\":[]}",
+                "");
+
+        server.createContext("/answer/compare/stream", exchange -> {
+            byte[] bytes = sseBody.getBytes(StandardCharsets.UTF_8);
+            exchange.getResponseHeaders().set("Content-Type", "text/event-stream; charset=utf-8");
+            exchange.sendResponseHeaders(200, bytes.length);
+            try (OutputStream os = exchange.getResponseBody()) {
+                os.write(bytes);
+            }
+        });
+
+        HttpAiServiceClient client = new HttpAiServiceClient("http://localhost:" + port, 5);
+        List<AiServiceClient.CompareStreamEvent> events = new ArrayList<>();
+        client.compareStreamAnswer("Điều kiện tốt nghiệp?", events::add);
+
+        assertThat(events).hasSize(4);
+        assertThat(events.get(0).slot()).isEqualTo("A");
+        assertThat(events.get(1).slot()).isEqualTo("B");
+        assertThat(events.get(2).model()).isEqualTo("qwen2.5:3b");
+        assertThat(events.get(3).model()).isEqualTo("gemma3:4b");
+    }
 }

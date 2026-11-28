@@ -77,10 +77,76 @@ public class HttpAiServiceClient implements AiServiceClient {
 
     @Override
     public void streamAnswer(String question, Consumer<AiStreamEvent> onEvent) {
+        postSseStream("/answer/stream", question, node -> {
+            String type = node.path("type").asText();
+            switch (type) {
+                case "token" -> {
+                    String content = node.path("content").asText("");
+                    if (!content.isEmpty()) {
+                        onEvent.accept(AiStreamEvent.token(content));
+                    }
+                }
+                case "done" -> {
+                    try {
+                        AiAnswer answer = objectMapper.treeToValue(node, AiAnswer.class);
+                        onEvent.accept(AiStreamEvent.done(answer));
+                    } catch (IOException | IllegalArgumentException ex) {
+                        throw new ResponseStatusException(
+                                HttpStatus.BAD_GATEWAY, "Invalid AI done payload", ex);
+                    }
+                }
+                case "error" -> throw new ResponseStatusException(
+                        HttpStatus.BAD_GATEWAY,
+                        node.path("message").asText("AI service unavailable"));
+                default -> {
+                    // Ignore unknown SSE event types
+                }
+            }
+        });
+    }
+
+    @Override
+    public void compareStreamAnswer(String question, Consumer<CompareStreamEvent> onEvent) {
+        postSseStream("/answer/compare/stream", question, node -> {
+            String type = node.path("type").asText();
+            String slot = node.path("slot").asText("");
+            String model = node.path("model").asText("");
+            String provider = node.path("provider").asText("");
+            switch (type) {
+                case "token" -> {
+                    String content = node.path("content").asText("");
+                    if (!content.isEmpty() && !slot.isEmpty()) {
+                        onEvent.accept(CompareStreamEvent.token(slot, content));
+                    }
+                }
+                case "done" -> {
+                    try {
+                        AiAnswer answer = objectMapper.treeToValue(node, AiAnswer.class);
+                        onEvent.accept(CompareStreamEvent.done(slot, model, provider, answer));
+                    } catch (IOException | IllegalArgumentException ex) {
+                        throw new ResponseStatusException(
+                                HttpStatus.BAD_GATEWAY, "Invalid AI compare done payload", ex);
+                    }
+                }
+                case "error" -> {
+                    String msg = node.path("message").asText("AI service unavailable");
+                    if (slot.isEmpty()) {
+                        throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, msg);
+                    }
+                    onEvent.accept(CompareStreamEvent.error(slot, model, msg));
+                }
+                default -> {
+                    // Ignore unknown SSE event types
+                }
+            }
+        });
+    }
+
+    private void postSseStream(String path, String question, Consumer<JsonNode> onNode) {
         try {
             String requestBody = objectMapper.writeValueAsString(Map.of("question", question));
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(baseUrl + "/answer/stream"))
+                    .uri(URI.create(baseUrl + path))
                     .timeout(timeout)
                     .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
                     .header("Accept", MediaType.TEXT_EVENT_STREAM_VALUE)
@@ -112,30 +178,7 @@ public class HttpAiServiceClient implements AiServiceClient {
                         throw new ResponseStatusException(
                                 HttpStatus.BAD_GATEWAY, "Invalid AI stream payload", ex);
                     }
-                    String type = node.path("type").asText();
-                    switch (type) {
-                        case "token" -> {
-                            String content = node.path("content").asText("");
-                            if (!content.isEmpty()) {
-                                onEvent.accept(AiStreamEvent.token(content));
-                            }
-                        }
-                        case "done" -> {
-                            try {
-                                AiAnswer answer = objectMapper.treeToValue(node, AiAnswer.class);
-                                onEvent.accept(AiStreamEvent.done(answer));
-                            } catch (IOException | IllegalArgumentException ex) {
-                                throw new ResponseStatusException(
-                                        HttpStatus.BAD_GATEWAY, "Invalid AI done payload", ex);
-                            }
-                        }
-                        case "error" -> throw new ResponseStatusException(
-                                HttpStatus.BAD_GATEWAY,
-                                node.path("message").asText("AI service unavailable"));
-                        default -> {
-                            // Ignore unknown SSE event types
-                        }
-                    }
+                    onNode.accept(node);
                 });
             }
         } catch (ResponseStatusException ex) {

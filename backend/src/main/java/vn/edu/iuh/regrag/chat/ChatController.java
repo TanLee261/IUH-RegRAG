@@ -2,6 +2,7 @@ package vn.edu.iuh.regrag.chat;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.io.IOException;
 import java.time.Instant;
@@ -95,6 +96,82 @@ public class ChatController {
                 .body(emitter);
     }
 
+    @PostMapping(value = "/compare/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public ResponseEntity<SseEmitter> compareStream(@AuthenticationPrincipal Jwt jwt,
+                                                    @Valid @RequestBody ChatRequest request) {
+        UUID userId = UUID.fromString(jwt.getSubject());
+        chat.verifySessionOwnership(userId, request.sessionId());
+
+        SseEmitter emitter = new SseEmitter(240_000L);
+        CompletableFuture.runAsync(() -> {
+            try {
+                chat.compareStreamAnswer(userId, request.sessionId(), request.question(), event -> {
+                    try {
+                        switch (event.type()) {
+                            case "token" -> emitter.send(SseEmitter.event().data(
+                                    Map.of(
+                                            "type", "token",
+                                            "slot", event.slot(),
+                                            "content", event.content()),
+                                    MediaType.APPLICATION_JSON));
+                            case "slot_error" -> emitter.send(SseEmitter.event().data(
+                                    Map.of(
+                                            "type", "slot_error",
+                                            "slot", event.slot(),
+                                            "message", event.error()),
+                                    MediaType.APPLICATION_JSON));
+                            case "compare_done" -> {
+                                ChatService.CompareDonePayload d = event.done();
+                                Map<String, Object> payload = new LinkedHashMap<>();
+                                payload.put("type", "compare_done");
+                                payload.put("comparisonId", d.comparisonId());
+                                payload.put("sessionId", d.sessionId());
+                                payload.put("userMessageId", d.userMessageId());
+                                payload.put("assistantMessageId", d.assistantMessageId());
+                                payload.put("answerA", d.answerA());
+                                payload.put("answerB", d.answerB());
+                                payload.put("sourcesA", d.sourcesA());
+                                payload.put("sourcesB", d.sourcesB());
+                                emitter.send(SseEmitter.event().data(payload, MediaType.APPLICATION_JSON));
+                            }
+                            default -> {
+                                // Ignore unknown events
+                            }
+                        }
+                    } catch (IOException ioEx) {
+                        throw new IllegalStateException("Client disconnected during compare SSE stream", ioEx);
+                    }
+                });
+                emitter.complete();
+            } catch (Exception ex) {
+                try {
+                    emitter.send(SseEmitter.event().data(
+                            Map.of(
+                                    "type", "error",
+                                    "message", "Dịch vụ AI hiện không khả dụng. Vui lòng thử lại sau."),
+                            MediaType.APPLICATION_JSON));
+                } catch (IOException ignored) {
+                    // Client already disconnected
+                }
+                emitter.complete();
+            }
+        });
+
+        return ResponseEntity.ok()
+                .header("Cache-Control", "no-cache")
+                .header("X-Accel-Buffering", "no")
+                .body(emitter);
+    }
+
+    @PostMapping("/compare/{comparisonId}/vote")
+    public ChatService.VoteResponse voteComparison(
+            @AuthenticationPrincipal Jwt jwt,
+            @PathVariable UUID comparisonId,
+            @Valid @RequestBody VoteRequest request) {
+        UUID userId = UUID.fromString(jwt.getSubject());
+        return chat.voteComparison(userId, comparisonId, request.winner());
+    }
+
     @GetMapping("/sessions")
     public Page<SessionSummary> listSessions(
             @AuthenticationPrincipal Jwt jwt,
@@ -139,6 +216,9 @@ public class ChatController {
     public record ChatRequest(
             @NotBlank @Size(max = 2000) String question,
             UUID sessionId) {
+    }
+
+    public record VoteRequest(@NotNull CompareWinner winner) {
     }
 
     public record SessionSummary(

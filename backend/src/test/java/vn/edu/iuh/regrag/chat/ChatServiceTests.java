@@ -77,4 +77,41 @@ class ChatServiceTests {
         assertThat(events.get(2).response().assistantMessageId()).isEqualTo(assistantMessageId);
         assertThat(events.get(2).response().answer()).isEqualTo("Trả lời stream");
     }
+
+    @Test
+    void streamsCompareAnswersAndPersistsBothWithoutLeakingModelNamesBeforeVote() {
+        AiServiceClient ai = mock(AiServiceClient.class);
+        ChatConversationStore store = mock(ChatConversationStore.class);
+        UUID userId = UUID.randomUUID();
+        UUID sessionId = UUID.randomUUID();
+        UUID comparisonId = UUID.randomUUID();
+        UUID userMsgId = UUID.randomUUID();
+        UUID assistantMsgId = UUID.randomUUID();
+
+        AiAnswer answerA = new AiAnswer("Trả lời A", "answered", List.of());
+        AiAnswer answerB = new AiAnswer("Trả lời B", "answered", List.of());
+
+        doAnswer(invocation -> {
+            Consumer<AiServiceClient.CompareStreamEvent> consumer = invocation.getArgument(1);
+            consumer.accept(AiServiceClient.CompareStreamEvent.token("A", "Trả lời A"));
+            consumer.accept(AiServiceClient.CompareStreamEvent.token("B", "Trả lời B"));
+            consumer.accept(AiServiceClient.CompareStreamEvent.done("A", "qwen2.5:3b", "ollama", answerA));
+            consumer.accept(AiServiceClient.CompareStreamEvent.done("B", "gemma3:4b", "ollama", answerB));
+            return null;
+        }).when(ai).compareStreamAnswer(eq("Điều kiện tốt nghiệp?"), any());
+
+        when(store.persistComparison(userId, sessionId, "Điều kiện tốt nghiệp?", "qwen2.5:3b", "gemma3:4b", answerA, answerB))
+                .thenReturn(new ChatConversationStore.StoredComparison(comparisonId, sessionId, userMsgId, assistantMsgId));
+
+        List<ChatService.CompareUiStreamEvent> events = new ArrayList<>();
+        new ChatService(ai, store).compareStreamAnswer(userId, sessionId, "Điều kiện tốt nghiệp?", events::add);
+
+        assertThat(events).hasSize(3);
+        assertThat(events.get(0).slot()).isEqualTo("A");
+        assertThat(events.get(1).slot()).isEqualTo("B");
+        assertThat(events.get(2).type()).isEqualTo("compare_done");
+        assertThat(events.get(2).done().comparisonId()).isEqualTo(comparisonId);
+        assertThat(events.get(2).done().answerA()).isEqualTo("Trả lời A");
+        assertThat(events.get(2).done().answerB()).isEqualTo("Trả lời B");
+    }
 }

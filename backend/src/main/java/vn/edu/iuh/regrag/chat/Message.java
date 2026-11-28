@@ -87,6 +87,13 @@ public class Message {
         return content;
     }
 
+    public void setContent(String content) {
+        if (content == null || content.isBlank()) {
+            throw new IllegalArgumentException("content must not be blank");
+        }
+        this.content = content;
+    }
+
     public List<Map<String, Object>> getCitations() {
         return citations;
     }

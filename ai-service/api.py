@@ -38,6 +38,8 @@ class AnswerPipeline(Protocol):
 
     def answer_stream(self, question: str) -> Iterator[dict[str, Any]]: ...
 
+    def compare_stream(self, question: str) -> Iterator[dict[str, Any]]: ...
+
     def close(self) -> None: ...
 
 
@@ -74,6 +76,11 @@ class RagAnswerPipeline:
             chunks = self.retriever.retrieve(question, top_k=3, retrieval_k=6)
         yield from self.generator.answer_stream(question, chunks)
 
+    def compare_stream(self, question: str) -> Iterator[dict[str, Any]]:
+        with self.lock:
+            chunks = self.retriever.retrieve(question, top_k=3, retrieval_k=6)
+        yield from self.generator.compare_stream(question, chunks)
+
     def close(self) -> None:
         self.store.close()
 
@@ -109,6 +116,28 @@ def create_app(
         def event_stream() -> Iterator[str]:
             try:
                 for event in pipeline.answer_stream(payload.question):
+                    yield f"data: {json.dumps(event, ensure_ascii=False)}\n\n"
+            except GenerationUnavailableError:
+                err = {'type': 'error', 'message': 'Generation service unavailable'}
+                yield f"data: {json.dumps(err, ensure_ascii=False)}\n\n"
+
+        return StreamingResponse(
+            event_stream(),
+            media_type='text/event-stream',
+            headers={
+                'Cache-Control': 'no-cache',
+                'Connection': 'keep-alive',
+                'X-Accel-Buffering': 'no',
+            },
+        )
+
+    @app.post('/answer/compare/stream')
+    def compare_stream(payload: AnswerRequest, request: Request) -> StreamingResponse:
+        pipeline = request.app.state.pipeline
+
+        def event_stream() -> Iterator[str]:
+            try:
+                for event in pipeline.compare_stream(payload.question):
                     yield f"data: {json.dumps(event, ensure_ascii=False)}\n\n"
             except GenerationUnavailableError:
                 err = {'type': 'error', 'message': 'Generation service unavailable'}

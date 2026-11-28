@@ -128,7 +128,7 @@ export default function FormattedAnswer({
 
   for (let i = 0; i < processedLines.length; i++) {
     const rawLine = processedLines[i].trim()
-    if (!rawLine) continue
+    if (!rawLine || rawLine === ':') continue
 
     // Formula or Code block line
     if (rawLine.startsWith('`') && rawLine.endsWith('`') && rawLine.length > 2) {
