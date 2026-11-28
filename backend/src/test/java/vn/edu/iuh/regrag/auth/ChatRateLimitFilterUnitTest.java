@@ -67,6 +67,9 @@ class ChatRateLimitFilterUnitTest {
 
         MockHttpServletRequest postChat = new MockHttpServletRequest("POST", "/api/chat");
         assertThat((boolean) shouldNotFilter.invoke(filter, postChat)).isFalse();
+
+        MockHttpServletRequest postChatStream = new MockHttpServletRequest("POST", "/api/chat/stream");
+        assertThat((boolean) shouldNotFilter.invoke(filter, postChatStream)).isFalse();
     }
 
     @Test

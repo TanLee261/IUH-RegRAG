@@ -3,7 +3,7 @@
 from dataclasses import dataclass
 import json
 import os
-from typing import Any, Callable, Protocol
+from typing import Any, Callable, Iterator, Protocol
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
@@ -29,6 +29,8 @@ class GenerationProvider(Protocol):
     def model(self) -> str: ...
 
     def generate(self, prompt: GroundedPrompt) -> ProviderResponse: ...
+
+    def generate_stream(self, prompt: GroundedPrompt) -> Iterator[str]: ...
 
 
 class GeminiProvider:
@@ -102,6 +104,40 @@ class GeminiProvider:
             raise ProviderError('Gemini returned an empty response')
         return ProviderResponse(text=text, provider=self.name, model=self.model)
 
+    def generate_stream(self, prompt: GroundedPrompt) -> Iterator[str]:
+        system, user = prompt.messages
+        try:
+            stream = self._get_client().interactions.create(
+                model=self._model,
+                system_instruction=system.content,
+                input=user.content,
+                generation_config={
+                    'temperature': self._temperature,
+                    'max_output_tokens': self._max_output_tokens,
+                },
+                store=False,
+                stream=True,
+                timeout=self._timeout_seconds,
+            )
+            yielded = False
+            for event in stream:
+                event_type = getattr(event, 'event_type', None)
+                if event_type == 'error':
+                    raise ProviderError('Gemini stream failed')
+                if event_type == 'step.delta':
+                    delta = getattr(event, 'delta', None)
+                    if getattr(delta, 'type', None) == 'text':
+                        text = getattr(delta, 'text', None)
+                        if text:
+                            yielded = True
+                            yield str(text)
+            if not yielded:
+                raise ProviderError('Gemini returned an empty response')
+        except ProviderError:
+            raise
+        except Exception as exc:
+            raise ProviderError('Gemini stream request failed') from exc
+
 
 class OllamaProvider:
     """Local Ollama chat adapter used as a configurable provider or fallback."""
@@ -158,3 +194,42 @@ class OllamaProvider:
         if not text:
             raise ProviderError('Ollama returned an empty response')
         return ProviderResponse(text=text, provider=self.name, model=self.model)
+
+    def generate_stream(self, prompt: GroundedPrompt) -> Iterator[str]:
+        payload = json.dumps(
+            {
+                'model': self._model,
+                'messages': prompt.as_chat_messages(),
+                'stream': True,
+                'options': {
+                    'temperature': self._temperature,
+                    'num_predict': self._max_output_tokens,
+                },
+            }
+        ).encode('utf-8')
+        request = Request(
+            f'{self._base_url}/api/chat',
+            data=payload,
+            headers={'Content-Type': 'application/json'},
+            method='POST',
+        )
+        try:
+            yielded = False
+            with self._opener(request, timeout=self._timeout_seconds) as response:
+                for raw_line in response:
+                    line = raw_line.decode('utf-8').strip()
+                    if not line:
+                        continue
+                    body = json.loads(line)
+                    chunk = str(body.get('message', {}).get('content', ''))
+                    if chunk:
+                        yielded = True
+                        yield chunk
+                    if body.get('done'):
+                        break
+            if not yielded:
+                raise ProviderError('Ollama returned an empty response')
+        except ProviderError:
+            raise
+        except (HTTPError, URLError, TimeoutError, OSError, ValueError, json.JSONDecodeError) as exc:
+            raise ProviderError('Ollama stream request failed') from exc

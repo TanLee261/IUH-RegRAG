@@ -39,7 +39,8 @@ public class ChatRateLimitFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         String path = request.getRequestURI().substring(request.getContextPath().length());
-        return !"POST".equals(request.getMethod()) || !"/api/chat".equals(path);
+        return !"POST".equals(request.getMethod())
+                || (!"/api/chat".equals(path) && !"/api/chat/stream".equals(path));
     }
 
     @Override
