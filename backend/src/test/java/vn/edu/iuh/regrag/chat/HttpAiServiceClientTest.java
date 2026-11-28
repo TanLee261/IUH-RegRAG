@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -160,5 +162,39 @@ class HttpAiServiceClientTest {
         // When server is stopped completely
         server.stop(0);
         assertThat(client.isHealthy()).isFalse();
+    }
+
+    @Test
+    void streamsTokensAndDoneEventFromSseEndpoint() {
+        String sseBody = String.join("\n",
+                "data: {\"type\":\"token\",\"content\":\"Điều kiện \"}",
+                "",
+                "data: {\"type\":\"token\",\"content\":\"xét tốt nghiệp.\"}",
+                "",
+                "data: {\"type\":\"done\",\"answer\":\"Điều kiện xét tốt nghiệp.\",\"status\":\"answered\",\"provider\":\"gemini\",\"sources\":[{\"chunk_id\":\"chunk-22-1\",\"document_id\":\"doc-1\",\"title\":\"Quy chế đào tạo\",\"dieu\":\"22\",\"khoan\":\"1\",\"source\":\"https://iuh.edu.vn/qc.pdf\",\"snippet\":\"Tích lũy đủ tín chỉ.\",\"score\":0.95}]}",
+                "",
+                "");
+
+        server.createContext("/answer/stream", exchange -> {
+            byte[] bytes = sseBody.getBytes(StandardCharsets.UTF_8);
+            exchange.getResponseHeaders().set("Content-Type", "text/event-stream; charset=utf-8");
+            exchange.sendResponseHeaders(200, bytes.length);
+            try (OutputStream os = exchange.getResponseBody()) {
+                os.write(bytes);
+            }
+        });
+
+        HttpAiServiceClient client = new HttpAiServiceClient("http://localhost:" + port, 5);
+        List<AiServiceClient.AiStreamEvent> events = new ArrayList<>();
+        client.streamAnswer("Điều kiện xét tốt nghiệp?", events::add);
+
+        assertThat(events).hasSize(3);
+        assertThat(events.get(0).type()).isEqualTo("token");
+        assertThat(events.get(0).content()).isEqualTo("Điều kiện ");
+        assertThat(events.get(1).content()).isEqualTo("xét tốt nghiệp.");
+        assertThat(events.get(2).type()).isEqualTo("done");
+        assertThat(events.get(2).answer().answer()).isEqualTo("Điều kiện xét tốt nghiệp.");
+        assertThat(events.get(2).answer().sources()).hasSize(1);
+        assertThat(events.get(2).answer().sources().get(0).dieu()).isEqualTo("22");
     }
 }

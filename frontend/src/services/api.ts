@@ -4,6 +4,7 @@ import type {
   ChatResponse,
   ChatSessionDetail,
   ChatSessionSummary,
+  ChatStreamEvent,
   DocumentResponse,
   FeedbackRating,
   FeedbackResponse,
@@ -29,7 +30,7 @@ export function clearStoredTokens(): void {
   localStorage.removeItem(REFRESH_KEY)
 }
 
-async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+async function fetchWithAuthRetry(endpoint: string, options: RequestInit = {}): Promise<Response> {
   const headers = new Headers(options.headers || {})
   const token = getStoredToken()
 
@@ -91,6 +92,12 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
     throw new Error(errorDetail)
   }
 
+  return response
+}
+
+async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+  const response = await fetchWithAuthRetry(endpoint, options)
+
   if (response.status === 204) {
     return {} as T
   }
@@ -142,6 +149,57 @@ export async function sendChatMessage(
     method: 'POST',
     body: JSON.stringify({ question, sessionId }),
   })
+}
+
+export async function sendChatMessageStream(
+  question: string,
+  sessionId: string | undefined,
+  onEvent: (event: ChatStreamEvent) => void,
+  signal?: AbortSignal
+): Promise<void> {
+  const response = await fetchWithAuthRetry('/api/chat/stream', {
+    method: 'POST',
+    headers: { Accept: 'text/event-stream' },
+    body: JSON.stringify({ question, sessionId }),
+    signal,
+  })
+
+  if (!response.body) {
+    throw new Error('Trình duyệt không hỗ trợ đọc dữ liệu stream.')
+  }
+
+  const reader = response.body.getReader()
+  const decoder = new TextDecoder('utf-8')
+  let buffer = ''
+
+  const processLine = (rawLine: string) => {
+    const line = rawLine.trim()
+    if (!line.startsWith('data:')) return
+    const payload = line.slice(5).trim()
+    if (!payload) return
+    const parsed = JSON.parse(payload) as ChatStreamEvent
+    if (parsed.type === 'error') {
+      throw new Error(parsed.message || 'Dịch vụ AI hiện không khả dụng. Vui lòng thử lại sau.')
+    }
+    onEvent(parsed)
+  }
+
+  while (true) {
+    const { value, done } = await reader.read()
+    if (done) break
+
+    buffer += decoder.decode(value, { stream: true })
+    const lines = buffer.split(/\r?\n/)
+    buffer = lines.pop() ?? ''
+
+    for (const line of lines) {
+      processLine(line)
+    }
+  }
+
+  if (buffer.trim()) {
+    processLine(buffer)
+  }
 }
 
 export async function getChatSessions(

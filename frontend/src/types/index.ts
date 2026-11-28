@@ -33,6 +33,11 @@ export interface ChatResponse {
   sources: Source[]
 }
 
+export type ChatStreamEvent =
+  | { type: 'token'; content: string }
+  | ({ type: 'done' } & ChatResponse)
+  | { type: 'error'; message: string }
+
 export interface ChatSessionSummary {
   id: string
   title: string

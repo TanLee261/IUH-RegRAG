@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import {
   getChatSessions,
   getChatSessionDetail,
-  sendChatMessage,
+  sendChatMessageStream,
   submitFeedbackApi,
   getSuggestions,
 } from '../services/api'
@@ -28,6 +28,7 @@ interface LocalMessage {
   content: string
   citations: Source[]
   feedback?: 'HELPFUL' | 'NOT_HELPFUL' | null
+  isStreaming?: boolean
 }
 
 export default function ChatPage() {
@@ -53,6 +54,13 @@ export default function ChatPage() {
   const [suggestions, setSuggestions] = useState<Suggestion[]>([])
 
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const streamAbortRef = useRef<AbortController | null>(null)
+
+  useEffect(() => {
+    return () => {
+      streamAbortRef.current?.abort()
+    }
+  }, [])
 
   // Auto-scroll to bottom of messages
   const scrollToBottom = () => {
@@ -89,6 +97,7 @@ export default function ChatPage() {
   }
 
   const handleSelectSession = async (sessionId: string) => {
+    streamAbortRef.current?.abort()
     try {
       setIsGenerating(true)
       setErrorMessage(null)
@@ -111,6 +120,8 @@ export default function ChatPage() {
   }
 
   const handleNewChat = () => {
+    streamAbortRef.current?.abort()
+    setIsGenerating(false)
     setCurrentSessionId(undefined)
     setMessages([])
     setErrorMessage(null)
@@ -125,46 +136,88 @@ export default function ChatPage() {
     setInputValue('')
     setErrorMessage(null)
 
-    // Add user message optimistically
-    const userMsgId = 'temp-' + Date.now()
+    const now = Date.now()
     const userMsg: LocalMessage = {
-      id: userMsgId,
+      id: 'temp-user-' + now,
       role: 'USER',
       content: question,
       citations: [],
     }
+    const assistantTempId = 'temp-assistant-' + now
+    const assistantPlaceholder: LocalMessage = {
+      id: assistantTempId,
+      role: 'ASSISTANT',
+      content: '',
+      citations: [],
+      isStreaming: true,
+    }
 
-    setMessages((prev) => [...prev, userMsg])
+    setMessages((prev) => [...prev, userMsg, assistantPlaceholder])
     setIsGenerating(true)
 
+    const controller = new AbortController()
+    streamAbortRef.current = controller
+    let receivedToken = false
+
     try {
-      const response = await sendChatMessage(question, currentSessionId)
+      await sendChatMessageStream(
+        question,
+        currentSessionId,
+        (event) => {
+          if (event.type === 'token') {
+            receivedToken = true
+            setMessages((prev) =>
+              prev.map((m) =>
+                m.id === assistantTempId
+                  ? { ...m, content: m.content + event.content }
+                  : m
+              )
+            )
+          } else if (event.type === 'done') {
+            if (!currentSessionId && event.sessionId) {
+              setCurrentSessionId(event.sessionId)
+              if (isAuthenticated) {
+                loadSessions()
+              }
+            }
 
-      // Update session ID if newly created
-      if (!currentSessionId && response.sessionId) {
-        setCurrentSessionId(response.sessionId)
-        if (isAuthenticated) {
-          loadSessions()
-        }
-      }
+            setMessages((prev) =>
+              prev.map((m) =>
+                m.id === assistantTempId
+                  ? {
+                      ...m,
+                      id: event.assistantMessageId,
+                      content: event.answer,
+                      citations: event.sources || [],
+                      isStreaming: false,
+                    }
+                  : m
+              )
+            )
 
-      // Add assistant response
-      const assistantMsg: LocalMessage = {
-        id: response.assistantMessageId,
-        role: 'ASSISTANT',
-        content: response.answer,
-        citations: response.sources || [],
-      }
-
-      setMessages((prev) => [...prev, assistantMsg])
-
-      // Auto-preview sources if citations exist
-      if (response.sources && response.sources.length > 0) {
-        setActiveSources(response.sources)
-      }
+            if (event.sources && event.sources.length > 0) {
+              setActiveSources(event.sources)
+            }
+          }
+        },
+        controller.signal
+      )
     } catch (err: any) {
+      if (err?.name === 'AbortError') {
+        return
+      }
+      if (!receivedToken) {
+        setMessages((prev) => prev.filter((m) => m.id !== assistantTempId))
+      } else {
+        setMessages((prev) =>
+          prev.map((m) => (m.id === assistantTempId ? { ...m, isStreaming: false } : m))
+        )
+      }
       setErrorMessage(err.message || 'Dịch vụ AI hiện không khả dụng. Vui lòng thử lại sau.')
     } finally {
+      if (streamAbortRef.current === controller) {
+        streamAbortRef.current = null
+      }
       setIsGenerating(false)
     }
   }
@@ -317,12 +370,26 @@ export default function ChatPage() {
                     <div className="message-bubble">
                       {msg.role === 'USER' ? (
                         <div className="message-text">{msg.content}</div>
+                      ) : msg.isStreaming && !msg.content ? (
+                        <div className="message-bubble--generating">
+                          <div className="typing-indicator">
+                            <span />
+                            <span />
+                            <span />
+                          </div>
+                          <span className="generating-text">
+                            IUH-RegRAG đang tra cứu quy chế...
+                          </span>
+                        </div>
                       ) : (
-                        <FormattedAnswer
-                          content={msg.content}
-                          citations={msg.citations}
-                          onSourceClick={(locator) => openSourceDrawer(msg.citations, locator)}
-                        />
+                        <>
+                          <FormattedAnswer
+                            content={msg.content}
+                            citations={msg.citations}
+                            onSourceClick={(locator) => openSourceDrawer(msg.citations, locator)}
+                          />
+                          {msg.isStreaming && <span className="streaming-cursor" aria-hidden="true" />}
+                        </>
                       )}
 
                       {/* Citation Pills on Assistant Message (deduplicated) */}
@@ -358,7 +425,7 @@ export default function ChatPage() {
                     </div>
 
                     {/* Actions on Assistant Message */}
-                    {msg.role === 'ASSISTANT' && (
+                    {msg.role === 'ASSISTANT' && !msg.isStreaming && (
                       <div className="message-actions">
                         {msg.citations && msg.citations.length > 0 && (
                           <button
@@ -400,24 +467,6 @@ export default function ChatPage() {
                   </div>
                 </div>
               ))}
-
-              {isGenerating && (
-                <div className="message-row message-row--assistant">
-                  <div className="message-avatar">
-                    <IconBot />
-                  </div>
-                  <div className="message-bubble message-bubble--generating">
-                    <div className="typing-indicator">
-                      <span />
-                      <span />
-                      <span />
-                    </div>
-                    <span className="generating-text">
-                      IUH-RegRAG đang tra cứu quy chế...
-                    </span>
-                  </div>
-                </div>
-              )}
 
               <div ref={messagesEndRef} />
             </div>

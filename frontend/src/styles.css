@@ -800,6 +800,20 @@ button, input, select, textarea {
   40% { transform: scale(1); }
 }
 
+.streaming-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 3px;
+  vertical-align: text-bottom;
+  background-color: var(--primary);
+  animation: blink-cursor 0.9s steps(2, start) infinite;
+}
+
+@keyframes blink-cursor {
+  to { visibility: hidden; }
+}
+
 .citation-pills-row {
   margin-top: 18px;
   padding-top: 14px;

@@ -1,14 +1,15 @@
 """HTTP API exposing the complete IUH-RegRAG answer pipeline."""
 
 from contextlib import asynccontextmanager
+import json
 from pathlib import Path
 import sys
 from threading import Lock
-from typing import Annotated, Any, Callable, Protocol
+from typing import Annotated, Any, Callable, Iterator, Protocol
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel, StringConstraints
 
 from generation import GenerationUnavailableError, generation_service_from_env
@@ -34,6 +35,8 @@ class AnswerRequest(BaseModel):
 
 class AnswerPipeline(Protocol):
     def answer(self, question: str) -> dict[str, Any]: ...
+
+    def answer_stream(self, question: str) -> Iterator[dict[str, Any]]: ...
 
     def close(self) -> None: ...
 
@@ -66,6 +69,11 @@ class RagAnswerPipeline:
             'sources': [source.as_dict() for source in result.sources],
         }
 
+    def answer_stream(self, question: str) -> Iterator[dict[str, Any]]:
+        with self.lock:
+            chunks = self.retriever.retrieve(question, top_k=3, retrieval_k=6)
+        yield from self.generator.answer_stream(question, chunks)
+
     def close(self) -> None:
         self.store.close()
 
@@ -93,6 +101,28 @@ def create_app(
             return request.app.state.pipeline.answer(payload.question)
         except GenerationUnavailableError as exc:
             raise HTTPException(status_code=502, detail='Generation service unavailable') from exc
+
+    @app.post('/answer/stream')
+    def answer_stream(payload: AnswerRequest, request: Request) -> StreamingResponse:
+        pipeline = request.app.state.pipeline
+
+        def event_stream() -> Iterator[str]:
+            try:
+                for event in pipeline.answer_stream(payload.question):
+                    yield f"data: {json.dumps(event, ensure_ascii=False)}\n\n"
+            except GenerationUnavailableError:
+                err = {'type': 'error', 'message': 'Generation service unavailable'}
+                yield f"data: {json.dumps(err, ensure_ascii=False)}\n\n"
+
+        return StreamingResponse(
+            event_stream(),
+            media_type='text/event-stream',
+            headers={
+                'Cache-Control': 'no-cache',
+                'Connection': 'keep-alive',
+                'X-Accel-Buffering': 'no',
+            },
+        )
 
     return app
 

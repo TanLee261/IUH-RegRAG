@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
@@ -129,5 +130,15 @@ public class MockAiServiceClient implements AiServiceClient {
                         0.85
                 ))
         );
+    }
+
+    @Override
+    public void streamAnswer(String question, Consumer<AiStreamEvent> onEvent) {
+        AiAnswer full = answer(question);
+        String[] words = full.answer().split("(?<=\\s)");
+        for (String word : words) {
+            onEvent.accept(AiStreamEvent.token(word));
+        }
+        onEvent.accept(AiStreamEvent.done(full));
     }
 }

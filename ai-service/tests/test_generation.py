@@ -183,3 +183,115 @@ def test_ollama_provider_sends_chat_payload():
     assert recorded['payload']['stream'] is False
     assert recorded['payload']['options']['temperature'] == 0.2
     assert recorded['timeout'] == 20
+
+
+class FakeStreamingProvider:
+    def __init__(self, name, model, *, chunks=None, error=None):
+        self._name, self._model = name, model
+        self.chunks = chunks or []
+        self.error = error
+        self.calls = 0
+
+    @property
+    def name(self):
+        return self._name
+
+    @property
+    def model(self):
+        return self._model
+
+    def generate_stream(self, prompt):
+        self.calls += 1
+        if self.error:
+            raise self.error
+        for chunk in self.chunks:
+            yield chunk
+
+
+def test_answer_stream_yields_tokens_and_done_with_sources():
+    primary = FakeStreamingProvider(
+        'gemini', 'gemini-test', chunks=['Nộp tại ', f'PĐT. {CITATION}']
+    )
+    events = list(GenerationService(primary).answer_stream('Nộp hồ sơ ở đâu?', CHUNKS))
+    assert events[0] == {'type': 'token', 'content': 'Nộp tại '}
+    assert events[1] == {'type': 'token', 'content': f'PĐT. {CITATION}'}
+    assert events[2]['type'] == 'done'
+    assert events[2]['answer'] == f'Nộp tại PĐT. {CITATION}'
+    assert events[2]['status'] == 'answered'
+    assert events[2]['cited_source_ids'] == ['chunk-19-2']
+    assert len(events[2]['sources']) == 1
+
+
+def test_answer_stream_falls_back_when_primary_fails_before_emitting():
+    primary = FakeStreamingProvider('gemini', 'gemini-test', error=ProviderError('down'))
+    fallback = FakeStreamingProvider('ollama', 'qwen2.5:7b', chunks=[f'Fallback. {CITATION}'])
+    events = list(GenerationService(primary, fallback).answer_stream('Nộp ở đâu?', CHUNKS))
+    assert events[0] == {'type': 'token', 'content': f'Fallback. {CITATION}'}
+    assert events[1]['type'] == 'done'
+    assert events[1]['provider'] == 'ollama'
+    assert events[1]['fallback_used'] is True
+
+
+def test_answer_stream_empty_retrieval_returns_safe_message():
+    primary = FakeStreamingProvider('gemini', 'gemini-test', chunks=['ignored'])
+    events = list(GenerationService(primary).answer_stream('Cách nấu phở?', []))
+    assert events == [
+        {'type': 'token', 'content': EMPTY_RETRIEVAL_MESSAGE},
+        {
+            'type': 'done',
+            'answer': EMPTY_RETRIEVAL_MESSAGE,
+            'status': 'no_context',
+            'provider': 'none',
+            'model': 'none',
+            'source_ids': [],
+            'cited_source_ids': [],
+            'fallback_used': False,
+            'sources': [],
+        },
+    ]
+    assert primary.calls == 0
+
+
+def test_gemini_provider_generate_stream_reads_step_deltas():
+    stream_events = [
+        SimpleNamespace(event_type='interaction.created'),
+        SimpleNamespace(event_type='step.delta', delta=SimpleNamespace(type='text', text='Điều ')),
+        SimpleNamespace(event_type='step.delta', delta=SimpleNamespace(type='text', text=f'22. {CITATION}')),
+        SimpleNamespace(event_type='interaction.completed'),
+    ]
+
+    class FakeStreamingInteractions:
+        def create(self, **kwargs):
+            self.kwargs = kwargs
+            return iter(stream_events)
+
+    interactions = FakeStreamingInteractions()
+    provider = GeminiProvider(
+        'gemini-test', temperature=0.2, max_output_tokens=800,
+        timeout_seconds=12, client=SimpleNamespace(interactions=interactions),
+    )
+    prompt = GenerationService(FakeProvider('x', 'x')).prompt_builder.build('Hỏi?', CHUNKS)
+    chunks = list(provider.generate_stream(prompt))
+    assert chunks == ['Điều ', f'22. {CITATION}']
+    assert interactions.kwargs['stream'] is True
+
+
+def test_ollama_provider_generate_stream_reads_ndjson_lines():
+    ndjson_lines = [
+        (json.dumps({'message': {'content': 'Điều '}, 'done': False}) + '\n').encode(),
+        (json.dumps({'message': {'content': '19.'}, 'done': True}) + '\n').encode(),
+    ]
+
+    class FakeStreamHttpResponse:
+        def __enter__(self):
+            return iter(ndjson_lines)
+
+        def __exit__(self, *_):
+            return None
+
+    provider = OllamaProvider(
+        'qwen2.5:7b', base_url='http://localhost:11434/', temperature=0.2,
+        max_output_tokens=512, timeout_seconds=20, opener=lambda req, timeout: FakeStreamHttpResponse(),
+    )
+    prompt = GenerationService(FakeProvider('x', 'x')).prompt_builder.build('Hỏi?', CHUNKS)
+    assert list(provider.generate_stream(prompt)) == ['Điều ', '19.']
